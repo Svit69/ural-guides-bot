@@ -19,3 +19,8 @@ class AdminRepository:
                 (telegram_id,),
             ).fetchone()
         return row is not None
+
+    def get_all_admin_ids(self) -> list[int]:
+        with self.__connection_factory.open_connection() as connection:
+            rows = connection.execute("select telegram_id from admins").fetchall()
+        return [int(row["telegram_id"]) for row in rows]

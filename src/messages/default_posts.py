@@ -9,6 +9,7 @@ EIGHTH_POST_NUMBER = 8
 NINTH_POST_NUMBER = 9
 TENTH_POST_NUMBER = 10
 ELEVENTH_POST_NUMBER = 11
+FINAL_POST_NUMBER = 12
 
 DEFAULT_START_MESSAGE = (
     "👋🏻 Привет! Меня зовут Настя, пятый год изучаю Екатеринбург "

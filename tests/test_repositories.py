@@ -25,6 +25,7 @@ def test_admin_and_user_repositories_persist_data(tmp_path: Path) -> None:
     users = user_repository.get_all_registered_users()
 
     assert admin_repository.is_admin(265485424)
+    assert admin_repository.get_all_admin_ids() == [265485424]
     assert users[0]["telegram_id"] == 1
     assert users[0]["username"] == "nast_bar"
     assert media_repository.get_post_media(1)[0]["media_type"] == "video"

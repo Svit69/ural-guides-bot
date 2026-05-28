@@ -19,6 +19,14 @@ def test_builds_kuibyshev_question_button() -> None:
     assert button.callback_data == "route:post:9"
 
 
+def test_builds_finish_walk_button() -> None:
+    keyboard = RouteNavigationKeyboardFactory().build_next_post_keyboard(12)
+    button = keyboard.inline_keyboard[0][0]
+
+    assert button.text == "завершить прогулку"
+    assert button.callback_data == "route:post:12"
+
+
 def test_parses_route_post_callback() -> None:
     callbacks = RouteNavigationCallbackData()
 
@@ -65,3 +73,9 @@ def test_resolves_next_post_after_tenth_post() -> None:
     resolver = NextPostResolver()
 
     assert resolver.resolve_next_post(10) == 11
+
+
+def test_resolves_final_post_after_eleventh_post() -> None:
+    resolver = NextPostResolver()
+
+    assert resolver.resolve_next_post(11) == 12
