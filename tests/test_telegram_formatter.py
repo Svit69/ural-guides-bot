@@ -1,6 +1,6 @@
-from src.text_formatting.telegram_formatter import TelegramTextFormatter
 from src.messages.default_posts import DEFAULT_START_MESSAGE
-from src.messages.second_post import DEFAULT_SECOND_POST
+from src.messages.second_post import DEFAULT_SECOND_POST, YANDEX_ROUTE_URL
+from src.text_formatting.telegram_formatter import TelegramTextFormatter
 
 
 def test_formats_bold_link_and_quote() -> None:
@@ -42,13 +42,15 @@ def test_default_start_message_keeps_readable_russian_text() -> None:
 
 
 def test_default_second_post_keeps_readable_russian_text() -> None:
-    assert "Старт на Площади Субботников" in DEFAULT_SECOND_POST
+    assert "Cтарт на Площади Субботников" in DEFAULT_SECOND_POST
     assert "Рџ" not in DEFAULT_SECOND_POST
 
 
-def test_formats_link_without_space_before_url() -> None:
+def test_formats_second_post_route_link() -> None:
     formatter = TelegramTextFormatter()
 
-    result = formatter.format_text("[Тут ссылка.(https://example.com)]")
+    result = formatter.format_text(DEFAULT_SECOND_POST)
+    escaped_url = YANDEX_ROUTE_URL.replace("&", "&amp;")
 
-    assert result == '<a href="https://example.com">Тут ссылка.</a>'
+    assert YANDEX_ROUTE_URL.endswith("rtt=pd")
+    assert f'<a href="{escaped_url}">Тут ссылка.</a>' in result

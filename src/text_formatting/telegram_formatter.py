@@ -1,13 +1,16 @@
 from src.text_formatting.formatter import TextFormatter
 from src.text_formatting.html_helpers import wrap_blockquote
-from src.text_formatting.inline_rules import HtmlTagRule, InlineFormattingRule
+from src.text_formatting.inline_match_finder import InlineMatchFinder
+from src.text_formatting.inline_rule_catalog import InlineRuleCatalog
 from src.text_formatting.link_parser import TelegramLinkParser
 
 
 class TelegramTextFormatter(TextFormatter):
     def __init__(self) -> None:
         self.__link_parser = TelegramLinkParser()
-        self.__inline_rules = self.__build_inline_rules()
+        self.__match_finder = InlineMatchFinder(
+            InlineRuleCatalog().build_inline_rules()
+        )
 
     def format_text(self, source_text: str) -> str:
         paragraphs = source_text.split("\n\n")
@@ -21,7 +24,18 @@ class TelegramTextFormatter(TextFormatter):
         return self.__format_inline_text(paragraph)
 
     def __format_inline_text(self, source_text: str) -> str:
-        match_with_rule = self.__find_next_inline_match(source_text)
+        match_with_rule = self.__match_finder.find_next_inline_match(source_text)
+        link_match = self.__link_parser.find_link_match(source_text)
+        if link_match and self.__match_finder.is_link_before_rule(
+            link_match, match_with_rule
+        ):
+            return "".join(
+                [
+                    self.__format_inline_text(source_text[: link_match.start()]),
+                    self.__link_parser.convert_match_to_html(link_match),
+                    self.__format_inline_text(source_text[link_match.end() :]),
+                ]
+            )
         if match_with_rule is None:
             return self.__link_parser.convert_links_to_html(source_text)
         match, rule = match_with_rule
@@ -32,25 +46,6 @@ class TelegramTextFormatter(TextFormatter):
                 self.__format_inline_text(source_text[match.end() :]),
             ]
         )
-
-    def __find_next_inline_match(self, source_text: str):
-        matches = [
-            (match, rule)
-            for rule in self.__inline_rules
-            if (match := rule.find_match(source_text)) is not None
-        ]
-        return min(matches, key=lambda item: item[0].start()) if matches else None
-
-    def __build_inline_rules(self) -> list[InlineFormattingRule]:
-        return [
-            HtmlTagRule(r"```(.+?)```", "pre", False),
-            HtmlTagRule(r"`([^`\n]+?)`", "code", False),
-            HtmlTagRule(r"\|\|(.+?)\|\|", "tg-spoiler"),
-            HtmlTagRule(r"__(.+?)__", "u"),
-            HtmlTagRule(r"~(.+?)~", "s"),
-            HtmlTagRule(r"\*(.+?)\*", "b"),
-            HtmlTagRule(r"_(.+?)_", "i"),
-        ]
 
     def __is_quote(self, paragraph: str) -> bool:
         stripped_paragraph = paragraph.strip()

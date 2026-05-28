@@ -6,6 +6,12 @@ from src.text_formatting.html_helpers import escape_telegram_html, wrap_link
 class TelegramLinkParser:
     __link_pattern = re.compile(r"\[([^\[\]\n]+?)\s*\((https?://[^)\s]+)\)\]")
 
+    def find_link_match(self, source_text: str) -> re.Match[str] | None:
+        return self.__link_pattern.search(source_text)
+
+    def convert_match_to_html(self, match: re.Match[str]) -> str:
+        return self.__build_link_html(match)
+
     def convert_links_to_html(self, source_text: str) -> str:
         result_parts: list[str] = []
         cursor_position = 0
