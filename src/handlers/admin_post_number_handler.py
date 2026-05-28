@@ -30,7 +30,8 @@ class AdminPostNumberHandler:
             return
         await state.set_state(EditContentStates.waiting_for_post_number)
         await callback.message.answer(
-            "Введите номер поста. Приветственный = 1, после подписки = 2, дальше = 3."
+            "Введите номер поста. Приветственный = 1, после подписки = 2, "
+            "дальше = 3, дом = 4."
         )
 
     async def __receive_post_number(self, message: Message, state: FSMContext) -> None:

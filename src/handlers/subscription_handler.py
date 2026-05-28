@@ -2,7 +2,7 @@ from aiogram import Bot, Dispatcher, F
 from aiogram.exceptions import TelegramBadRequest, TelegramForbiddenError
 from aiogram.types import CallbackQuery
 
-from src.messages.default_posts import SECOND_POST_NUMBER
+from src.messages.default_posts import SECOND_POST_NUMBER, THIRD_POST_NUMBER
 from src.messages.post_provider import PostProvider
 from src.route_navigation.keyboards import RouteNavigationKeyboardFactory
 from src.services.post_sender import TelegramPostSender
@@ -46,5 +46,5 @@ class SubscriptionCheckHandler:
             await self.__post_sender.send_post(
                 callback.message,
                 self.__post_provider.get_post(SECOND_POST_NUMBER),
-                self.__keyboard_factory.build_next_post_keyboard(),
+                self.__keyboard_factory.build_next_post_keyboard(THIRD_POST_NUMBER),
             )

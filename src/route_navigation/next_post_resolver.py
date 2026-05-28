@@ -1,0 +1,9 @@
+from src.messages.default_posts import FOURTH_POST_NUMBER, THIRD_POST_NUMBER
+
+
+class NextPostResolver:
+    def resolve_next_post(self, current_post_number: int) -> int | None:
+        next_posts = {
+            THIRD_POST_NUMBER: FOURTH_POST_NUMBER,
+        }
+        return next_posts.get(current_post_number)

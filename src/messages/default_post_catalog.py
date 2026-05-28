@@ -1,6 +1,8 @@
 from src.messages.default_posts import DEFAULT_START_MESSAGE, SECOND_POST_NUMBER
+from src.messages.default_posts import FOURTH_POST_NUMBER
 from src.messages.default_posts import START_POST_NUMBER
 from src.messages.default_posts import THIRD_POST_NUMBER
+from src.messages.fourth_post import DEFAULT_FOURTH_POST
 from src.messages.second_post import DEFAULT_SECOND_POST
 from src.messages.third_post import DEFAULT_THIRD_POST
 
@@ -11,5 +13,6 @@ class DefaultPostCatalog:
             START_POST_NUMBER: DEFAULT_START_MESSAGE,
             SECOND_POST_NUMBER: DEFAULT_SECOND_POST,
             THIRD_POST_NUMBER: DEFAULT_THIRD_POST,
+            FOURTH_POST_NUMBER: DEFAULT_FOURTH_POST,
         }
         return defaults.get(post_number, "")

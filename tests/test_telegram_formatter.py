@@ -1,4 +1,5 @@
 from src.messages.default_posts import DEFAULT_START_MESSAGE
+from src.messages.fourth_post import ADDRESS_URL, DEFAULT_FOURTH_POST
 from src.messages.second_post import DEFAULT_SECOND_POST, YANDEX_ROUTE_URL
 from src.messages.third_post import DEFAULT_THIRD_POST
 from src.text_formatting.telegram_formatter import TelegramTextFormatter
@@ -37,7 +38,10 @@ def test_default_posts_keep_readable_russian_text() -> None:
     assert "Привет" in DEFAULT_START_MESSAGE
     assert "Cтарт на Площади Субботников" in DEFAULT_SECOND_POST
     assert "Выходим на конечной" in DEFAULT_THIRD_POST
-    assert "Рџ" not in DEFAULT_START_MESSAGE + DEFAULT_SECOND_POST + DEFAULT_THIRD_POST
+    assert "Один из первых домов" in DEFAULT_FOURTH_POST
+    all_default_posts = DEFAULT_START_MESSAGE + DEFAULT_SECOND_POST
+    all_default_posts += DEFAULT_THIRD_POST + DEFAULT_FOURTH_POST
+    assert "Рџ" not in all_default_posts
 
 
 def test_formats_second_post_route_link() -> None:
@@ -47,3 +51,11 @@ def test_formats_second_post_route_link() -> None:
 
     assert YANDEX_ROUTE_URL.endswith("rtt=pd")
     assert f'<a href="{escaped_url}">Тут ссылка.</a>' in result
+
+
+def test_formats_fourth_post_address_link() -> None:
+    formatter = TelegramTextFormatter()
+    result = formatter.format_text(DEFAULT_FOURTH_POST)
+    escaped_url = ADDRESS_URL.replace("&", "&amp;")
+
+    assert f'<a href="{escaped_url}">Большеконный переулок, 12</a>' in result
