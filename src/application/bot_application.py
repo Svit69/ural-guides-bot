@@ -7,12 +7,8 @@ from aiogram.enums import ParseMode
 from src.config.environment import EnvironmentSettings
 from src.database.connection_factory import SqliteConnectionFactory
 from src.database.schema_initializer import DatabaseSchemaInitializer
-from src.handlers.admin_handler import AdminPanelHandler
-from src.handlers.start_handler import StartCommandHandler
+from src.application.handler_registrar import HandlerRegistrar
 from src.repositories.admin_repository import AdminRepository
-from src.repositories.post_media_repository import PostMediaRepository
-from src.repositories.post_repository import PostRepository
-from src.repositories.user_repository import UserRepository
 from src.services.admin_bootstrapper import AdminBootstrapper
 
 
@@ -28,16 +24,9 @@ class BotApplication:
         asyncio.run(self.__start_polling())
 
     def __register_handlers(self) -> None:
-        admin_repository = AdminRepository(self.__connection_factory)
-        media_repository = PostMediaRepository(self.__connection_factory)
-        post_repository = PostRepository(self.__connection_factory)
-        user_repository = UserRepository(self.__connection_factory)
-        StartCommandHandler(
-            post_repository, media_repository, user_repository
-        ).register_in_dispatcher(self.__dispatcher)
-        AdminPanelHandler(
-            admin_repository, post_repository, media_repository, user_repository
-        ).register_in_dispatcher(self.__dispatcher)
+        HandlerRegistrar(self.__settings, self.__connection_factory).register_handlers(
+            self.__dispatcher
+        )
 
     def __initialize_database(self) -> None:
         DatabaseSchemaInitializer(self.__connection_factory).initialize_schema()

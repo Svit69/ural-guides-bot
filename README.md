@@ -14,5 +14,8 @@ python -m src.main
 ```
 
 The bot expects `TELEGRAM_BOT_TOKEN` in the environment. Admin IDs and database path can be configured with `ADMIN_TELEGRAM_IDS` and `BOT_DATABASE_PATH`.
+The subscription channel defaults to `@nast_bar`; override it with `SUBSCRIPTION_CHANNEL_USERNAME`.
 
 Open the admin panel with `/admin`.
+
+For subscription checks, add the bot to the channel as an administrator.

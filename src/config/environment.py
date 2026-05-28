@@ -9,6 +9,7 @@ class EnvironmentSettings:
     telegram_bot_token: str
     database_path: str
     initial_admin_ids: tuple[int, ...]
+    subscription_channel_username: str
 
     @classmethod
     def load_from_environment(cls) -> "EnvironmentSettings":
@@ -21,6 +22,7 @@ class EnvironmentSettings:
             token,
             os.getenv("BOT_DATABASE_PATH", "bot_data.sqlite3"),
             cls.__parse_ids(admin_ids),
+            os.getenv("SUBSCRIPTION_CHANNEL_USERNAME", "@nast_bar"),
         )
 
     @staticmethod
