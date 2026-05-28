@@ -21,3 +21,9 @@ def test_resolves_next_post_after_fourth_post() -> None:
     resolver = NextPostResolver()
 
     assert resolver.resolve_next_post(4) == 5
+
+
+def test_resolves_next_post_after_fifth_post() -> None:
+    resolver = NextPostResolver()
+
+    assert resolver.resolve_next_post(5) == 6

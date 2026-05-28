@@ -3,6 +3,7 @@ SECOND_POST_NUMBER = 2
 THIRD_POST_NUMBER = 3
 FOURTH_POST_NUMBER = 4
 FIFTH_POST_NUMBER = 5
+SIXTH_POST_NUMBER = 6
 
 DEFAULT_START_MESSAGE = (
     "👋🏻 Привет! Меня зовут Настя, пятый год изучаю Екатеринбург "
