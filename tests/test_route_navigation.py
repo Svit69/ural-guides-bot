@@ -1,5 +1,6 @@
 from src.route_navigation.callbacks import RouteNavigationCallbackData
 from src.route_navigation.keyboards import RouteNavigationKeyboardFactory
+from src.route_navigation.next_post_resolver import NextPostResolver
 
 
 def test_builds_next_post_keyboard_with_readable_text() -> None:
@@ -14,3 +15,9 @@ def test_parses_route_post_callback() -> None:
     callbacks = RouteNavigationCallbackData()
 
     assert callbacks.parse_post_number("route:post:4") == 4
+
+
+def test_resolves_next_post_after_fourth_post() -> None:
+    resolver = NextPostResolver()
+
+    assert resolver.resolve_next_post(4) == 5
