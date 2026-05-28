@@ -29,7 +29,9 @@ class AdminPostNumberHandler:
         if not self.__guard.is_admin_callback(callback) or callback.message is None:
             return
         await state.set_state(EditContentStates.waiting_for_post_number)
-        await callback.message.answer("Введите номер поста. Приветственный пост = 1.")
+        await callback.message.answer(
+            "Введите номер поста. Приветственный = 1, после подписки = 2."
+        )
 
     async def __receive_post_number(self, message: Message, state: FSMContext) -> None:
         if not self.__guard.is_admin_message(message):

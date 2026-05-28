@@ -1,5 +1,6 @@
 from src.text_formatting.telegram_formatter import TelegramTextFormatter
 from src.messages.default_posts import DEFAULT_START_MESSAGE
+from src.messages.second_post import DEFAULT_SECOND_POST
 
 
 def test_formats_bold_link_and_quote() -> None:
@@ -38,3 +39,16 @@ def test_formats_telegram_inline_styles() -> None:
 def test_default_start_message_keeps_readable_russian_text() -> None:
     assert "Привет" in DEFAULT_START_MESSAGE
     assert "Рџ" not in DEFAULT_START_MESSAGE
+
+
+def test_default_second_post_keeps_readable_russian_text() -> None:
+    assert "Старт на Площади Субботников" in DEFAULT_SECOND_POST
+    assert "Рџ" not in DEFAULT_SECOND_POST
+
+
+def test_formats_link_without_space_before_url() -> None:
+    formatter = TelegramTextFormatter()
+
+    result = formatter.format_text("[Тут ссылка.(https://example.com)]")
+
+    assert result == '<a href="https://example.com">Тут ссылка.</a>'

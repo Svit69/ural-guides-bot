@@ -4,7 +4,7 @@ from src.text_formatting.html_helpers import escape_telegram_html, wrap_link
 
 
 class TelegramLinkParser:
-    __link_pattern = re.compile(r"\[([^\[\]\n]+?)\s+\((https?://[^)\s]+)\)\]")
+    __link_pattern = re.compile(r"\[([^\[\]\n]+?)\s*\((https?://[^)\s]+)\)\]")
 
     def convert_links_to_html(self, source_text: str) -> str:
         result_parts: list[str] = []
