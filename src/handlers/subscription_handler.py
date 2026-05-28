@@ -4,6 +4,7 @@ from aiogram.types import CallbackQuery
 
 from src.messages.default_posts import SECOND_POST_NUMBER
 from src.messages.post_provider import PostProvider
+from src.route_navigation.prompt_sender import RouteNavigationPromptSender
 from src.services.post_sender import TelegramPostSender
 from src.subscription.callbacks import SubscriptionCallbackData
 from src.subscription.checker import ChannelSubscriptionChecker
@@ -19,6 +20,7 @@ class SubscriptionCheckHandler:
         self.__checker = checker
         self.__post_provider = posts
         self.__post_sender = TelegramPostSender()
+        self.__navigation_prompt_sender = RouteNavigationPromptSender()
 
     def register_in_dispatcher(self, dispatcher: Dispatcher) -> None:
         dispatcher.callback_query.register(
@@ -43,4 +45,7 @@ class SubscriptionCheckHandler:
         if is_subscribed and callback.message is not None:
             await self.__post_sender.send_post(
                 callback.message, self.__post_provider.get_post(SECOND_POST_NUMBER)
+            )
+            await self.__navigation_prompt_sender.send_next_post_prompt(
+                callback.message
             )

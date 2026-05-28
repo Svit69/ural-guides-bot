@@ -3,6 +3,7 @@ from aiogram import Dispatcher
 from src.config.environment import EnvironmentSettings
 from src.database.connection_factory import SqliteConnectionFactory
 from src.handlers.admin_handler import AdminPanelHandler
+from src.handlers.route_navigation_handler import RouteNavigationHandler
 from src.handlers.start_handler import StartCommandHandler
 from src.handlers.subscription_handler import SubscriptionCheckHandler
 from src.messages.post_provider import PostProvider
@@ -33,6 +34,7 @@ class HandlerRegistrar:
             post_repository, media_repository, user_repository
         ).register_in_dispatcher(dispatcher)
         SubscriptionCheckHandler(checker, post_provider).register_in_dispatcher(dispatcher)
+        RouteNavigationHandler(post_provider).register_in_dispatcher(dispatcher)
         AdminPanelHandler(
             admin_repository, post_repository, media_repository, user_repository
         ).register_in_dispatcher(dispatcher)

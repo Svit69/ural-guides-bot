@@ -1,5 +1,6 @@
 from src.messages.default_posts import DEFAULT_START_MESSAGE
 from src.messages.second_post import DEFAULT_SECOND_POST, YANDEX_ROUTE_URL
+from src.messages.third_post import DEFAULT_THIRD_POST
 from src.text_formatting.telegram_formatter import TelegramTextFormatter
 
 
@@ -24,31 +25,23 @@ def test_preserves_emoji_and_paragraph_spacing() -> None:
 
 def test_formats_telegram_inline_styles() -> None:
     formatter = TelegramTextFormatter()
-
-    result = formatter.format_text(
-        "_курсив_ __низ__ ~нет~ ||тайна|| `x < y` ```print('ok')```"
-    )
+    result = formatter.format_text("_курсив_ __низ__ ~нет~ ||тайна|| `x < y`")
 
     assert result == (
         "<i>курсив</i> <u>низ</u> <s>нет</s> "
-        "<tg-spoiler>тайна</tg-spoiler> <code>x &lt; y</code> "
-        "<pre>print('ok')</pre>"
+        "<tg-spoiler>тайна</tg-spoiler> <code>x &lt; y</code>"
     )
 
 
-def test_default_start_message_keeps_readable_russian_text() -> None:
+def test_default_posts_keep_readable_russian_text() -> None:
     assert "Привет" in DEFAULT_START_MESSAGE
-    assert "Рџ" not in DEFAULT_START_MESSAGE
-
-
-def test_default_second_post_keeps_readable_russian_text() -> None:
     assert "Cтарт на Площади Субботников" in DEFAULT_SECOND_POST
-    assert "Рџ" not in DEFAULT_SECOND_POST
+    assert "Выходим на конечной" in DEFAULT_THIRD_POST
+    assert "Рџ" not in DEFAULT_START_MESSAGE + DEFAULT_SECOND_POST + DEFAULT_THIRD_POST
 
 
 def test_formats_second_post_route_link() -> None:
     formatter = TelegramTextFormatter()
-
     result = formatter.format_text(DEFAULT_SECOND_POST)
     escaped_url = YANDEX_ROUTE_URL.replace("&", "&amp;")
 

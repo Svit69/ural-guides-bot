@@ -1,5 +1,6 @@
 START_POST_NUMBER = 1
 SECOND_POST_NUMBER = 2
+THIRD_POST_NUMBER = 3
 
 DEFAULT_START_MESSAGE = (
     "👋🏻 Привет! Меня зовут Настя, пятый год изучаю Екатеринбург "
