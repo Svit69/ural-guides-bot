@@ -10,8 +10,8 @@ class PhotoQuestionSender:
         self.__keyboard_factory = AdminKeyboardFactory()
 
     async def ask_photo_question(self, message: Message, state: FSMContext) -> None:
-        await state.set_state(EditContentStates.waiting_for_photo)
+        await state.set_state(EditContentStates.waiting_for_media)
         await message.answer(
-            "Добавить фотографию?",
+            "Добавить фотографии или видео?",
             reply_markup=self.__keyboard_factory.build_photo_decision_keyboard(),
         )

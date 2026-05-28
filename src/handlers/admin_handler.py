@@ -5,6 +5,7 @@ from src.handlers.admin_content_handler import AdminContentEditHandler
 from src.handlers.admin_panel_handler import AdminPanelCommandHandler
 from src.handlers.admin_users_handler import AdminUsersHandler
 from src.repositories.admin_repository import AdminRepository
+from src.repositories.post_media_repository import PostMediaRepository
 from src.repositories.post_repository import PostRepository
 from src.repositories.user_repository import UserRepository
 
@@ -14,13 +15,14 @@ class AdminPanelHandler:
         self,
         admin_repository: AdminRepository,
         post_repository: PostRepository,
+        media_repository: PostMediaRepository,
         user_repository: UserRepository,
     ) -> None:
         self.__handlers = [
             AdminPanelCommandHandler(admin_repository),
             AdminUsersHandler(admin_repository, user_repository),
             AdminAccessManagementHandler(admin_repository),
-            AdminContentEditHandler(admin_repository, post_repository),
+            AdminContentEditHandler(admin_repository, post_repository, media_repository),
         ]
 
     def register_in_dispatcher(self, dispatcher: Dispatcher) -> None:

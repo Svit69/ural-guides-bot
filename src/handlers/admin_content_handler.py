@@ -4,17 +4,21 @@ from src.handlers.admin_photo_handler import AdminPhotoHandler
 from src.handlers.admin_post_number_handler import AdminPostNumberHandler
 from src.handlers.admin_text_decision_handler import AdminTextDecisionHandler
 from src.repositories.admin_repository import AdminRepository
+from src.repositories.post_media_repository import PostMediaRepository
 from src.repositories.post_repository import PostRepository
 
 
 class AdminContentEditHandler:
     def __init__(
-        self, admin_repository: AdminRepository, post_repository: PostRepository
+        self,
+        admin_repository: AdminRepository,
+        post_repository: PostRepository,
+        media_repository: PostMediaRepository,
     ) -> None:
         self.__handlers = [
             AdminPostNumberHandler(admin_repository),
-            AdminTextDecisionHandler(admin_repository, post_repository),
-            AdminPhotoHandler(admin_repository, post_repository),
+            AdminTextDecisionHandler(admin_repository, post_repository, media_repository),
+            AdminPhotoHandler(admin_repository, post_repository, media_repository),
         ]
 
     def register_in_dispatcher(self, dispatcher: Dispatcher) -> None:

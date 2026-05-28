@@ -1,55 +1,52 @@
 from aiogram import Dispatcher, F
 from aiogram.fsm.context import FSMContext
-from aiogram.types import CallbackQuery, Message
+from aiogram.types import CallbackQuery
 
 from src.admin.access_guard import AdminAccessGuard
 from src.admin.callbacks import AdminCallbackData
+from src.admin.media_item_extractor import MediaItemExtractor
 from src.admin.post_editor import AdminPostEditor
 from src.admin.states import EditContentStates
+from src.handlers.admin_media_upload_handler import AdminMediaUploadMixin
 from src.repositories.admin_repository import AdminRepository
+from src.repositories.post_media_repository import PostMediaRepository
 from src.repositories.post_repository import PostRepository
 
 
-class AdminPhotoHandler:
-    def __init__(self, admin_repository: AdminRepository, posts: PostRepository) -> None:
-        self.__guard = AdminAccessGuard(admin_repository)
-        self.__post_editor = AdminPostEditor(posts)
+class AdminPhotoHandler(AdminMediaUploadMixin):
+    def __init__(
+        self,
+        admin_repository: AdminRepository,
+        posts: PostRepository,
+        media: PostMediaRepository,
+    ) -> None:
+        self._guard = AdminAccessGuard(admin_repository)
+        self._post_editor = AdminPostEditor(posts, media)
+        self._media_extractor = MediaItemExtractor()
 
     def register_in_dispatcher(self, dispatcher: Dispatcher) -> None:
         dispatcher.callback_query.register(
-            self.__request_photo, F.data == AdminCallbackData.ADD_PHOTO
+            self.__request_media, F.data == AdminCallbackData.ADD_PHOTO
         )
         dispatcher.callback_query.register(
-            self.__save_without_new_photo, F.data == AdminCallbackData.SKIP_PHOTO
+            self._save_without_new_media, F.data == AdminCallbackData.SKIP_PHOTO
         )
         dispatcher.message.register(
-            self.__save_uploaded_photo, EditContentStates.waiting_for_photo, F.photo
+            self._collect_uploaded_media,
+            EditContentStates.waiting_for_media,
+            F.photo | F.video,
+        )
+        dispatcher.message.register(
+            self._finish_media_upload,
+            EditContentStates.waiting_for_media,
+            F.text.casefold() == "готово",
         )
 
-    async def __request_photo(self, callback: CallbackQuery) -> None:
+    async def __request_media(self, callback: CallbackQuery, state: FSMContext) -> None:
         await callback.answer()
-        if not self.__guard.is_admin_callback(callback) or callback.message is None:
+        if not self._guard.is_admin_callback(callback) or callback.message is None:
             return
-        await callback.message.answer("Загрузите фотографию для поста.")
-
-    async def __save_without_new_photo(
-        self, callback: CallbackQuery, state: FSMContext
-    ) -> None:
-        await callback.answer()
-        if not self.__guard.is_admin_callback(callback) or callback.message is None:
-            return
-        data = await state.get_data()
-        self.__post_editor.save_post_with_existing_photo(data["post_number"], data["text"])
-        await state.clear()
-        await callback.message.answer("Пост сохранен без новой фотографии.")
-
-    async def __save_uploaded_photo(self, message: Message, state: FSMContext) -> None:
-        if not self.__guard.is_admin_message(message) or not message.photo:
-            await state.clear()
-            return
-        data = await state.get_data()
-        self.__post_editor.save_post_with_new_photo(
-            data["post_number"], data["text"], message.photo[-1].file_id
+        await state.update_data(media_items=[])
+        await callback.message.answer(
+            "Загрузите фото или видео. Когда закончите, напишите: готово"
         )
-        await state.clear()
-        await message.answer("Пост сохранен с фотографией.")

@@ -38,7 +38,17 @@ class AdminKeyboardFactory:
     def build_photo_decision_keyboard(self) -> InlineKeyboardMarkup:
         return InlineKeyboardMarkup(
             inline_keyboard=[
-                [InlineKeyboardButton(text="Добавить фото", callback_data=AdminCallbackData.ADD_PHOTO)],
-                [InlineKeyboardButton(text="Без нового фото", callback_data=AdminCallbackData.SKIP_PHOTO)],
+                [
+                    InlineKeyboardButton(
+                        text="Добавить медиа",
+                        callback_data=AdminCallbackData.ADD_PHOTO,
+                    )
+                ],
+                [
+                    InlineKeyboardButton(
+                        text="Без новых медиа",
+                        callback_data=AdminCallbackData.SKIP_PHOTO,
+                    )
+                ],
             ]
         )

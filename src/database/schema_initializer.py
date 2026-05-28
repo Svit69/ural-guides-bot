@@ -23,5 +23,20 @@ class DatabaseSchemaInitializer:
                     text text not null,
                     photo_file_id text
                 );
+                create table if not exists post_media (
+                    post_number integer not null,
+                    position integer not null,
+                    media_type text not null,
+                    file_id text not null,
+                    primary key (post_number, position)
+                );
+                """
+            )
+            connection.execute(
+                """
+                insert or ignore into post_media
+                select post_number, 0, 'photo', photo_file_id
+                from posts
+                where photo_file_id is not null
                 """
             )

@@ -8,4 +8,4 @@ class AddAdminStates(StatesGroup):
 class EditContentStates(StatesGroup):
     waiting_for_post_number = State()
     waiting_for_replacement_text = State()
-    waiting_for_photo = State()
+    waiting_for_media = State()
