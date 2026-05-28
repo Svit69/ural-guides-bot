@@ -27,3 +27,9 @@ def test_resolves_next_post_after_fifth_post() -> None:
     resolver = NextPostResolver()
 
     assert resolver.resolve_next_post(5) == 6
+
+
+def test_resolves_next_post_after_sixth_post() -> None:
+    resolver = NextPostResolver()
+
+    assert resolver.resolve_next_post(6) == 7
