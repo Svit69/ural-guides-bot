@@ -33,3 +33,9 @@ def test_resolves_next_post_after_sixth_post() -> None:
     resolver = NextPostResolver()
 
     assert resolver.resolve_next_post(6) == 7
+
+
+def test_resolves_next_post_after_seventh_post() -> None:
+    resolver = NextPostResolver()
+
+    assert resolver.resolve_next_post(7) == 8

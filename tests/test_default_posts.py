@@ -1,9 +1,9 @@
 from src.messages.default_posts import DEFAULT_START_MESSAGE
+from src.messages.eighth_post import DEFAULT_EIGHTH_POST
 from src.messages.fifth_post import DEFAULT_FIFTH_POST, HOUSE_COMMUNE_URL
 from src.messages.fourth_post import ADDRESS_URL, DEFAULT_FOURTH_POST
 from src.messages.second_post import DEFAULT_SECOND_POST, YANDEX_ROUTE_URL
-from src.messages.seventh_post import DEFAULT_SEVENTH_POST, WOODEN_HOUSE_3_URL
-from src.messages.seventh_post import WOODEN_HOUSE_4_URL
+from src.messages.seventh_post import DEFAULT_SEVENTH_POST
 from src.messages.sixth_post import DEFAULT_SIXTH_POST, FIRE_STATION_URL
 from src.messages.third_post import DEFAULT_THIRD_POST
 from src.text_formatting.telegram_formatter import TelegramTextFormatter
@@ -12,10 +12,10 @@ from src.text_formatting.telegram_formatter import TelegramTextFormatter
 def test_default_posts_keep_readable_russian_text() -> None:
     all_posts = DEFAULT_START_MESSAGE + DEFAULT_SECOND_POST + DEFAULT_THIRD_POST
     all_posts += DEFAULT_FOURTH_POST + DEFAULT_FIFTH_POST + DEFAULT_SIXTH_POST
-    all_posts += DEFAULT_SEVENTH_POST
+    all_posts += DEFAULT_SEVENTH_POST + DEFAULT_EIGHTH_POST
 
     assert "Привет" in all_posts
-    assert "Вау, деревянные домики" in all_posts
+    assert "Свердловская ГЭС" in all_posts
     assert "Рџ" not in all_posts
 
 
@@ -33,11 +33,6 @@ def test_formats_fifth_post_address_link() -> None:
 
 def test_formats_sixth_post_address_link() -> None:
     assert_link(DEFAULT_SIXTH_POST, FIRE_STATION_URL, " Большеконный переулок, 9")
-
-
-def test_formats_seventh_post_address_links() -> None:
-    assert_link(DEFAULT_SEVENTH_POST, WOODEN_HOUSE_3_URL, "Большеконный переулок, 3")
-    assert_link(DEFAULT_SEVENTH_POST, WOODEN_HOUSE_4_URL, "Большеконный переулок, 4")
 
 
 def assert_link(source_text: str, url: str, text: str) -> None:

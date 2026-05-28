@@ -5,6 +5,7 @@ FOURTH_POST_NUMBER = 4
 FIFTH_POST_NUMBER = 5
 SIXTH_POST_NUMBER = 6
 SEVENTH_POST_NUMBER = 7
+EIGHTH_POST_NUMBER = 8
 
 DEFAULT_START_MESSAGE = (
     "👋🏻 Привет! Меня зовут Настя, пятый год изучаю Екатеринбург "
