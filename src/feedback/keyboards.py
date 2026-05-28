@@ -12,6 +12,12 @@ class FeedbackKeyboardFactory:
                         text="отправить отзыв",
                         callback_data=FeedbackCallbackData.SEND_FEEDBACK,
                     )
-                ]
+                ],
+                [
+                    InlineKeyboardButton(
+                        text="редактировать отзыв",
+                        callback_data=FeedbackCallbackData.EDIT_FEEDBACK,
+                    )
+                ],
             ]
         )
