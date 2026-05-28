@@ -1,4 +1,5 @@
 from src.messages.default_posts import DEFAULT_START_MESSAGE
+from src.messages.eleventh_post import DEFAULT_ELEVENTH_POST
 from src.messages.eighth_post import DEFAULT_EIGHTH_POST
 from src.messages.fifth_post import DEFAULT_FIFTH_POST, HOUSE_COMMUNE_URL
 from src.messages.fourth_post import ADDRESS_URL, DEFAULT_FOURTH_POST
@@ -15,10 +16,10 @@ def test_default_posts_keep_readable_russian_text() -> None:
     all_posts = DEFAULT_START_MESSAGE + DEFAULT_SECOND_POST + DEFAULT_THIRD_POST
     all_posts += DEFAULT_FOURTH_POST + DEFAULT_FIFTH_POST + DEFAULT_SIXTH_POST
     all_posts += DEFAULT_SEVENTH_POST + DEFAULT_EIGHTH_POST + DEFAULT_NINTH_POST
-    all_posts += DEFAULT_TENTH_POST
+    all_posts += DEFAULT_TENTH_POST + DEFAULT_ELEVENTH_POST
 
     assert "Привет" in all_posts
-    assert "Неприметное здание у пляжа" in all_posts
+    assert "Необычные арт-объекты" in all_posts
     assert "Рџ" not in all_posts
 
 

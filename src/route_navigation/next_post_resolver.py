@@ -1,4 +1,5 @@
-from src.messages.default_posts import EIGHTH_POST_NUMBER, FIFTH_POST_NUMBER
+from src.messages.default_posts import EIGHTH_POST_NUMBER, ELEVENTH_POST_NUMBER
+from src.messages.default_posts import FIFTH_POST_NUMBER
 from src.messages.default_posts import FOURTH_POST_NUMBER
 from src.messages.default_posts import NINTH_POST_NUMBER
 from src.messages.default_posts import SEVENTH_POST_NUMBER
@@ -17,5 +18,6 @@ class NextPostResolver:
             SEVENTH_POST_NUMBER: EIGHTH_POST_NUMBER,
             EIGHTH_POST_NUMBER: NINTH_POST_NUMBER,
             NINTH_POST_NUMBER: TENTH_POST_NUMBER,
+            TENTH_POST_NUMBER: ELEVENTH_POST_NUMBER,
         }
         return next_posts.get(current_post_number)
