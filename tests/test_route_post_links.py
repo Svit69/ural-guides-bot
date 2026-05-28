@@ -1,6 +1,7 @@
 from src.messages.eighth_post import DEFAULT_EIGHTH_POST, HYDROELECTRIC_STATION_URL
 from src.messages.seventh_post import DEFAULT_SEVENTH_POST, WOODEN_HOUSE_3_URL
 from src.messages.seventh_post import WOODEN_HOUSE_4_URL
+from src.messages.tenth_post import BEACH_BUILDING_URL, DEFAULT_TENTH_POST
 from src.text_formatting.telegram_formatter import TelegramTextFormatter
 
 
@@ -11,6 +12,10 @@ def test_formats_seventh_post_address_links() -> None:
 
 def test_formats_eighth_post_address_link() -> None:
     assert_link(DEFAULT_EIGHTH_POST, HYDROELECTRIC_STATION_URL, "Большой Конный полуостров, 5а")
+
+
+def test_formats_tenth_post_address_link() -> None:
+    assert_link(DEFAULT_TENTH_POST, BEACH_BUILDING_URL, "Большой Конный полуостров, 5а/1")
 
 
 def assert_link(source_text: str, url: str, text: str) -> None:

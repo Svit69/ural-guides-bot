@@ -6,6 +6,7 @@ from src.messages.default_posts import NINTH_POST_NUMBER
 from src.messages.default_posts import SEVENTH_POST_NUMBER
 from src.messages.default_posts import SIXTH_POST_NUMBER
 from src.messages.default_posts import START_POST_NUMBER
+from src.messages.default_posts import TENTH_POST_NUMBER
 from src.messages.default_posts import THIRD_POST_NUMBER
 from src.messages.eighth_post import DEFAULT_EIGHTH_POST
 from src.messages.fifth_post import DEFAULT_FIFTH_POST
@@ -14,6 +15,7 @@ from src.messages.ninth_post import DEFAULT_NINTH_POST
 from src.messages.second_post import DEFAULT_SECOND_POST
 from src.messages.seventh_post import DEFAULT_SEVENTH_POST
 from src.messages.sixth_post import DEFAULT_SIXTH_POST
+from src.messages.tenth_post import DEFAULT_TENTH_POST
 from src.messages.third_post import DEFAULT_THIRD_POST
 
 
@@ -29,5 +31,6 @@ class DefaultPostCatalog:
             SEVENTH_POST_NUMBER: DEFAULT_SEVENTH_POST,
             EIGHTH_POST_NUMBER: DEFAULT_EIGHTH_POST,
             NINTH_POST_NUMBER: DEFAULT_NINTH_POST,
+            TENTH_POST_NUMBER: DEFAULT_TENTH_POST,
         }
         return defaults.get(post_number, "")

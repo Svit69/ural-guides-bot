@@ -6,6 +6,7 @@ from src.messages.ninth_post import DEFAULT_NINTH_POST
 from src.messages.second_post import DEFAULT_SECOND_POST, YANDEX_ROUTE_URL
 from src.messages.seventh_post import DEFAULT_SEVENTH_POST
 from src.messages.sixth_post import DEFAULT_SIXTH_POST, FIRE_STATION_URL
+from src.messages.tenth_post import DEFAULT_TENTH_POST
 from src.messages.third_post import DEFAULT_THIRD_POST
 from src.text_formatting.telegram_formatter import TelegramTextFormatter
 
@@ -14,10 +15,10 @@ def test_default_posts_keep_readable_russian_text() -> None:
     all_posts = DEFAULT_START_MESSAGE + DEFAULT_SECOND_POST + DEFAULT_THIRD_POST
     all_posts += DEFAULT_FOURTH_POST + DEFAULT_FIFTH_POST + DEFAULT_SIXTH_POST
     all_posts += DEFAULT_SEVENTH_POST + DEFAULT_EIGHTH_POST + DEFAULT_NINTH_POST
+    all_posts += DEFAULT_TENTH_POST
 
     assert "Привет" in all_posts
-    assert "Свердловская ГЭС" in all_posts
-    assert "памятник Куйбышеву" in all_posts
+    assert "Неприметное здание у пляжа" in all_posts
     assert "Рџ" not in all_posts
 
 

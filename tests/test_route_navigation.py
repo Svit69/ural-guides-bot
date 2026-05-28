@@ -53,3 +53,9 @@ def test_resolves_next_post_after_eighth_post() -> None:
     resolver = NextPostResolver()
 
     assert resolver.resolve_next_post(8) == 9
+
+
+def test_resolves_next_post_after_ninth_post() -> None:
+    resolver = NextPostResolver()
+
+    assert resolver.resolve_next_post(9) == 10
