@@ -9,10 +9,14 @@ from src.feedback.feedback_preview_sender import FeedbackPreviewSender
 from src.feedback.messages import FEEDBACK_EMPTY_TEXT, FEEDBACK_SENT_TEXT
 from src.feedback.states import FeedbackStates
 from src.repositories.admin_repository import AdminRepository
+from src.repositories.feedback_repository import FeedbackRepository
 
 
 class FeedbackHandler:
-    def __init__(self, admin_repository: AdminRepository) -> None:
+    def __init__(
+        self, admin_repository: AdminRepository, feedback_repository: FeedbackRepository
+    ) -> None:
+        self.__feedback_repository = feedback_repository
         self.__notifier = FeedbackAdminNotifier(admin_repository)
         self.__payload_builder = FeedbackPayloadBuilder()
         self.__preview_sender = FeedbackPreviewSender()
@@ -42,6 +46,7 @@ class FeedbackHandler:
         if payload is None:
             await callback.answer(FEEDBACK_EMPTY_TEXT, show_alert=True)
             return
+        self.__feedback_repository.save_feedback(payload)
         await self.__notifier.notify_admins(bot, payload)
         await state.clear()
         await callback.answer()

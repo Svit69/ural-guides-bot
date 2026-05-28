@@ -9,6 +9,7 @@ from src.handlers.start_handler import StartCommandHandler
 from src.handlers.subscription_handler import SubscriptionCheckHandler
 from src.messages.post_provider import PostProvider
 from src.repositories.admin_repository import AdminRepository
+from src.repositories.feedback_repository import FeedbackRepository
 from src.repositories.post_media_repository import PostMediaRepository
 from src.repositories.post_repository import PostRepository
 from src.repositories.user_repository import UserRepository
@@ -24,6 +25,7 @@ class HandlerRegistrar:
 
     def register_handlers(self, dispatcher: Dispatcher) -> None:
         admin_repository = AdminRepository(self.__connections)
+        feedback_repository = FeedbackRepository(self.__connections)
         media_repository = PostMediaRepository(self.__connections)
         post_repository = PostRepository(self.__connections)
         user_repository = UserRepository(self.__connections)
@@ -36,7 +38,13 @@ class HandlerRegistrar:
         ).register_in_dispatcher(dispatcher)
         SubscriptionCheckHandler(checker, post_provider).register_in_dispatcher(dispatcher)
         RouteNavigationHandler(post_provider).register_in_dispatcher(dispatcher)
-        FeedbackHandler(admin_repository).register_in_dispatcher(dispatcher)
+        FeedbackHandler(admin_repository, feedback_repository).register_in_dispatcher(
+            dispatcher
+        )
         AdminPanelHandler(
-            admin_repository, post_repository, media_repository, user_repository
+            admin_repository,
+            feedback_repository,
+            post_repository,
+            media_repository,
+            user_repository,
         ).register_in_dispatcher(dispatcher)

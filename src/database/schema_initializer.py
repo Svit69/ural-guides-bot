@@ -30,6 +30,15 @@ class DatabaseSchemaInitializer:
                     file_id text not null,
                     primary key (post_number, position)
                 );
+                create table if not exists feedback (
+                    id integer primary key autoincrement,
+                    user_id integer,
+                    full_name text,
+                    text text,
+                    media_type text,
+                    file_id text,
+                    created_at text not null
+                );
                 """
             )
             connection.execute(

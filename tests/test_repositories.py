@@ -5,6 +5,7 @@ from aiogram.types import User
 from src.database.connection_factory import SqliteConnectionFactory
 from src.database.schema_initializer import DatabaseSchemaInitializer
 from src.repositories.admin_repository import AdminRepository
+from src.repositories.feedback_repository import FeedbackRepository
 from src.repositories.post_media_repository import PostMediaRepository
 from src.repositories.user_repository import UserRepository
 
@@ -14,10 +15,19 @@ def test_admin_and_user_repositories_persist_data(tmp_path: Path) -> None:
     DatabaseSchemaInitializer(connection_factory).initialize_schema()
 
     admin_repository = AdminRepository(connection_factory)
+    feedback_repository = FeedbackRepository(connection_factory)
     user_repository = UserRepository(connection_factory)
     media_repository = PostMediaRepository(connection_factory)
     admin_repository.add_admin(265485424)
     media_repository.replace_post_media(1, [{"media_type": "video", "file_id": "abc"}])
+    feedback_repository.save_feedback(
+        {
+            "user_id": 1,
+            "full_name": "Настя",
+            "text": "Классная прогулка",
+            "media": {"media_type": "photo", "file_id": "photo-id"},
+        }
+    )
     user_repository.save_registered_user(
         User(id=1, is_bot=False, first_name="Настя", username="nast_bar")
     )
@@ -29,3 +39,4 @@ def test_admin_and_user_repositories_persist_data(tmp_path: Path) -> None:
     assert users[0]["telegram_id"] == 1
     assert users[0]["username"] == "nast_bar"
     assert media_repository.get_post_media(1)[0]["media_type"] == "video"
+    assert feedback_repository.get_all_feedback()[0]["file_id"] == "photo-id"

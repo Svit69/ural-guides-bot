@@ -10,7 +10,12 @@ class FeedbackPreviewSender:
 
     async def send_preview(self, message: Message, payload: dict[str, object]) -> None:
         text = str(payload["text"] or "Медиа без подписи")
-        await message.answer(
-            f"{FEEDBACK_PREVIEW_TITLE}\n\n{text}",
-            reply_markup=self.__keyboard_factory.build_confirmation_keyboard(),
-        )
+        caption = f"{FEEDBACK_PREVIEW_TITLE}\n\n{text}"
+        media = payload.get("media")
+        keyboard = self.__keyboard_factory.build_confirmation_keyboard()
+        if media is None:
+            await message.answer(caption, reply_markup=keyboard)
+        elif media["media_type"] == "photo":
+            await message.answer_photo(media["file_id"], caption=caption, reply_markup=keyboard)
+        else:
+            await message.answer_video(media["file_id"], caption=caption, reply_markup=keyboard)

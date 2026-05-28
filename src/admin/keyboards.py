@@ -7,48 +7,28 @@ class AdminKeyboardFactory:
     def build_main_keyboard(self) -> InlineKeyboardMarkup:
         return InlineKeyboardMarkup(
             inline_keyboard=[
-                [
-                    InlineKeyboardButton(
-                        text="Пользователи", callback_data=AdminCallbackData.USERS
-                    )
-                ],
-                [
-                    InlineKeyboardButton(
-                        text="Редактировать контент",
-                        callback_data=AdminCallbackData.EDIT_CONTENT,
-                    )
-                ],
-                [
-                    InlineKeyboardButton(
-                        text="Добавить администратора",
-                        callback_data=AdminCallbackData.ADD_ADMIN,
-                    )
-                ],
+                [self.__build_button("Пользователи", AdminCallbackData.USERS)],
+                [self.__build_button("Показать все отзывы", AdminCallbackData.FEEDBACK)],
+                [self.__build_button("Редактировать контент", AdminCallbackData.EDIT_CONTENT)],
+                [self.__build_button("Добавить администратора", AdminCallbackData.ADD_ADMIN)],
             ]
         )
 
     def build_text_decision_keyboard(self) -> InlineKeyboardMarkup:
         return InlineKeyboardMarkup(
             inline_keyboard=[
-                [InlineKeyboardButton(text="Оставить текст", callback_data=AdminCallbackData.KEEP_TEXT)],
-                [InlineKeyboardButton(text="Заменить текст", callback_data=AdminCallbackData.REPLACE_TEXT)],
+                [self.__build_button("Оставить текст", AdminCallbackData.KEEP_TEXT)],
+                [self.__build_button("Заменить текст", AdminCallbackData.REPLACE_TEXT)],
             ]
         )
 
     def build_photo_decision_keyboard(self) -> InlineKeyboardMarkup:
         return InlineKeyboardMarkup(
             inline_keyboard=[
-                [
-                    InlineKeyboardButton(
-                        text="Добавить медиа",
-                        callback_data=AdminCallbackData.ADD_PHOTO,
-                    )
-                ],
-                [
-                    InlineKeyboardButton(
-                        text="Без новых медиа",
-                        callback_data=AdminCallbackData.SKIP_PHOTO,
-                    )
-                ],
+                [self.__build_button("Добавить медиа", AdminCallbackData.ADD_PHOTO)],
+                [self.__build_button("Без новых медиа", AdminCallbackData.SKIP_PHOTO)],
             ]
         )
+
+    def __build_button(self, text: str, callback_data: str) -> InlineKeyboardButton:
+        return InlineKeyboardButton(text=text, callback_data=callback_data)
