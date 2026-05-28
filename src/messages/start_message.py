@@ -1,18 +1,16 @@
+from src.messages.default_posts import DEFAULT_START_MESSAGE, START_POST_NUMBER
+from src.repositories.post_repository import PostRepository
+
+
 class StartMessageProvider:
-    def get_start_message(self) -> str:
-        return (
-            "👋🏻 Привет! Меня зовут Настя, пятый год изучаю "
-            "Екатеринбург и исследую его уголки.\n\n\n"
-            "Больше года веду блог о городе, в который влюблена. "
-            "Сейчас у меня один маршрут — по Большому конному "
-            "полуострову. Подпишись на мой канал @nast_bar и выезжай "
-            "до Площади Субботников.\n\n\n"
-            "🧸 Дальше я расскажу, что делать, выстрою маршрут, "
-            "а также поделюсь интересными фактами из истории о домах "
-            "и двориках.\n\n\n"
-            "{Большой конный полуостров начали застраивать в 20-х "
-            "годах прошлого века. Место до сих пор особо не заставили "
-            "новостройками, а потом можно переместиться туда, словно "
-            "на машине времени. Поэтому район так популярен.}\n \n\n"
-            "Погнали!👋🏻"
-        )
+    def __init__(self, post_repository: PostRepository) -> None:
+        self.__post_repository = post_repository
+
+    def get_start_post(self) -> dict[str, str | None]:
+        stored_post = self.__post_repository.get_post(START_POST_NUMBER)
+        if stored_post is None:
+            return {"text": DEFAULT_START_MESSAGE, "photo_file_id": None}
+        return {
+            "text": stored_post["text"],
+            "photo_file_id": stored_post["photo_file_id"],
+        }

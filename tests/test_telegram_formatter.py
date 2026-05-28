@@ -1,4 +1,5 @@
 from src.text_formatting.telegram_formatter import TelegramTextFormatter
+from src.messages.default_posts import DEFAULT_START_MESSAGE
 
 
 def test_formats_bold_link_and_quote() -> None:
@@ -32,3 +33,8 @@ def test_formats_telegram_inline_styles() -> None:
         "<tg-spoiler>тайна</tg-spoiler> <code>x &lt; y</code> "
         "<pre>print('ok')</pre>"
     )
+
+
+def test_default_start_message_keeps_readable_russian_text() -> None:
+    assert "Привет" in DEFAULT_START_MESSAGE
+    assert "Рџ" not in DEFAULT_START_MESSAGE
