@@ -8,9 +8,7 @@ class AdminMediaUploadMixin:
         if not self._guard.is_admin_callback(callback) or callback.message is None:
             return
         data = await state.get_data()
-        self._post_editor.save_post_with_existing_media(
-            data["post_number"], data["text"]
-        )
+        self._post_editor.save_post_with_existing_media(data["post_number"], data["text"])
         await state.clear()
         await callback.message.answer("Пост сохранен без новых медиа.")
 
@@ -31,8 +29,6 @@ class AdminMediaUploadMixin:
             await state.clear()
             return
         data = await state.get_data()
-        self._post_editor.save_post_with_new_media(
-            data["post_number"], data["text"], data.get("media_items", [])
-        )
+        self._post_editor.save_post_with_new_media(data["post_number"], data["text"], data.get("media_items", []))
         await state.clear()
         await message.answer("Пост сохранен с новыми медиа.")

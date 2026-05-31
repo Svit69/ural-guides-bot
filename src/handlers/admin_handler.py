@@ -1,6 +1,7 @@
 from aiogram import Dispatcher
 
 from src.handlers.admin_access_handler import AdminAccessManagementHandler
+from src.handlers.admin_cancel_handler import AdminCancelHandler
 from src.handlers.admin_content_handler import AdminContentEditHandler
 from src.handlers.admin_feedback_handler import AdminFeedbackHandler
 from src.handlers.admin_panel_handler import AdminPanelCommandHandler
@@ -22,6 +23,7 @@ class AdminPanelHandler:
         user_repository: UserRepository,
     ) -> None:
         self.__handlers = [
+            AdminCancelHandler(admin_repository),
             AdminPanelCommandHandler(admin_repository),
             AdminUsersHandler(admin_repository, user_repository),
             AdminFeedbackHandler(admin_repository, feedback_repository),
