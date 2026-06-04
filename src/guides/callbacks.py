@@ -9,3 +9,4 @@ class GuideCallbackData:
     VIZ_NEXT_AFTER_FIFTH = "guide:viz:next:5"
     VIZ_NEXT_AFTER_SIXTH = "guide:viz:next:6"
     VIZ_NEXT_AFTER_SEVENTH = "guide:viz:next:7"
+    VIZ_NEXT_AFTER_EIGHTH = "guide:viz:next:8"
