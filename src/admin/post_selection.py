@@ -1,12 +1,5 @@
 from src.admin.callbacks import AdminCallbackData
-from src.guides.viz_posts import VIZ_FIFTH_POST_NUMBER
-from src.guides.viz_posts import VIZ_EIGHTH_POST_NUMBER
-from src.guides.viz_posts import VIZ_NINTH_POST_NUMBER
-from src.guides.viz_posts import VIZ_SIXTH_POST_NUMBER
-from src.guides.viz_posts import VIZ_SEVENTH_POST_NUMBER
-from src.guides.viz_posts import VIZ_FOURTH_POST_NUMBER
-from src.guides.viz_posts import VIZ_FIRST_POST_NUMBER, VIZ_SECOND_POST_NUMBER
-from src.guides.viz_posts import VIZ_THIRD_POST_NUMBER
+from src.admin.viz_post_selection import VizPostSelectionCatalog
 from src.messages.default_posts import ELEVENTH_POST_NUMBER, EIGHTH_POST_NUMBER
 from src.messages.default_posts import FIFTH_POST_NUMBER, FINAL_POST_NUMBER
 from src.messages.default_posts import FOURTH_POST_NUMBER, NINTH_POST_NUMBER
@@ -25,17 +18,7 @@ class PostSelectionCatalog:
         return any(number == post_number for number, _ in self.get_items_for_guide(guide_id))
 
     def __get_viz_items(self) -> list[tuple[int, str]]:
-        return [
-            (VIZ_FIRST_POST_NUMBER, "Первый пост"),
-            (VIZ_SECOND_POST_NUMBER, "Дворец молодёжи"),
-            (VIZ_THIRD_POST_NUMBER, "Парк 22 Партсъезда"),
-            (VIZ_FOURTH_POST_NUMBER, "Синара-Центр"),
-            (VIZ_FIFTH_POST_NUMBER, "Верх-Исетский бульвар"),
-            (VIZ_SIXTH_POST_NUMBER, "Дом для заводчан"),
-            (VIZ_SEVENTH_POST_NUMBER, "Булочная"),
-            (VIZ_EIGHTH_POST_NUMBER, "Каменный дом"),
-            (VIZ_NINTH_POST_NUMBER, "Деревянный дом"),
-        ]
+        return VizPostSelectionCatalog().get_items()
 
     def __get_big_konny_items(self) -> list[tuple[int, str]]:
         return [

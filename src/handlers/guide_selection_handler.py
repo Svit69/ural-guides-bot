@@ -4,13 +4,14 @@ from aiogram.types import CallbackQuery
 from src.guides.callbacks import GuideCallbackData
 from src.guides.keyboards import GuideKeyboardFactory
 from src.guides.viz_posts import VIZ_SECOND_POST_NUMBER
+from src.handlers.viz_later_route_handler import VizLaterRouteHandlerMixin
 from src.handlers.viz_route_handler import VizRouteHandlerMixin
 from src.messages.post_provider import PostProvider
 from src.services.post_sender import TelegramPostSender
 from src.subscription.prompt_sender import SubscriptionPromptSender
 
 
-class GuideSelectionHandler(VizRouteHandlerMixin):
+class GuideSelectionHandler(VizRouteHandlerMixin, VizLaterRouteHandlerMixin):
     def __init__(self, posts: PostProvider) -> None:
         self._posts = posts
         self._post_sender = TelegramPostSender()
@@ -27,7 +28,8 @@ class GuideSelectionHandler(VizRouteHandlerMixin):
         dispatcher.callback_query.register(self._send_viz_seventh_post, F.data == GuideCallbackData.VIZ_NEXT_AFTER_SIXTH)
         dispatcher.callback_query.register(self._send_viz_eighth_post, F.data == GuideCallbackData.VIZ_NEXT_AFTER_SEVENTH)
         dispatcher.callback_query.register(self._send_viz_ninth_post, F.data == GuideCallbackData.VIZ_NEXT_AFTER_EIGHTH)
-        dispatcher.callback_query.register(self.__handle_viz_next, F.data == GuideCallbackData.VIZ_NEXT_AFTER_NINTH)
+        dispatcher.callback_query.register(self._send_viz_tenth_post, F.data == GuideCallbackData.VIZ_NEXT_AFTER_NINTH)
+        dispatcher.callback_query.register(self.__handle_viz_next, F.data == GuideCallbackData.VIZ_NEXT_AFTER_TENTH)
 
     async def __select_big_konny(self, callback: CallbackQuery) -> None:
         await callback.answer()
