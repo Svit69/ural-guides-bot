@@ -1,9 +1,16 @@
 VIZ_FIRST_POST_NUMBER = 101
 VIZ_SECOND_POST_NUMBER = 102
+VIZ_THIRD_POST_NUMBER = 103
 
 PALACE_OF_YOUTH_URL = (
     "https://yandex.ru/maps/54/yekaterinburg/house/prospekt_lenina_1/"
     "YkkYcw9gS0cAQFtsfXRydnRiZA==/?ll=60.579816%2C56.838449&z=16.93"
+)
+
+PARK_22_PART_CONGRESS_URL = (
+    "https://yandex.ru/maps/54/yekaterinburg/?ll=60.579816%2C56.838449&mode=poi"
+    "&poi%5Bpoint%5D=60.575668%2C56.839727"
+    "&poi%5Buri%5D=ymapsbm1%3A%2F%2Forg%3Foid%3D1181613588&z=16.93"
 )
 
 DEFAULT_VIZ_FIRST_POST = (
@@ -24,4 +31,11 @@ DEFAULT_VIZ_SECOND_POST = (
     "В 60-х его закрыли по инициативе Хрущева. Там проходили скачки, которые собирали "
     "любителей ставок.\n\n"
     "Далее идём в Парк 22 Партсъезда."
+)
+
+DEFAULT_VIZ_THIRD_POST = (
+    "*Парк 22 Партсъезда |* "
+    f"*[Точка на карте ({PARK_22_PART_CONGRESS_URL})]*\n\n"
+    "На этой территории тоже был ипподром. И здесь даже садился самолет!\n\n"
+    "Далее пойдём по Верх-Исетскому бульвару, но сначала заглянем к Синара-Центру."
 )

@@ -4,3 +4,4 @@ class GuideCallbackData:
     CHECK_VIZ_PAYMENT = "guide:viz:payment:check"
     VIZ_NEXT = "guide:viz:next"
     VIZ_NEXT_AFTER_SECOND = "guide:viz:next:2"
+    VIZ_NEXT_AFTER_THIRD = "guide:viz:next:3"
