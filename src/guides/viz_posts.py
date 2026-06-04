@@ -4,6 +4,7 @@ VIZ_THIRD_POST_NUMBER = 103
 VIZ_FOURTH_POST_NUMBER = 104
 VIZ_FIFTH_POST_NUMBER = 105
 VIZ_SIXTH_POST_NUMBER = 106
+VIZ_SEVENTH_POST_NUMBER = 107
 
 PALACE_OF_YOUTH_URL = (
     "https://yandex.ru/maps/54/yekaterinburg/house/prospekt_lenina_1/"
