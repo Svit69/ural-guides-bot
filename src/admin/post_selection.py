@@ -1,4 +1,5 @@
 from src.admin.callbacks import AdminCallbackData
+from src.guides.viz_posts import VIZ_FOURTH_POST_NUMBER
 from src.guides.viz_posts import VIZ_FIRST_POST_NUMBER, VIZ_SECOND_POST_NUMBER
 from src.guides.viz_posts import VIZ_THIRD_POST_NUMBER
 from src.messages.default_posts import ELEVENTH_POST_NUMBER, EIGHTH_POST_NUMBER
@@ -23,6 +24,7 @@ class PostSelectionCatalog:
             (VIZ_FIRST_POST_NUMBER, "Первый пост"),
             (VIZ_SECOND_POST_NUMBER, "Дворец молодёжи"),
             (VIZ_THIRD_POST_NUMBER, "Парк 22 Партсъезда"),
+            (VIZ_FOURTH_POST_NUMBER, "Синара-Центр"),
         ]
 
     def __get_big_konny_items(self) -> list[tuple[int, str]]:

@@ -1,0 +1,28 @@
+from aiogram.types import CallbackQuery
+
+from src.guides.callbacks import GuideCallbackData
+from src.guides.keyboards import GuideKeyboardFactory
+from src.guides.viz_posts import VIZ_FOURTH_POST_NUMBER, VIZ_THIRD_POST_NUMBER
+
+
+class VizRouteHandlerMixin:
+    async def _send_viz_third_post(self, callback: CallbackQuery) -> None:
+        await self._send_viz_post(
+            callback, VIZ_THIRD_POST_NUMBER, GuideCallbackData.VIZ_NEXT_AFTER_THIRD
+        )
+
+    async def _send_viz_fourth_post(self, callback: CallbackQuery) -> None:
+        await self._send_viz_post(
+            callback, VIZ_FOURTH_POST_NUMBER, GuideCallbackData.VIZ_NEXT_AFTER_FOURTH
+        )
+
+    async def _send_viz_post(
+        self, callback: CallbackQuery, post_number: int, next_callback: str
+    ) -> None:
+        await callback.answer()
+        if callback.message is None:
+            return
+        keyboard = GuideKeyboardFactory().build_viz_next_keyboard(next_callback)
+        await self._post_sender.send_post(
+            callback.message, self._posts.get_post(post_number), keyboard
+        )
