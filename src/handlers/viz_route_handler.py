@@ -3,6 +3,7 @@ from aiogram.types import CallbackQuery
 from src.guides.callbacks import GuideCallbackData
 from src.guides.keyboards import GuideKeyboardFactory
 from src.guides.viz_posts import VIZ_FIFTH_POST_NUMBER, VIZ_FOURTH_POST_NUMBER
+from src.guides.viz_posts import VIZ_SIXTH_POST_NUMBER
 from src.guides.viz_posts import VIZ_THIRD_POST_NUMBER
 
 
@@ -20,6 +21,11 @@ class VizRouteHandlerMixin:
     async def _send_viz_fifth_post(self, callback: CallbackQuery) -> None:
         await self._send_viz_post(
             callback, VIZ_FIFTH_POST_NUMBER, GuideCallbackData.VIZ_NEXT_AFTER_FIFTH
+        )
+
+    async def _send_viz_sixth_post(self, callback: CallbackQuery) -> None:
+        await self._send_viz_post(
+            callback, VIZ_SIXTH_POST_NUMBER, GuideCallbackData.VIZ_NEXT_AFTER_SIXTH
         )
 
     async def _send_viz_post(

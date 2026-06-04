@@ -3,6 +3,7 @@ VIZ_SECOND_POST_NUMBER = 102
 VIZ_THIRD_POST_NUMBER = 103
 VIZ_FOURTH_POST_NUMBER = 104
 VIZ_FIFTH_POST_NUMBER = 105
+VIZ_SIXTH_POST_NUMBER = 106
 
 PALACE_OF_YOUTH_URL = (
     "https://yandex.ru/maps/54/yekaterinburg/house/prospekt_lenina_1/"
@@ -24,6 +25,11 @@ SINARA_CENTER_URL = (
 VERKH_ISETSKY_BOULEVARD_URL = (
     "https://yandex.ru/maps/54/yekaterinburg/geo/verkh_isetskiy_bulvar/8013780/"
     "?indoorLevel=1&ll=60.573404%2C56.838923&z=17.36"
+)
+
+FACTORY_WORKERS_HOUSE_URL = (
+    "https://yandex.ru/maps/54/yekaterinburg/house/verkh_isetskiy_bulvar_20/"
+    "YkkYcwBgTEUAQFtsfXRyeHVkZQ==/?ll=60.571531%2C56.839898&z=17.36"
 )
 
 DEFAULT_VIZ_FIRST_POST = (

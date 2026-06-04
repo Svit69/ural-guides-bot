@@ -1,8 +1,3 @@
-from src.guides.viz_posts import DEFAULT_VIZ_FIRST_POST, DEFAULT_VIZ_SECOND_POST
-from src.guides.viz_more_posts import DEFAULT_VIZ_FOURTH_POST, DEFAULT_VIZ_THIRD_POST
-from src.guides.viz_fifth_post import DEFAULT_VIZ_FIFTH_POST
-from src.guides.viz_posts import VIZ_FIFTH_POST_NUMBER, VIZ_FOURTH_POST_NUMBER
-from src.guides.viz_posts import VIZ_FIRST_POST_NUMBER, VIZ_SECOND_POST_NUMBER, VIZ_THIRD_POST_NUMBER
 from src.messages.default_posts import DEFAULT_START_MESSAGE, SECOND_POST_NUMBER
 from src.messages.default_posts import ELEVENTH_POST_NUMBER
 from src.messages.default_posts import EIGHTH_POST_NUMBER
@@ -26,6 +21,7 @@ from src.messages.seventh_post import DEFAULT_SEVENTH_POST
 from src.messages.sixth_post import DEFAULT_SIXTH_POST
 from src.messages.tenth_post import DEFAULT_TENTH_POST
 from src.messages.third_post import DEFAULT_THIRD_POST
+from src.messages.viz_post_catalog import VizPostCatalog
 
 
 class DefaultPostCatalog:
@@ -43,10 +39,6 @@ class DefaultPostCatalog:
             TENTH_POST_NUMBER: DEFAULT_TENTH_POST,
             ELEVENTH_POST_NUMBER: DEFAULT_ELEVENTH_POST,
             FINAL_POST_NUMBER: DEFAULT_FINAL_POST,
-            VIZ_FIRST_POST_NUMBER: DEFAULT_VIZ_FIRST_POST,
-            VIZ_SECOND_POST_NUMBER: DEFAULT_VIZ_SECOND_POST,
-            VIZ_THIRD_POST_NUMBER: DEFAULT_VIZ_THIRD_POST,
-            VIZ_FOURTH_POST_NUMBER: DEFAULT_VIZ_FOURTH_POST,
-            VIZ_FIFTH_POST_NUMBER: DEFAULT_VIZ_FIFTH_POST,
         }
+        defaults.update(VizPostCatalog().get_posts())
         return defaults.get(post_number, "")
