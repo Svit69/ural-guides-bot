@@ -18,3 +18,19 @@ class VizPaymentSchemaInitializer:
                 )
                 """
             )
+            connection.execute(
+                """
+                create table if not exists viz_access (
+                    user_id integer primary key,
+                    payment_id text not null,
+                    granted_at text not null
+                )
+                """
+            )
+            connection.execute(
+                """
+                insert or ignore into viz_access(user_id, payment_id, granted_at)
+                select user_id, payment_id, updated_at from viz_payments
+                where status = 'succeeded'
+                """
+            )

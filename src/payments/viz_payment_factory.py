@@ -3,6 +3,7 @@ from src.database.connection_factory import SqliteConnectionFactory
 from src.payments.viz_payment_service import VizPaymentService
 from src.payments.yookassa_gateway import YooKassaPaymentGateway
 from src.payments.yookassa_settings import YooKassaSettings
+from src.repositories.viz_access_repository import VizAccessRepository
 from src.repositories.viz_payment_repository import VizPaymentRepository
 
 
@@ -22,4 +23,5 @@ class VizPaymentServiceFactory:
             payment_settings,
             YooKassaPaymentGateway(payment_settings),
             VizPaymentRepository(connections),
+            VizAccessRepository(connections),
         )

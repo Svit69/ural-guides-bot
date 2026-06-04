@@ -1,7 +1,7 @@
-from decimal import Decimal
-
 from src.payments.payment_gateway import PaymentGateway
+from src.payments.viz_purchase_validator import VizPurchaseValidator
 from src.payments.yookassa_settings import YooKassaSettings
+from src.repositories.viz_access_repository import VizAccessRepository
 from src.repositories.viz_payment_repository import VizPaymentRepository
 
 
@@ -11,16 +11,22 @@ class VizPaymentService:
         settings: YooKassaSettings,
         gateway: PaymentGateway,
         repository: VizPaymentRepository,
+        access_repository: VizAccessRepository,
     ) -> None:
         self.__settings = settings
         self.__gateway = gateway
         self.__repository = repository
+        self.__access_repository = access_repository
+        self.__validator = VizPurchaseValidator(settings)
 
     def is_configured(self) -> bool:
         return self.__settings.is_configured()
 
     def get_price_rub(self) -> str:
         return self.__settings.viz_price_rub
+
+    def has_local_access(self, user_id: int) -> bool:
+        return self.__access_repository.has_access(user_id)
 
     async def get_or_create_payment(self, user_id: int) -> dict[str, object]:
         stored = self.__repository.get_payment(user_id)
@@ -31,20 +37,15 @@ class VizPaymentService:
         return payment
 
     async def has_paid_access(self, user_id: int) -> bool:
+        if self.has_local_access(user_id):
+            return True
         stored = self.__repository.get_payment(user_id)
         if stored is None:
             return False
         payment = await self.__gateway.get_payment(str(stored["payment_id"]))
         status = str(payment.get("status", ""))
         self.__repository.update_status(user_id, status)
-        return status == "succeeded" and self.__matches_purchase(payment, user_id)
-
-    def __matches_purchase(self, payment: dict[str, object], user_id: int) -> bool:
-        metadata = dict(payment.get("metadata") or {})
-        amount = dict(payment.get("amount") or {})
-        return (
-            metadata.get("guide") == "viz"
-            and metadata.get("telegram_user_id") == str(user_id)
-            and amount.get("currency") == "RUB"
-            and Decimal(str(amount.get("value", "0"))) == Decimal(self.__settings.viz_price_rub)
-        )
+        has_access = status == "succeeded" and self.__validator.matches_purchase(payment, user_id)
+        if has_access:
+            self.__access_repository.grant_access(user_id, str(stored["payment_id"]))
+        return has_access

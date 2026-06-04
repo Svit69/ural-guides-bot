@@ -7,6 +7,11 @@ from src.payments.messages import build_viz_payment_error
 
 class VizPaymentCheckHandlerMixin:
     async def _check_payment(self, callback: CallbackQuery) -> None:
+        if self._payments.has_local_access(callback.from_user.id):
+            await callback.answer()
+            if callback.message is not None:
+                await self._send_first_post(callback)
+            return
         if not self._payments.is_configured():
             await callback.answer(VIZ_PAYMENT_NOT_CONFIGURED, show_alert=True)
             return

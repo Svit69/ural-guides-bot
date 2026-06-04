@@ -26,3 +26,4 @@ For subscription checks, add the bot to the channel as an administrator.
 
 The VIZ guide is available only after YooKassa confirms a successful payment.
 Keep YooKassa credentials in environment variables or a local `.env` file.
+Use a persistent path or mounted volume for `BOT_DATABASE_PATH`; paid guide access is stored in SQLite.

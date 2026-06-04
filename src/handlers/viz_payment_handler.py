@@ -30,6 +30,9 @@ class VizPaymentHandler(VizPaymentCheckHandlerMixin):
         await callback.answer()
         if callback.message is None:
             return
+        if self._payments.has_local_access(callback.from_user.id):
+            await self._send_first_post(callback)
+            return
         if not self._payments.is_configured():
             await callback.message.answer(VIZ_PAYMENT_NOT_CONFIGURED)
             return
