@@ -49,6 +49,14 @@ def test_builds_viz_next_keyboard_after_fourth_post() -> None:
     assert keyboard.inline_keyboard[0][0].callback_data == "guide:viz:next:4"
 
 
+def test_builds_viz_next_keyboard_after_fifth_post() -> None:
+    keyboard = GuideKeyboardFactory().build_viz_next_keyboard(
+        GuideCallbackData.VIZ_NEXT_AFTER_FIFTH
+    )
+
+    assert keyboard.inline_keyboard[0][0].callback_data == "guide:viz:next:5"
+
+
 def test_viz_first_post_keeps_placeholder_underscore_visible() -> None:
     formatted_text = TelegramTextFormatter().format_text(DEFAULT_VIZ_FIRST_POST)
 
