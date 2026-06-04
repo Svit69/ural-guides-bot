@@ -40,3 +40,11 @@ def test_builds_viz_next_keyboard_after_eighth_post() -> None:
     )
 
     assert keyboard.inline_keyboard[0][0].callback_data == "guide:viz:next:8"
+
+
+def test_builds_viz_next_keyboard_after_ninth_post() -> None:
+    keyboard = GuideKeyboardFactory().build_viz_next_keyboard(
+        GuideCallbackData.VIZ_NEXT_AFTER_NINTH
+    )
+
+    assert keyboard.inline_keyboard[0][0].callback_data == "guide:viz:next:9"
