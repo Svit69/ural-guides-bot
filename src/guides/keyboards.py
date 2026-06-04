@@ -12,9 +12,11 @@ class GuideKeyboardFactory:
             ]
         )
 
-    def build_viz_next_keyboard(self) -> InlineKeyboardMarkup:
+    def build_viz_next_keyboard(
+        self, callback_data: str = GuideCallbackData.VIZ_NEXT
+    ) -> InlineKeyboardMarkup:
         return InlineKeyboardMarkup(
-            inline_keyboard=[[self.__button("идем дальше", GuideCallbackData.VIZ_NEXT)]]
+            inline_keyboard=[[self.__button("идем дальше", callback_data)]]
         )
 
     def __button(self, text: str, callback_data: str) -> InlineKeyboardButton:
