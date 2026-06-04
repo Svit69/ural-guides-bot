@@ -10,6 +10,10 @@ python -m venv .venv
 pip install -r requirements.txt
 $env:TELEGRAM_BOT_TOKEN="your-token"
 $env:ADMIN_TELEGRAM_IDS="265485424"
+$env:YOOKASSA_SHOP_ID="your-shop-id"
+$env:YOOKASSA_SECRET_KEY="your-secret-key"
+$env:VIZ_GUIDE_PRICE_RUB="500.00"
+$env:YOOKASSA_RETURN_URL="https://t.me/nast_bar_bot"
 python -m src.main
 ```
 
@@ -19,3 +23,6 @@ The subscription channel defaults to `@nast_bar`; override it with `SUBSCRIPTION
 Open the admin panel with `/admin`.
 
 For subscription checks, add the bot to the channel as an administrator.
+
+The VIZ guide is available only after YooKassa confirms a successful payment.
+Keep YooKassa credentials in environment variables or a local `.env` file.
