@@ -6,6 +6,7 @@ from src.database.viz_payment_schema_initializer import VizPaymentSchemaInitiali
 from src.payments.payment_gateway import PaymentGateway
 from src.payments.keyboards import VizPaymentKeyboardFactory
 from src.payments.messages import build_viz_payment_prompt
+from src.payments.messages import build_viz_payment_error
 from src.payments.viz_payment_service import VizPaymentService
 from src.payments.yookassa_settings import YooKassaSettings
 from src.repositories.viz_payment_repository import VizPaymentRepository
@@ -51,3 +52,4 @@ def test_builds_viz_payment_keyboard() -> None:
     assert keyboard.inline_keyboard[0][0].url == "https://pay"
     assert keyboard.inline_keyboard[1][0].callback_data == "guide:viz:payment:check"
     assert "500.00 ₽" in build_viz_payment_prompt("500.00")
+    assert "Причина: invalid_credentials" in build_viz_payment_error("invalid_credentials")

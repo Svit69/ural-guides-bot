@@ -1,20 +1,23 @@
 import asyncio
-import base64
 import json
+import logging
 import urllib.error
 import urllib.request
 import uuid
 
 from src.payments.exceptions import PaymentGatewayError
 from src.payments.payment_gateway import PaymentGateway
+from src.payments.yookassa_error_handler import YooKassaErrorHandler
+from src.payments.yookassa_request_builder import YooKassaRequestBuilder
 from src.payments.yookassa_settings import YooKassaSettings
 
 
 class YooKassaPaymentGateway(PaymentGateway):
     __api_url = "https://api.yookassa.ru/v3/payments"
-
     def __init__(self, settings: YooKassaSettings) -> None:
         self.__settings = settings
+        self.__error_handler = YooKassaErrorHandler()
+        self.__request_builder = YooKassaRequestBuilder(settings, self.__api_url)
 
     async def create_viz_payment(self, user_id: int) -> dict[str, str]:
         payload = {
@@ -36,20 +39,13 @@ class YooKassaPaymentGateway(PaymentGateway):
 
     async def get_payment(self, payment_id: str) -> dict[str, object]:
         return await asyncio.to_thread(self.__request, f"/{payment_id}", "GET", None, None)
-
     def __request(self, path: str, method: str, payload, idempotence_key: str | None):
-        data = json.dumps(payload).encode("utf-8") if payload is not None else None
-        request = urllib.request.Request(f"{self.__api_url}{path}", data=data, method=method)
-        request.add_header("Authorization", f"Basic {self.__build_credentials()}")
-        request.add_header("Content-Type", "application/json")
-        if idempotence_key:
-            request.add_header("Idempotence-Key", idempotence_key)
+        request = self.__request_builder.build(path, method, payload, idempotence_key)
         try:
             with urllib.request.urlopen(request, timeout=15) as response:
                 return json.loads(response.read().decode("utf-8"))
+        except urllib.error.HTTPError as error:
+            self.__error_handler.raise_http_error(error)
         except (urllib.error.URLError, ValueError, KeyError) as error:
+            logging.exception("YooKassa request failed")
             raise PaymentGatewayError("YooKassa request failed") from error
-
-    def __build_credentials(self) -> str:
-        raw_value = f"{self.__settings.shop_id}:{self.__settings.secret_key}".encode()
-        return base64.b64encode(raw_value).decode()

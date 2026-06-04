@@ -7,3 +7,7 @@ def build_viz_payment_prompt(price_rub: str) -> str:
 VIZ_PAYMENT_NOT_CONFIGURED = "Оплата ВИЗа пока не настроена. Попробуйте позже."
 VIZ_PAYMENT_PENDING = "Оплата пока не подтверждена. Завершите платеж и проверьте еще раз."
 VIZ_PAYMENT_ERROR = "Не удалось связаться с ЮKassa. Попробуйте проверить оплату позже."
+
+
+def build_viz_payment_error(reason: str) -> str:
+    return f"{VIZ_PAYMENT_ERROR}\n\nПричина: {reason}" if reason else VIZ_PAYMENT_ERROR
