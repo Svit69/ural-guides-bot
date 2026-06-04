@@ -1,3 +1,4 @@
+from src.guides.viz_posts import VIZ_FIRST_POST_NUMBER
 from src.messages.default_posts import ELEVENTH_POST_NUMBER, EIGHTH_POST_NUMBER
 from src.messages.default_posts import FIFTH_POST_NUMBER, FINAL_POST_NUMBER
 from src.messages.default_posts import FOURTH_POST_NUMBER, NINTH_POST_NUMBER
@@ -21,4 +22,5 @@ class PostSelectionCatalog:
             (TENTH_POST_NUMBER, "Здание у пляжа"),
             (ELEVENTH_POST_NUMBER, "Арт-объекты"),
             (FINAL_POST_NUMBER, "Финальный пост"),
+            (VIZ_FIRST_POST_NUMBER, "ВИЗ: первый пост"),
         ]

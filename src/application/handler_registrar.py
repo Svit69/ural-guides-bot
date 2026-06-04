@@ -4,6 +4,7 @@ from src.config.environment import EnvironmentSettings
 from src.database.connection_factory import SqliteConnectionFactory
 from src.handlers.admin_handler import AdminPanelHandler
 from src.handlers.feedback_handler import FeedbackHandler
+from src.handlers.guide_selection_handler import GuideSelectionHandler
 from src.handlers.route_navigation_handler import RouteNavigationHandler
 from src.handlers.start_handler import StartCommandHandler
 from src.handlers.subscription_handler import SubscriptionCheckHandler
@@ -36,6 +37,7 @@ class HandlerRegistrar:
         StartCommandHandler(
             post_repository, media_repository, user_repository
         ).register_in_dispatcher(dispatcher)
+        GuideSelectionHandler(post_provider).register_in_dispatcher(dispatcher)
         SubscriptionCheckHandler(checker, post_provider).register_in_dispatcher(dispatcher)
         RouteNavigationHandler(post_provider).register_in_dispatcher(dispatcher)
         FeedbackHandler(admin_repository, feedback_repository).register_in_dispatcher(

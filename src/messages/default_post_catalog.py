@@ -1,3 +1,4 @@
+from src.guides.viz_posts import DEFAULT_VIZ_FIRST_POST, VIZ_FIRST_POST_NUMBER
 from src.messages.default_posts import DEFAULT_START_MESSAGE, SECOND_POST_NUMBER
 from src.messages.default_posts import ELEVENTH_POST_NUMBER
 from src.messages.default_posts import EIGHTH_POST_NUMBER
@@ -38,5 +39,6 @@ class DefaultPostCatalog:
             TENTH_POST_NUMBER: DEFAULT_TENTH_POST,
             ELEVENTH_POST_NUMBER: DEFAULT_ELEVENTH_POST,
             FINAL_POST_NUMBER: DEFAULT_FINAL_POST,
+            VIZ_FIRST_POST_NUMBER: DEFAULT_VIZ_FIRST_POST,
         }
         return defaults.get(post_number, "")
