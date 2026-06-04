@@ -8,7 +8,21 @@ class AdminCallbackData:
     REPLACE_TEXT = "admin:replace_text"
     ADD_PHOTO = "admin:add_media"
     SKIP_PHOTO = "admin:skip_media"
+    SELECT_GUIDE_PREFIX = "admin:guide:"
     SELECT_POST_PREFIX = "admin:post:"
+    GUIDE_BIG_KONNY = "big_konny"
+    GUIDE_VIZ = "viz"
+
+    @classmethod
+    def build_guide_callback(cls, guide_id: str) -> str:
+        return f"{cls.SELECT_GUIDE_PREFIX}{guide_id}"
+
+    @classmethod
+    def parse_guide_id(cls, callback_data: str) -> str | None:
+        if not callback_data.startswith(cls.SELECT_GUIDE_PREFIX):
+            return None
+        guide_id = callback_data.removeprefix(cls.SELECT_GUIDE_PREFIX)
+        return guide_id if guide_id in {cls.GUIDE_BIG_KONNY, cls.GUIDE_VIZ} else None
 
     @classmethod
     def build_post_callback(cls, post_number: int) -> str:

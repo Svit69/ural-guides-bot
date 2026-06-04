@@ -1,5 +1,6 @@
 from aiogram import Dispatcher
 
+from src.handlers.admin_guide_selection_handler import AdminGuideSelectionHandler
 from src.handlers.admin_photo_handler import AdminPhotoHandler
 from src.handlers.admin_post_number_handler import AdminPostNumberHandler
 from src.handlers.admin_text_decision_handler import AdminTextDecisionHandler
@@ -16,6 +17,7 @@ class AdminContentEditHandler:
         media_repository: PostMediaRepository,
     ) -> None:
         self.__handlers = [
+            AdminGuideSelectionHandler(admin_repository),
             AdminPostNumberHandler(admin_repository),
             AdminTextDecisionHandler(admin_repository, post_repository, media_repository),
             AdminPhotoHandler(admin_repository, post_repository, media_repository),

@@ -3,7 +3,6 @@ from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from src.admin.callbacks import AdminCallbackData
 from src.admin.post_selection import PostSelectionCatalog
 
-
 class AdminKeyboardFactory:
     def build_main_keyboard(self) -> InlineKeyboardMarkup:
         return InlineKeyboardMarkup(
@@ -33,8 +32,18 @@ class AdminKeyboardFactory:
             ]
         )
 
-    def build_post_selection_keyboard(self) -> InlineKeyboardMarkup:
-        rows = [[self.__post_button(number, title)] for number, title in PostSelectionCatalog().get_items()]
+    def build_guide_selection_keyboard(self) -> InlineKeyboardMarkup:
+        return InlineKeyboardMarkup(
+            inline_keyboard=[
+                [self.__button("ВИЗ", AdminCallbackData.build_guide_callback(AdminCallbackData.GUIDE_VIZ))],
+                [self.__button("Большой Конный п-ов", AdminCallbackData.build_guide_callback(AdminCallbackData.GUIDE_BIG_KONNY))],
+                [self.__cancel_button()],
+            ]
+        )
+
+    def build_post_selection_keyboard(self, guide_id: str) -> InlineKeyboardMarkup:
+        items = PostSelectionCatalog().get_items_for_guide(guide_id)
+        rows = [[self.__post_button(number, title)] for number, title in items]
         return InlineKeyboardMarkup(inline_keyboard=[*rows, [self.__cancel_button()]])
 
     def build_cancel_keyboard(self) -> InlineKeyboardMarkup:
