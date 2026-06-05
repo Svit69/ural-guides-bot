@@ -3,6 +3,7 @@ from src.guides.viz_post_numbers import VIZ_NINETEENTH_POST_NUMBER
 from src.guides.viz_post_numbers import VIZ_TWENTIETH_POST_NUMBER
 from src.guides.viz_post_numbers import VIZ_TWENTY_FIRST_POST_NUMBER
 from src.guides.viz_post_numbers import VIZ_TWENTY_SECOND_POST_NUMBER
+from src.guides.viz_post_numbers import VIZ_TWENTY_THIRD_POST_NUMBER
 from src.guides.viz_posts import VIZ_FIFTEENTH_POST_NUMBER
 from src.guides.viz_posts import VIZ_SEVENTEENTH_POST_NUMBER
 from src.guides.viz_posts import VIZ_SIXTEENTH_POST_NUMBER
@@ -19,4 +20,5 @@ class VizLatePostSelectionCatalog:
             (VIZ_TWENTIETH_POST_NUMBER, "Пруд на ВИЗе"),
             (VIZ_TWENTY_FIRST_POST_NUMBER, "Индустриальный младенец"),
             (VIZ_TWENTY_SECOND_POST_NUMBER, "Рынок на Заводской"),
+            (VIZ_TWENTY_THIRD_POST_NUMBER, "Китайская стена"),
         ]
