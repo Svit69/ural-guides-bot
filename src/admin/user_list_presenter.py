@@ -1,8 +1,19 @@
 class UserListPresenter:
-    def build_user_list_text(self, users: list[dict[str, str]]) -> str:
+    def build_user_list_text(
+        self, users: list[dict[str, str]], viz_buyer_count: int = 0
+    ) -> str:
+        lines = [f"Пользователей: {len(users)}", f"Купили гайд по ВИЗу: {viz_buyer_count}", ""]
         if not users:
-            return "В БД пока нет зарегистрированных пользователей."
-        lines = [f"Пользователей: {len(users)}", ""]
+            lines.append("В БД пока нет зарегистрированных пользователей.")
+            return "\n".join(lines)
+        for user in users:
+            lines.append(self.__build_user_line(user))
+        return "\n".join(lines)
+
+    def build_viz_buyer_list_text(self, users: list[dict[str, str]]) -> str:
+        if not users:
+            return "Покупателей гайда по ВИЗу пока нет."
+        lines = [f"Купили гайд по ВИЗу: {len(users)}", ""]
         for user in users:
             lines.append(self.__build_user_line(user))
         return "\n".join(lines)

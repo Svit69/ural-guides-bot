@@ -1,5 +1,6 @@
 class AdminCallbackData:
     USERS = "admin:users"
+    VIZ_BUYERS = "admin:viz_buyers"
     ADD_ADMIN = "admin:add_admin"
     CANCEL = "admin:cancel"
     EDIT_CONTENT = "admin:edit_content"

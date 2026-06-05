@@ -23,3 +23,20 @@ class VizAccessRepository:
                 """,
                 (user_id, payment_id, datetime.now(timezone.utc).isoformat()),
             )
+
+    def count_users_with_access(self) -> int:
+        with self.__connections.open_connection() as connection:
+            row = connection.execute("select count(*) as count from viz_access").fetchone()
+        return int(row["count"])
+
+    def get_users_with_access(self) -> list[dict[str, str]]:
+        with self.__connections.open_connection() as connection:
+            rows = connection.execute(
+                """
+                select a.user_id as telegram_id, u.username, u.full_name, a.granted_at
+                from viz_access a
+                left join users u on u.telegram_id = a.user_id
+                order by a.granted_at desc
+                """
+            ).fetchall()
+        return [dict(row) for row in rows]

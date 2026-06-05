@@ -8,6 +8,7 @@ class AdminKeyboardFactory:
         return InlineKeyboardMarkup(
             inline_keyboard=[
                 [self.__button("Пользователи", AdminCallbackData.USERS)],
+                [self.__button("Купили гайд по ВИЗу", AdminCallbackData.VIZ_BUYERS)],
                 [self.__button("Показать все отзывы", AdminCallbackData.FEEDBACK)],
                 [self.__button("Редактировать контент", AdminCallbackData.EDIT_CONTENT)],
                 [self.__button("Добавить администратора", AdminCallbackData.ADD_ADMIN)],

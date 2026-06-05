@@ -11,6 +11,13 @@ def test_builds_admin_guide_selection_keyboard() -> None:
     assert keyboard.inline_keyboard[-1][0].text == "Отменить"
 
 
+def test_builds_admin_main_keyboard_with_viz_buyers_button() -> None:
+    keyboard = AdminKeyboardFactory().build_main_keyboard()
+
+    assert keyboard.inline_keyboard[1][0].text == "Купили гайд по ВИЗу"
+    assert keyboard.inline_keyboard[1][0].callback_data == AdminCallbackData.VIZ_BUYERS
+
+
 def test_builds_big_konny_post_selection_keyboard() -> None:
     keyboard = AdminKeyboardFactory().build_post_selection_keyboard(
         AdminCallbackData.GUIDE_BIG_KONNY
