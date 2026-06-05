@@ -7,6 +7,7 @@ from src.guides.viz_posts import VIZ_SECOND_POST_NUMBER
 from src.handlers.viz_callback_registrar import VizCallbackRegistrar
 from src.handlers.viz_final_route_handler import VizFinalRouteHandlerMixin
 from src.handlers.viz_later_route_handler import VizLaterRouteHandlerMixin
+from src.handlers.viz_newest_route_handler import VizNewestRouteHandlerMixin
 from src.handlers.viz_route_handler import VizRouteHandlerMixin
 from src.messages.post_provider import PostProvider
 from src.services.post_sender import TelegramPostSender
@@ -14,7 +15,10 @@ from src.subscription.prompt_sender import SubscriptionPromptSender
 
 
 class GuideSelectionHandler(
-    VizRouteHandlerMixin, VizLaterRouteHandlerMixin, VizFinalRouteHandlerMixin
+    VizRouteHandlerMixin,
+    VizLaterRouteHandlerMixin,
+    VizFinalRouteHandlerMixin,
+    VizNewestRouteHandlerMixin,
 ):
     def __init__(self, posts: PostProvider) -> None:
         self._posts = posts
@@ -27,7 +31,7 @@ class GuideSelectionHandler(
         dispatcher.callback_query.register(self.__select_big_konny, F.data == GuideCallbackData.SELECT_BIG_KONNY)
         dispatcher.callback_query.register(self.__send_viz_second_post, F.data == GuideCallbackData.VIZ_NEXT)
         self.__route_registrar.register_route_callbacks(dispatcher, self)
-        dispatcher.callback_query.register(self.__handle_viz_next, F.data == GuideCallbackData.VIZ_NEXT_AFTER_TWENTIETH)
+        dispatcher.callback_query.register(self.__handle_viz_next, F.data == GuideCallbackData.VIZ_NEXT_AFTER_TWENTY_FIRST)
 
     async def __select_big_konny(self, callback: CallbackQuery) -> None:
         await callback.answer()
