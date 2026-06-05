@@ -5,6 +5,7 @@ from src.guides.viz_posts import VIZ_FOURTEENTH_POST_NUMBER
 from src.guides.viz_posts import VIZ_FIRST_POST_NUMBER, VIZ_FOURTH_POST_NUMBER
 from src.guides.viz_posts import VIZ_NINTH_POST_NUMBER, VIZ_SECOND_POST_NUMBER
 from src.guides.viz_posts import VIZ_SEVENTH_POST_NUMBER, VIZ_SIXTH_POST_NUMBER
+from src.guides.viz_posts import VIZ_SEVENTEENTH_POST_NUMBER
 from src.guides.viz_posts import VIZ_SIXTEENTH_POST_NUMBER
 from src.guides.viz_posts import VIZ_TENTH_POST_NUMBER, VIZ_THIRD_POST_NUMBER
 from src.guides.viz_posts import VIZ_THIRTEENTH_POST_NUMBER
@@ -30,4 +31,5 @@ class VizPostSelectionCatalog:
             (VIZ_FOURTEENTH_POST_NUMBER, "Дом-музей «Успенский»"),
             (VIZ_FIFTEENTH_POST_NUMBER, "ДК «Верх-Исетский»"),
             (VIZ_SIXTEENTH_POST_NUMBER, "Площадь Субботников"),
+            (VIZ_SEVENTEENTH_POST_NUMBER, "Столовая"),
         ]

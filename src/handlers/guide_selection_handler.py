@@ -27,7 +27,7 @@ class GuideSelectionHandler(
         dispatcher.callback_query.register(self.__select_big_konny, F.data == GuideCallbackData.SELECT_BIG_KONNY)
         dispatcher.callback_query.register(self.__send_viz_second_post, F.data == GuideCallbackData.VIZ_NEXT)
         self.__route_registrar.register_route_callbacks(dispatcher, self)
-        dispatcher.callback_query.register(self.__handle_viz_next, F.data == GuideCallbackData.VIZ_NEXT_AFTER_SIXTEENTH)
+        dispatcher.callback_query.register(self.__handle_viz_next, F.data == GuideCallbackData.VIZ_NEXT_AFTER_SEVENTEENTH)
 
     async def __select_big_konny(self, callback: CallbackQuery) -> None:
         await callback.answer()
