@@ -31,5 +31,10 @@ class GuideKeyboardFactory:
             ]
         )
 
+    def build_viz_finish_keyboard(self) -> InlineKeyboardMarkup:
+        return InlineKeyboardMarkup(
+            inline_keyboard=[[self.__button("завершить прогулку", GuideCallbackData.FINISH_VIZ)]]
+        )
+
     def __button(self, text: str, callback_data: str) -> InlineKeyboardButton:
         return InlineKeyboardButton(text=text, callback_data=callback_data)

@@ -33,3 +33,4 @@ class VizCallbackRegistrar:
         dispatcher.callback_query.register(handler._send_viz_twenty_second_post, F.data == GuideCallbackData.VIZ_NEXT_AFTER_TWENTY_FIRST)
         dispatcher.callback_query.register(handler._send_viz_twenty_third_post, F.data == GuideCallbackData.VIZ_NEXT_AFTER_TWENTY_SECOND)
         dispatcher.callback_query.register(handler._send_viz_twenty_fourth_post, F.data == GuideCallbackData.VIZ_NEXT_AFTER_TWENTY_THIRD)
+        dispatcher.callback_query.register(handler._send_viz_twenty_fifth_post, F.data == GuideCallbackData.VIZ_NEXT_AFTER_TWENTY_FOURTH)

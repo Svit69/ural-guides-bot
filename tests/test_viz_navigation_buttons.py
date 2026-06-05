@@ -42,3 +42,11 @@ def test_builds_viz_baby_head_keyboard() -> None:
 
     assert button.text == "почему на пляже голова младенца?"
     assert button.callback_data == "guide:viz:next:20"
+
+
+def test_builds_viz_finish_keyboard() -> None:
+    keyboard = GuideKeyboardFactory().build_viz_finish_keyboard()
+    button = keyboard.inline_keyboard[0][0]
+
+    assert button.text == "завершить прогулку"
+    assert button.callback_data == GuideCallbackData.FINISH_VIZ

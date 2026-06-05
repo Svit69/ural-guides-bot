@@ -5,6 +5,7 @@ from src.guides.callbacks import GuideCallbackData
 from src.guides.keyboards import GuideKeyboardFactory
 from src.guides.viz_posts import VIZ_SECOND_POST_NUMBER
 from src.handlers.viz_callback_registrar import VizCallbackRegistrar
+from src.handlers.viz_feedback_finish_handler import VizFeedbackFinishHandlerMixin
 from src.handlers.viz_final_route_handler import VizFinalRouteHandlerMixin
 from src.handlers.viz_later_route_handler import VizLaterRouteHandlerMixin
 from src.handlers.viz_latest_route_handler import VizLatestRouteHandlerMixin
@@ -21,6 +22,7 @@ class GuideSelectionHandler(
     VizFinalRouteHandlerMixin,
     VizNewestRouteHandlerMixin,
     VizLatestRouteHandlerMixin,
+    VizFeedbackFinishHandlerMixin,
 ):
     def __init__(self, posts: PostProvider) -> None:
         self._posts = posts
@@ -33,7 +35,7 @@ class GuideSelectionHandler(
         dispatcher.callback_query.register(self.__select_big_konny, F.data == GuideCallbackData.SELECT_BIG_KONNY)
         dispatcher.callback_query.register(self.__send_viz_second_post, F.data == GuideCallbackData.VIZ_NEXT)
         self.__route_registrar.register_route_callbacks(dispatcher, self)
-        dispatcher.callback_query.register(self.__handle_viz_next, F.data == GuideCallbackData.VIZ_NEXT_AFTER_TWENTY_FOURTH)
+        dispatcher.callback_query.register(self._start_viz_feedback, F.data == GuideCallbackData.FINISH_VIZ)
 
     async def __select_big_konny(self, callback: CallbackQuery) -> None:
         await callback.answer()
@@ -49,6 +51,3 @@ class GuideSelectionHandler(
             self._posts.get_post(VIZ_SECOND_POST_NUMBER),
             self.__keyboards.build_viz_next_keyboard(GuideCallbackData.VIZ_NEXT_AFTER_SECOND),
         )
-
-    async def __handle_viz_next(self, callback: CallbackQuery) -> None:
-        await callback.answer("Следующий пост ВИЗа пока не добавлен.", show_alert=True)
