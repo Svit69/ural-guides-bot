@@ -16,11 +16,13 @@ class StartCommandHandler:
         post_repository: PostRepository,
         media_repository: PostMediaRepository,
         user_repository: UserRepository,
+        viz_price_rub: str = "",
     ) -> None:
         self.__message_provider = StartMessageProvider(post_repository, media_repository)
         self.__post_sender = TelegramPostSender()
         self.__keyboard_factory = GuideKeyboardFactory()
         self.__user_repository = user_repository
+        self.__viz_price_rub = viz_price_rub
 
     def register_in_dispatcher(self, dispatcher: Dispatcher) -> None:
         dispatcher.message.register(self.__send_start_message, CommandStart())
@@ -31,5 +33,5 @@ class StartCommandHandler:
         await self.__post_sender.send_post(
             message,
             self.__message_provider.get_start_post(),
-            self.__keyboard_factory.build_guide_selection_keyboard(),
+            self.__keyboard_factory.build_guide_selection_keyboard(self.__viz_price_rub),
         )

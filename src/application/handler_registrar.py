@@ -35,7 +35,9 @@ class HandlerRegistrar:
         checker = ChannelSubscriptionChecker(self.__settings.subscription_channel_username)
         post_provider = PostProvider(post_repository, media_repository)
         viz_payments = VizPaymentServiceFactory().create(self.__settings, self.__connections)
-        StartCommandHandler(post_repository, media_repository, user_repository).register_in_dispatcher(dispatcher)
+        StartCommandHandler(
+            post_repository, media_repository, user_repository, self.__settings.viz_guide_price_rub
+        ).register_in_dispatcher(dispatcher)
         GuideSelectionHandler(post_provider).register_in_dispatcher(dispatcher)
         VizPaymentHandler(viz_payments, post_provider, admin_repository).register_in_dispatcher(dispatcher)
         SubscriptionCheckHandler(checker, post_provider).register_in_dispatcher(dispatcher)
