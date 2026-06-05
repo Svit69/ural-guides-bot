@@ -33,7 +33,8 @@ class GuideSelectionHandler(VizRouteHandlerMixin, VizLaterRouteHandlerMixin):
         dispatcher.callback_query.register(self._send_viz_twelfth_post, F.data == GuideCallbackData.VIZ_NEXT_AFTER_ELEVENTH)
         dispatcher.callback_query.register(self._send_viz_thirteenth_post, F.data == GuideCallbackData.VIZ_NEXT_AFTER_TWELFTH)
         dispatcher.callback_query.register(self._send_viz_fourteenth_post, F.data == GuideCallbackData.VIZ_NEXT_AFTER_THIRTEENTH)
-        dispatcher.callback_query.register(self.__handle_viz_next, F.data == GuideCallbackData.VIZ_NEXT_AFTER_FOURTEENTH)
+        dispatcher.callback_query.register(self._send_viz_fifteenth_post, F.data == GuideCallbackData.VIZ_NEXT_AFTER_FOURTEENTH)
+        dispatcher.callback_query.register(self.__handle_viz_next, F.data == GuideCallbackData.VIZ_NEXT_AFTER_FIFTEENTH)
 
     async def __select_big_konny(self, callback: CallbackQuery) -> None:
         await callback.answer()
