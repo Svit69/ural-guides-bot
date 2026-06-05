@@ -1,74 +1,25 @@
+import pytest
+
 from src.guides.callbacks import GuideCallbackData
 from src.guides.keyboards import GuideKeyboardFactory
 
 
-def test_builds_viz_next_keyboard_after_fourth_post() -> None:
-    keyboard = GuideKeyboardFactory().build_viz_next_keyboard(
-        GuideCallbackData.VIZ_NEXT_AFTER_FOURTH
-    )
+@pytest.mark.parametrize(
+    ("callback_data", "expected_data"),
+    [
+        (GuideCallbackData.VIZ_NEXT_AFTER_FOURTH, "guide:viz:next:4"),
+        (GuideCallbackData.VIZ_NEXT_AFTER_FIFTH, "guide:viz:next:5"),
+        (GuideCallbackData.VIZ_NEXT_AFTER_SIXTH, "guide:viz:next:6"),
+        (GuideCallbackData.VIZ_NEXT_AFTER_SEVENTH, "guide:viz:next:7"),
+        (GuideCallbackData.VIZ_NEXT_AFTER_EIGHTH, "guide:viz:next:8"),
+        (GuideCallbackData.VIZ_NEXT_AFTER_NINTH, "guide:viz:next:9"),
+        (GuideCallbackData.VIZ_NEXT_AFTER_TENTH, "guide:viz:next:10"),
+        (GuideCallbackData.VIZ_NEXT_AFTER_ELEVENTH, "guide:viz:next:11"),
+        (GuideCallbackData.VIZ_NEXT_AFTER_TWELFTH, "guide:viz:next:12"),
+        (GuideCallbackData.VIZ_NEXT_AFTER_THIRTEENTH, "guide:viz:next:13"),
+    ],
+)
+def test_builds_viz_next_keyboard(callback_data: str, expected_data: str) -> None:
+    keyboard = GuideKeyboardFactory().build_viz_next_keyboard(callback_data)
 
-    assert keyboard.inline_keyboard[0][0].callback_data == "guide:viz:next:4"
-
-
-def test_builds_viz_next_keyboard_after_fifth_post() -> None:
-    keyboard = GuideKeyboardFactory().build_viz_next_keyboard(
-        GuideCallbackData.VIZ_NEXT_AFTER_FIFTH
-    )
-
-    assert keyboard.inline_keyboard[0][0].callback_data == "guide:viz:next:5"
-
-
-def test_builds_viz_next_keyboard_after_sixth_post() -> None:
-    keyboard = GuideKeyboardFactory().build_viz_next_keyboard(
-        GuideCallbackData.VIZ_NEXT_AFTER_SIXTH
-    )
-
-    assert keyboard.inline_keyboard[0][0].callback_data == "guide:viz:next:6"
-
-
-def test_builds_viz_next_keyboard_after_seventh_post() -> None:
-    keyboard = GuideKeyboardFactory().build_viz_next_keyboard(
-        GuideCallbackData.VIZ_NEXT_AFTER_SEVENTH
-    )
-
-    assert keyboard.inline_keyboard[0][0].callback_data == "guide:viz:next:7"
-
-
-def test_builds_viz_next_keyboard_after_eighth_post() -> None:
-    keyboard = GuideKeyboardFactory().build_viz_next_keyboard(
-        GuideCallbackData.VIZ_NEXT_AFTER_EIGHTH
-    )
-
-    assert keyboard.inline_keyboard[0][0].callback_data == "guide:viz:next:8"
-
-
-def test_builds_viz_next_keyboard_after_ninth_post() -> None:
-    keyboard = GuideKeyboardFactory().build_viz_next_keyboard(
-        GuideCallbackData.VIZ_NEXT_AFTER_NINTH
-    )
-
-    assert keyboard.inline_keyboard[0][0].callback_data == "guide:viz:next:9"
-
-
-def test_builds_viz_next_keyboard_after_tenth_post() -> None:
-    keyboard = GuideKeyboardFactory().build_viz_next_keyboard(
-        GuideCallbackData.VIZ_NEXT_AFTER_TENTH
-    )
-
-    assert keyboard.inline_keyboard[0][0].callback_data == "guide:viz:next:10"
-
-
-def test_builds_viz_next_keyboard_after_eleventh_post() -> None:
-    keyboard = GuideKeyboardFactory().build_viz_next_keyboard(
-        GuideCallbackData.VIZ_NEXT_AFTER_ELEVENTH
-    )
-
-    assert keyboard.inline_keyboard[0][0].callback_data == "guide:viz:next:11"
-
-
-def test_builds_viz_next_keyboard_after_twelfth_post() -> None:
-    keyboard = GuideKeyboardFactory().build_viz_next_keyboard(
-        GuideCallbackData.VIZ_NEXT_AFTER_TWELFTH
-    )
-
-    assert keyboard.inline_keyboard[0][0].callback_data == "guide:viz:next:12"
+    assert keyboard.inline_keyboard[0][0].callback_data == expected_data

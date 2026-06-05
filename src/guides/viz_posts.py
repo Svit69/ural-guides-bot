@@ -3,7 +3,8 @@ from src.guides.viz_post_numbers import VIZ_FIFTH_POST_NUMBER, VIZ_FIRST_POST_NU
 from src.guides.viz_post_numbers import VIZ_FOURTH_POST_NUMBER, VIZ_NINTH_POST_NUMBER
 from src.guides.viz_post_numbers import VIZ_SECOND_POST_NUMBER, VIZ_SEVENTH_POST_NUMBER
 from src.guides.viz_post_numbers import VIZ_SIXTH_POST_NUMBER, VIZ_TENTH_POST_NUMBER
-from src.guides.viz_post_numbers import VIZ_THIRD_POST_NUMBER, VIZ_TWELFTH_POST_NUMBER
+from src.guides.viz_post_numbers import VIZ_THIRD_POST_NUMBER, VIZ_THIRTEENTH_POST_NUMBER
+from src.guides.viz_post_numbers import VIZ_TWELFTH_POST_NUMBER
 
 PALACE_OF_YOUTH_URL = (
     "https://yandex.ru/maps/54/yekaterinburg/house/prospekt_lenina_1/"
