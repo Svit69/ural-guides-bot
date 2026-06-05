@@ -26,4 +26,5 @@ class GuideCallbackData:
     VIZ_NEXT_AFTER_TWENTY_SECOND = "guide:viz:next:22"
     VIZ_NEXT_AFTER_TWENTY_THIRD = "guide:viz:next:23"
     VIZ_NEXT_AFTER_TWENTY_FOURTH = "guide:viz:next:24"
+    VIZ_NEXT_AFTER_TWENTY_FIFTH = "guide:viz:next:25"
     FINISH_VIZ = "guide:viz:finish"

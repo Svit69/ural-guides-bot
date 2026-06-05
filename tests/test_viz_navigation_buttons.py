@@ -28,6 +28,7 @@ from src.guides.keyboards import GuideKeyboardFactory
         (GuideCallbackData.VIZ_NEXT_AFTER_TWENTY_SECOND, "guide:viz:next:22"),
         (GuideCallbackData.VIZ_NEXT_AFTER_TWENTY_THIRD, "guide:viz:next:23"),
         (GuideCallbackData.VIZ_NEXT_AFTER_TWENTY_FOURTH, "guide:viz:next:24"),
+        (GuideCallbackData.VIZ_NEXT_AFTER_TWENTY_FIFTH, "guide:viz:next:25"),
     ],
 )
 def test_builds_viz_next_keyboard(callback_data: str, expected_data: str) -> None:
