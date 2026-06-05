@@ -1,16 +1,11 @@
+from src.admin.viz_late_post_selection import VizLatePostSelectionCatalog
 from src.guides.viz_posts import VIZ_EIGHTH_POST_NUMBER, VIZ_FIFTH_POST_NUMBER
 from src.guides.viz_post_numbers import VIZ_EIGHTEENTH_POST_NUMBER
 from src.guides.viz_posts import VIZ_ELEVENTH_POST_NUMBER
-from src.guides.viz_posts import VIZ_FIFTEENTH_POST_NUMBER
 from src.guides.viz_posts import VIZ_FOURTEENTH_POST_NUMBER
 from src.guides.viz_posts import VIZ_FIRST_POST_NUMBER, VIZ_FOURTH_POST_NUMBER
-from src.guides.viz_post_numbers import VIZ_NINETEENTH_POST_NUMBER
-from src.guides.viz_post_numbers import VIZ_TWENTIETH_POST_NUMBER
-from src.guides.viz_post_numbers import VIZ_TWENTY_FIRST_POST_NUMBER
 from src.guides.viz_posts import VIZ_NINTH_POST_NUMBER, VIZ_SECOND_POST_NUMBER
 from src.guides.viz_posts import VIZ_SEVENTH_POST_NUMBER, VIZ_SIXTH_POST_NUMBER
-from src.guides.viz_posts import VIZ_SEVENTEENTH_POST_NUMBER
-from src.guides.viz_posts import VIZ_SIXTEENTH_POST_NUMBER
 from src.guides.viz_posts import VIZ_TENTH_POST_NUMBER, VIZ_THIRD_POST_NUMBER
 from src.guides.viz_posts import VIZ_THIRTEENTH_POST_NUMBER
 from src.guides.viz_posts import VIZ_TWELFTH_POST_NUMBER
@@ -33,11 +28,4 @@ class VizPostSelectionCatalog:
             (VIZ_TWELFTH_POST_NUMBER, "Храм Успения"),
             (VIZ_THIRTEENTH_POST_NUMBER, "Трапезная при храме"),
             (VIZ_FOURTEENTH_POST_NUMBER, "Дом-музей «Успенский»"),
-            (VIZ_FIFTEENTH_POST_NUMBER, "ДК «Верх-Исетский»"),
-            (VIZ_SIXTEENTH_POST_NUMBER, "Площадь Субботников"),
-            (VIZ_SEVENTEENTH_POST_NUMBER, "Столовая"),
-            (VIZ_EIGHTEENTH_POST_NUMBER, "Следующая карта"),
-            (VIZ_NINETEENTH_POST_NUMBER, "Старообрядческая церковь"),
-            (VIZ_TWENTIETH_POST_NUMBER, "Пруд на ВИЗе"),
-            (VIZ_TWENTY_FIRST_POST_NUMBER, "Индустриальный младенец"),
-        ]
+        ] + VizLatePostSelectionCatalog().get_items()
