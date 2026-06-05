@@ -4,6 +4,8 @@ from aiogram.types import CallbackQuery
 from src.guides.callbacks import GuideCallbackData
 from src.guides.keyboards import GuideKeyboardFactory
 from src.guides.viz_posts import VIZ_SECOND_POST_NUMBER
+from src.handlers.viz_callback_registrar import VizCallbackRegistrar
+from src.handlers.viz_final_route_handler import VizFinalRouteHandlerMixin
 from src.handlers.viz_later_route_handler import VizLaterRouteHandlerMixin
 from src.handlers.viz_route_handler import VizRouteHandlerMixin
 from src.messages.post_provider import PostProvider
@@ -11,30 +13,21 @@ from src.services.post_sender import TelegramPostSender
 from src.subscription.prompt_sender import SubscriptionPromptSender
 
 
-class GuideSelectionHandler(VizRouteHandlerMixin, VizLaterRouteHandlerMixin):
+class GuideSelectionHandler(
+    VizRouteHandlerMixin, VizLaterRouteHandlerMixin, VizFinalRouteHandlerMixin
+):
     def __init__(self, posts: PostProvider) -> None:
         self._posts = posts
         self._post_sender = TelegramPostSender()
         self.__keyboards = GuideKeyboardFactory()
+        self.__route_registrar = VizCallbackRegistrar()
         self.__subscription_prompt = SubscriptionPromptSender()
 
     def register_in_dispatcher(self, dispatcher: Dispatcher) -> None:
         dispatcher.callback_query.register(self.__select_big_konny, F.data == GuideCallbackData.SELECT_BIG_KONNY)
         dispatcher.callback_query.register(self.__send_viz_second_post, F.data == GuideCallbackData.VIZ_NEXT)
-        dispatcher.callback_query.register(self._send_viz_third_post, F.data == GuideCallbackData.VIZ_NEXT_AFTER_SECOND)
-        dispatcher.callback_query.register(self._send_viz_fourth_post, F.data == GuideCallbackData.VIZ_NEXT_AFTER_THIRD)
-        dispatcher.callback_query.register(self._send_viz_fifth_post, F.data == GuideCallbackData.VIZ_NEXT_AFTER_FOURTH)
-        dispatcher.callback_query.register(self._send_viz_sixth_post, F.data == GuideCallbackData.VIZ_NEXT_AFTER_FIFTH)
-        dispatcher.callback_query.register(self._send_viz_seventh_post, F.data == GuideCallbackData.VIZ_NEXT_AFTER_SIXTH)
-        dispatcher.callback_query.register(self._send_viz_eighth_post, F.data == GuideCallbackData.VIZ_NEXT_AFTER_SEVENTH)
-        dispatcher.callback_query.register(self._send_viz_ninth_post, F.data == GuideCallbackData.VIZ_NEXT_AFTER_EIGHTH)
-        dispatcher.callback_query.register(self._send_viz_tenth_post, F.data == GuideCallbackData.VIZ_NEXT_AFTER_NINTH)
-        dispatcher.callback_query.register(self._send_viz_eleventh_post, F.data == GuideCallbackData.VIZ_NEXT_AFTER_TENTH)
-        dispatcher.callback_query.register(self._send_viz_twelfth_post, F.data == GuideCallbackData.VIZ_NEXT_AFTER_ELEVENTH)
-        dispatcher.callback_query.register(self._send_viz_thirteenth_post, F.data == GuideCallbackData.VIZ_NEXT_AFTER_TWELFTH)
-        dispatcher.callback_query.register(self._send_viz_fourteenth_post, F.data == GuideCallbackData.VIZ_NEXT_AFTER_THIRTEENTH)
-        dispatcher.callback_query.register(self._send_viz_fifteenth_post, F.data == GuideCallbackData.VIZ_NEXT_AFTER_FOURTEENTH)
-        dispatcher.callback_query.register(self.__handle_viz_next, F.data == GuideCallbackData.VIZ_NEXT_AFTER_FIFTEENTH)
+        self.__route_registrar.register_route_callbacks(dispatcher, self)
+        dispatcher.callback_query.register(self.__handle_viz_next, F.data == GuideCallbackData.VIZ_NEXT_AFTER_SIXTEENTH)
 
     async def __select_big_konny(self, callback: CallbackQuery) -> None:
         await callback.answer()
