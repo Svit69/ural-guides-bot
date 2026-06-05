@@ -12,6 +12,8 @@ from src.guides.viz_post_numbers import VIZ_THIRTEENTH_POST_NUMBER
 from src.guides.viz_seventeenth_post import DEFAULT_VIZ_SEVENTEENTH_POST
 from src.guides.viz_sixteenth_post import DEFAULT_VIZ_SIXTEENTH_POST
 from src.guides.viz_thirteenth_post import DEFAULT_VIZ_THIRTEENTH_POST
+from src.guides.viz_twentieth_post import DEFAULT_VIZ_TWENTIETH_POST
+from src.guides.viz_post_numbers import VIZ_TWENTIETH_POST_NUMBER
 
 
 class VizLatePostCatalog:
@@ -24,4 +26,5 @@ class VizLatePostCatalog:
             VIZ_SEVENTEENTH_POST_NUMBER: DEFAULT_VIZ_SEVENTEENTH_POST,
             VIZ_EIGHTEENTH_POST_NUMBER: DEFAULT_VIZ_EIGHTEENTH_POST,
             VIZ_NINETEENTH_POST_NUMBER: DEFAULT_VIZ_NINETEENTH_POST,
+            VIZ_TWENTIETH_POST_NUMBER: DEFAULT_VIZ_TWENTIETH_POST,
         }

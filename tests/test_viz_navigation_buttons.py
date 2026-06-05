@@ -23,9 +23,18 @@ from src.guides.keyboards import GuideKeyboardFactory
         (GuideCallbackData.VIZ_NEXT_AFTER_SEVENTEENTH, "guide:viz:next:17"),
         (GuideCallbackData.VIZ_NEXT_AFTER_EIGHTEENTH, "guide:viz:next:18"),
         (GuideCallbackData.VIZ_NEXT_AFTER_NINETEENTH, "guide:viz:next:19"),
+        (GuideCallbackData.VIZ_NEXT_AFTER_TWENTIETH, "guide:viz:next:20"),
     ],
 )
 def test_builds_viz_next_keyboard(callback_data: str, expected_data: str) -> None:
     keyboard = GuideKeyboardFactory().build_viz_next_keyboard(callback_data)
 
     assert keyboard.inline_keyboard[0][0].callback_data == expected_data
+
+
+def test_builds_viz_baby_head_keyboard() -> None:
+    keyboard = GuideKeyboardFactory().build_viz_baby_head_keyboard()
+    button = keyboard.inline_keyboard[0][0]
+
+    assert button.text == "почему на пляже голова младенца?"
+    assert button.callback_data == "guide:viz:next:20"
