@@ -18,6 +18,14 @@ def test_builds_guide_selection_keyboard() -> None:
     assert big_konny_button.callback_data == GuideCallbackData.SELECT_BIG_KONNY
 
 
+def test_builds_paid_user_guide_selection_keyboard() -> None:
+    keyboard = GuideKeyboardFactory().build_guide_selection_keyboard("500.00", True)
+    viz_button = keyboard.inline_keyboard[0][0]
+
+    assert viz_button.text == "ВИЗ"
+    assert viz_button.callback_data == GuideCallbackData.SELECT_VIZ
+
+
 def test_builds_viz_next_keyboard() -> None:
     button = GuideKeyboardFactory().build_viz_next_keyboard().inline_keyboard[0][0]
 

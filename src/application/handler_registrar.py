@@ -36,7 +36,8 @@ class HandlerRegistrar:
         post_provider = PostProvider(post_repository, media_repository)
         viz_payments = VizPaymentServiceFactory().create(self.__settings, self.__connections)
         StartCommandHandler(
-            post_repository, media_repository, user_repository, self.__settings.viz_guide_price_rub
+            post_repository, media_repository, user_repository,
+            viz_access_repository, self.__settings.viz_guide_price_rub
         ).register_in_dispatcher(dispatcher)
         GuideSelectionHandler(post_provider).register_in_dispatcher(dispatcher)
         VizPaymentHandler(viz_payments, post_provider, admin_repository).register_in_dispatcher(dispatcher)

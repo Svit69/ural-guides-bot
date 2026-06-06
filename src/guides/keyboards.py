@@ -4,9 +4,11 @@ from src.guides.callbacks import GuideCallbackData
 
 
 class GuideKeyboardFactory:
-    def build_guide_selection_keyboard(self, viz_price_rub: str = "") -> InlineKeyboardMarkup:
+    def build_guide_selection_keyboard(
+        self, viz_price_rub: str = "", has_viz_access: bool = False
+    ) -> InlineKeyboardMarkup:
         price = self.__format_price(viz_price_rub)
-        viz_text = f"ВИЗ {price} 💳" if price else "ВИЗ 💳"
+        viz_text = "ВИЗ" if has_viz_access else self.__build_paid_viz_text(price)
         return InlineKeyboardMarkup(
             inline_keyboard=[
                 [self.__button(viz_text, GuideCallbackData.SELECT_VIZ)],
@@ -44,3 +46,6 @@ class GuideKeyboardFactory:
     def __format_price(self, raw_price: str) -> str:
         normalized_price = raw_price.removesuffix(".00")
         return f"{normalized_price} ₽" if normalized_price else ""
+
+    def __build_paid_viz_text(self, price: str) -> str:
+        return f"ВИЗ {price} 💳" if price else "ВИЗ 💳"

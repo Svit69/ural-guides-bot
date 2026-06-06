@@ -7,6 +7,7 @@ from src.messages.start_message import StartMessageProvider
 from src.repositories.post_media_repository import PostMediaRepository
 from src.repositories.post_repository import PostRepository
 from src.repositories.user_repository import UserRepository
+from src.repositories.viz_access_repository import VizAccessRepository
 from src.services.post_sender import TelegramPostSender
 
 
@@ -16,12 +17,14 @@ class StartCommandHandler:
         post_repository: PostRepository,
         media_repository: PostMediaRepository,
         user_repository: UserRepository,
+        viz_access_repository: VizAccessRepository,
         viz_price_rub: str = "",
     ) -> None:
         self.__message_provider = StartMessageProvider(post_repository, media_repository)
         self.__post_sender = TelegramPostSender()
         self.__keyboard_factory = GuideKeyboardFactory()
         self.__user_repository = user_repository
+        self.__viz_access_repository = viz_access_repository
         self.__viz_price_rub = viz_price_rub
 
     def register_in_dispatcher(self, dispatcher: Dispatcher) -> None:
@@ -30,8 +33,16 @@ class StartCommandHandler:
     async def __send_start_message(self, message: Message) -> None:
         if message.from_user is not None:
             self.__user_repository.save_registered_user(message.from_user)
+        has_viz_access = self.__has_viz_access(message)
         await self.__post_sender.send_post(
             message,
             self.__message_provider.get_start_post(),
-            self.__keyboard_factory.build_guide_selection_keyboard(self.__viz_price_rub),
+            self.__keyboard_factory.build_guide_selection_keyboard(
+                self.__viz_price_rub, has_viz_access
+            ),
+        )
+
+    def __has_viz_access(self, message: Message) -> bool:
+        return bool(
+            message.from_user and self.__viz_access_repository.has_access(message.from_user.id)
         )
