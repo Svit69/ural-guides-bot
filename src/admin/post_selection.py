@@ -1,4 +1,5 @@
 from src.admin.callbacks import AdminCallbackData
+from src.guides.city_walk_post import CITY_WALK_POST_NUMBER
 from src.admin.viz_post_selection import VizPostSelectionCatalog
 from src.messages.default_posts import ELEVENTH_POST_NUMBER, EIGHTH_POST_NUMBER
 from src.messages.default_posts import FIFTH_POST_NUMBER, FINAL_POST_NUMBER
@@ -12,6 +13,8 @@ class PostSelectionCatalog:
     def get_items_for_guide(self, guide_id: str) -> list[tuple[int, str]]:
         if guide_id == AdminCallbackData.GUIDE_VIZ:
             return self.__get_viz_items()
+        if guide_id == AdminCallbackData.GUIDE_CITY_WALK:
+            return [(CITY_WALK_POST_NUMBER, "Прогулка по Екатеринбургу")]
         return self.__get_big_konny_items()
 
     def contains_post(self, guide_id: str, post_number: int) -> bool:

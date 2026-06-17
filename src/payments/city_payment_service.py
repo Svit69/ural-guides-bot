@@ -1,0 +1,51 @@
+from src.payments.city_purchase_validator import CityPurchaseValidator
+from src.payments.payment_gateway import PaymentGateway
+from src.payments.yookassa_settings import YooKassaSettings
+from src.repositories.city_access_repository import CityAccessRepository
+from src.repositories.city_payment_repository import CityPaymentRepository
+
+
+class CityPaymentService:
+    def __init__(
+        self,
+        settings: YooKassaSettings,
+        gateway: PaymentGateway,
+        repository: CityPaymentRepository,
+        access: CityAccessRepository,
+    ) -> None:
+        self.__settings = settings
+        self.__gateway = gateway
+        self.__repository = repository
+        self.__access = access
+        self.__validator = CityPurchaseValidator(settings)
+
+    def is_configured(self) -> bool:
+        return self.__settings.is_city_configured()
+
+    def get_price_rub(self) -> str:
+        return self.__settings.city_price_rub
+
+    def has_local_access(self, user_id: int) -> bool:
+        return self.__access.has_access(user_id)
+
+    async def get_or_create_payment(self, user_id: int) -> dict[str, object]:
+        stored = self.__repository.get_payment(user_id)
+        if stored and stored["status"] in {"pending", "waiting_for_capture", "succeeded"}:
+            return stored
+        payment = await self.__gateway.create_city_payment(user_id)
+        self.__repository.save_payment(user_id, payment)
+        return payment
+
+    async def has_paid_access(self, user_id: int) -> bool:
+        if self.has_local_access(user_id):
+            return True
+        stored = self.__repository.get_payment(user_id)
+        if stored is None:
+            return False
+        payment = await self.__gateway.get_payment(str(stored["payment_id"]))
+        status = str(payment.get("status", ""))
+        self.__repository.update_status(user_id, status)
+        has_access = status == "succeeded" and self.__validator.matches_purchase(payment, user_id)
+        if has_access:
+            self.__access.grant_access(user_id, str(stored["payment_id"]))
+        return has_access

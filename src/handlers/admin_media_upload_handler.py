@@ -17,6 +17,9 @@ class AdminMediaUploadMixin:
             await state.clear()
             return
         media_item = self._media_extractor.extract_media_item(message)
+        if media_item is None:
+            await message.answer("Поддерживаются только фото, видео и PDF.")
+            return
         data = await state.get_data()
         media_items = [*data.get("media_items", []), media_item]
         await state.update_data(media_items=media_items)

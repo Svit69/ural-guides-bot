@@ -1,7 +1,9 @@
 class GuideCallbackData:
     SELECT_VIZ = "guide:select:viz"
+    SELECT_CITY_WALK = "guide:select:city_walk"
     SELECT_BIG_KONNY = "guide:select:big_konny"
     CHECK_VIZ_PAYMENT = "guide:viz:payment:check"
+    CHECK_CITY_PAYMENT = "guide:city:payment:check"
     VIZ_NEXT = "guide:viz:next"
     VIZ_NEXT_AFTER_SECOND = "guide:viz:next:2"
     VIZ_NEXT_AFTER_THIRD = "guide:viz:next:3"

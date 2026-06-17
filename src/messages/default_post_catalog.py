@@ -21,6 +21,7 @@ from src.messages.seventh_post import DEFAULT_SEVENTH_POST
 from src.messages.sixth_post import DEFAULT_SIXTH_POST
 from src.messages.tenth_post import DEFAULT_TENTH_POST
 from src.messages.third_post import DEFAULT_THIRD_POST
+from src.messages.city_walk_post_catalog import CityWalkPostCatalog
 from src.messages.viz_post_catalog import VizPostCatalog
 
 
@@ -40,5 +41,6 @@ class DefaultPostCatalog:
             ELEVENTH_POST_NUMBER: DEFAULT_ELEVENTH_POST,
             FINAL_POST_NUMBER: DEFAULT_FINAL_POST,
         }
+        defaults.update(CityWalkPostCatalog().get_posts())
         defaults.update(VizPostCatalog().get_posts())
         return defaults.get(post_number, "")

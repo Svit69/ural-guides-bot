@@ -24,7 +24,7 @@ class AdminPhotoHandler(AdminMediaUploadMixin):
     def register_in_dispatcher(self, dispatcher: Dispatcher) -> None:
         dispatcher.callback_query.register(self.__request_media, F.data == AdminCallbackData.ADD_PHOTO)
         dispatcher.callback_query.register(self._save_without_new_media, F.data == AdminCallbackData.SKIP_PHOTO)
-        dispatcher.message.register(self._collect_uploaded_media, EditContentStates.waiting_for_media, F.photo | F.video)
+        dispatcher.message.register(self._collect_uploaded_media, EditContentStates.waiting_for_media, F.photo | F.video | F.document)
         dispatcher.message.register(self._finish_media_upload, EditContentStates.waiting_for_media, F.text.casefold() == "готово")
 
     async def __request_media(self, callback: CallbackQuery, state: FSMContext) -> None:
@@ -33,6 +33,6 @@ class AdminPhotoHandler(AdminMediaUploadMixin):
             return
         await state.update_data(media_items=[])
         await callback.message.answer(
-            "Загрузите фото или видео. Когда закончите, напишите: готово",
+            "Загрузите фото, видео или PDF. Когда закончите, напишите: готово",
             reply_markup=self.__keyboard_factory.build_cancel_keyboard(),
         )

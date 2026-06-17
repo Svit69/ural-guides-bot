@@ -14,24 +14,30 @@ from src.payments.yookassa_settings import YooKassaSettings
 
 class YooKassaPaymentGateway(PaymentGateway):
     __api_url = "https://api.yookassa.ru/v3/payments"
+
     def __init__(self, settings: YooKassaSettings) -> None:
         self.__settings = settings
         self.__error_handler = YooKassaErrorHandler()
         self.__request_builder = YooKassaRequestBuilder(settings, self.__api_url)
 
     async def create_viz_payment(self, user_id: int) -> dict[str, str]:
+        return await self.__create_payment(user_id, "viz", "Гайд по ВИЗу", self.__settings.viz_price_rub)
+
+    async def create_city_payment(self, user_id: int) -> dict[str, str]:
+        return await self.__create_payment(user_id, "city_walk", "Прогулка по Екатеринбургу", self.__settings.city_price_rub)
+
+    async def __create_payment(self, user_id: int, guide: str, description: str, price: str):
         payload = {
-            "amount": {"value": self.__settings.viz_price_rub, "currency": "RUB"},
+            "amount": {"value": price, "currency": "RUB"},
             "confirmation": {"type": "redirect", "return_url": self.__settings.return_url},
             "capture": True,
-            "description": "Гайд по ВИЗу",
-            "metadata": {"guide": "viz", "telegram_user_id": str(user_id)},
+            "description": description,
+            "metadata": {"guide": guide, "telegram_user_id": str(user_id)},
         }
         result = await asyncio.to_thread(self.__request, "", "POST", payload, str(uuid.uuid4()))
         try:
             return {
-                "payment_id": str(result["id"]),
-                "status": str(result["status"]),
+                "payment_id": str(result["id"]), "status": str(result["status"]),
                 "confirmation_url": str(result["confirmation"]["confirmation_url"]),
             }
         except KeyError as error:
@@ -39,6 +45,7 @@ class YooKassaPaymentGateway(PaymentGateway):
 
     async def get_payment(self, payment_id: str) -> dict[str, object]:
         return await asyncio.to_thread(self.__request, f"/{payment_id}", "GET", None, None)
+
     def __request(self, path: str, method: str, payload, idempotence_key: str | None):
         request = self.__request_builder.build(path, method, payload, idempotence_key)
         try:

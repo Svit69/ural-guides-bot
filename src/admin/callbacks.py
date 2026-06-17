@@ -13,6 +13,7 @@ class AdminCallbackData:
     SELECT_POST_PREFIX = "admin:post:"
     GUIDE_BIG_KONNY = "big_konny"
     GUIDE_VIZ = "viz"
+    GUIDE_CITY_WALK = "city_walk"
 
     @classmethod
     def build_guide_callback(cls, guide_id: str) -> str:
@@ -23,7 +24,8 @@ class AdminCallbackData:
         if not callback_data.startswith(cls.SELECT_GUIDE_PREFIX):
             return None
         guide_id = callback_data.removeprefix(cls.SELECT_GUIDE_PREFIX)
-        return guide_id if guide_id in {cls.GUIDE_BIG_KONNY, cls.GUIDE_VIZ} else None
+        guide_ids = {cls.GUIDE_BIG_KONNY, cls.GUIDE_VIZ, cls.GUIDE_CITY_WALK}
+        return guide_id if guide_id in guide_ids else None
 
     @classmethod
     def build_post_callback(cls, post_number: int) -> str:

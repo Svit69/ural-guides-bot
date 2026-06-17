@@ -13,6 +13,7 @@ class EnvironmentSettings:
     yookassa_shop_id: str
     yookassa_secret_key: str
     viz_guide_price_rub: str
+    city_guide_price_rub: str
     yookassa_return_url: str
 
     @classmethod
@@ -30,6 +31,7 @@ class EnvironmentSettings:
             os.getenv("YOOKASSA_SHOP_ID", "").strip(),
             os.getenv("YOOKASSA_SECRET_KEY", "").strip(),
             os.getenv("VIZ_GUIDE_PRICE_RUB", "").strip(),
+            os.getenv("CITY_GUIDE_PRICE_RUB", "").strip(),
             os.getenv("YOOKASSA_RETURN_URL", "https://t.me/nast_bar_bot").strip(),
         )
 

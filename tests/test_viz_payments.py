@@ -16,6 +16,9 @@ class FakePaymentGateway(PaymentGateway):
     async def create_viz_payment(self, user_id: int) -> dict[str, str]:
         return {"payment_id": "payment-1", "status": "pending", "confirmation_url": "https://pay"}
 
+    async def create_city_payment(self, user_id: int) -> dict[str, str]:
+        return {"payment_id": "payment-city", "status": "pending", "confirmation_url": "https://pay"}
+
     async def get_payment(self, payment_id: str) -> dict[str, object]:
         self.request_count += 1
         return {

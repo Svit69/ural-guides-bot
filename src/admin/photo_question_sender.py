@@ -12,6 +12,6 @@ class PhotoQuestionSender:
     async def ask_photo_question(self, message: Message, state: FSMContext) -> None:
         await state.set_state(EditContentStates.waiting_for_media)
         await message.answer(
-            "Добавить фотографии или видео?",
+            "Добавить медиа или PDF?",
             reply_markup=self.__keyboard_factory.build_photo_decision_keyboard(),
         )

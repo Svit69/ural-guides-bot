@@ -1,6 +1,7 @@
 from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
 from src.admin.callbacks import AdminCallbackData
+from src.admin.guide_keyboard_builder import AdminGuideKeyboardBuilder
 from src.admin.post_selection import PostSelectionCatalog
 
 class AdminKeyboardFactory:
@@ -35,11 +36,7 @@ class AdminKeyboardFactory:
 
     def build_guide_selection_keyboard(self) -> InlineKeyboardMarkup:
         return InlineKeyboardMarkup(
-            inline_keyboard=[
-                [self.__button("ВИЗ", AdminCallbackData.build_guide_callback(AdminCallbackData.GUIDE_VIZ))],
-                [self.__button("Большой Конный п-ов", AdminCallbackData.build_guide_callback(AdminCallbackData.GUIDE_BIG_KONNY))],
-                [self.__cancel_button()],
-            ]
+            inline_keyboard=[*AdminGuideKeyboardBuilder().build_rows(), [self.__cancel_button()]]
         )
 
     def build_post_selection_keyboard(self, guide_id: str) -> InlineKeyboardMarkup:

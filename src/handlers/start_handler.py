@@ -7,6 +7,7 @@ from src.messages.start_message import StartMessageProvider
 from src.repositories.post_media_repository import PostMediaRepository
 from src.repositories.post_repository import PostRepository
 from src.repositories.user_repository import UserRepository
+from src.repositories.city_access_repository import CityAccessRepository
 from src.repositories.viz_access_repository import VizAccessRepository
 from src.services.post_sender import TelegramPostSender
 
@@ -18,14 +19,18 @@ class StartCommandHandler:
         media_repository: PostMediaRepository,
         user_repository: UserRepository,
         viz_access_repository: VizAccessRepository,
+        city_access_repository: CityAccessRepository,
         viz_price_rub: str = "",
+        city_price_rub: str = "",
     ) -> None:
         self.__message_provider = StartMessageProvider(post_repository, media_repository)
         self.__post_sender = TelegramPostSender()
         self.__keyboard_factory = GuideKeyboardFactory()
         self.__user_repository = user_repository
         self.__viz_access_repository = viz_access_repository
+        self.__city_access_repository = city_access_repository
         self.__viz_price_rub = viz_price_rub
+        self.__city_price_rub = city_price_rub
 
     def register_in_dispatcher(self, dispatcher: Dispatcher) -> None:
         dispatcher.message.register(self.__send_start_message, CommandStart())
@@ -33,16 +38,14 @@ class StartCommandHandler:
     async def __send_start_message(self, message: Message) -> None:
         if message.from_user is not None:
             self.__user_repository.save_registered_user(message.from_user)
-        has_viz_access = self.__has_viz_access(message)
+        user_id = message.from_user.id if message.from_user else 0
+        has_viz_access = self.__viz_access_repository.has_access(user_id) if user_id else False
+        has_city_access = self.__city_access_repository.has_access(user_id) if user_id else False
         await self.__post_sender.send_post(
             message,
             self.__message_provider.get_start_post(),
             self.__keyboard_factory.build_guide_selection_keyboard(
-                self.__viz_price_rub, has_viz_access
+                self.__viz_price_rub, has_viz_access,
+                self.__city_price_rub, has_city_access
             ),
-        )
-
-    def __has_viz_access(self, message: Message) -> bool:
-        return bool(
-            message.from_user and self.__viz_access_repository.has_access(message.from_user.id)
         )

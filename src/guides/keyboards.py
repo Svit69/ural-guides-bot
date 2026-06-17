@@ -1,17 +1,26 @@
 from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
 from src.guides.callbacks import GuideCallbackData
+from src.guides.guide_button_texts import GuideButtonTextFactory
 
 
 class GuideKeyboardFactory:
+    def __init__(self) -> None:
+        self.__texts = GuideButtonTextFactory()
+
     def build_guide_selection_keyboard(
-        self, viz_price_rub: str = "", has_viz_access: bool = False
+        self,
+        viz_price_rub: str = "",
+        has_viz_access: bool = False,
+        city_price_rub: str = "",
+        has_city_access: bool = False,
     ) -> InlineKeyboardMarkup:
-        price = self.__format_price(viz_price_rub)
-        viz_text = "ВИЗ" if has_viz_access else self.__build_paid_viz_text(price)
+        viz_text = self.__texts.build_viz_text(viz_price_rub, has_viz_access)
+        city_text = self.__texts.build_city_text(city_price_rub, has_city_access)
         return InlineKeyboardMarkup(
             inline_keyboard=[
                 [self.__button(viz_text, GuideCallbackData.SELECT_VIZ)],
+                [self.__button(city_text, GuideCallbackData.SELECT_CITY_WALK)],
                 [self.__button("Большой Конный п-ов", GuideCallbackData.SELECT_BIG_KONNY)],
             ]
         )
@@ -42,10 +51,3 @@ class GuideKeyboardFactory:
 
     def __button(self, text: str, callback_data: str) -> InlineKeyboardButton:
         return InlineKeyboardButton(text=text, callback_data=callback_data)
-
-    def __format_price(self, raw_price: str) -> str:
-        normalized_price = raw_price.removesuffix(".00")
-        return f"{normalized_price} ₽" if normalized_price else ""
-
-    def __build_paid_viz_text(self, price: str) -> str:
-        return f"ВИЗ {price} 💳" if price else "ВИЗ 💳"
