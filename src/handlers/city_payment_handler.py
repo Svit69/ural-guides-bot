@@ -37,6 +37,10 @@ class CityPaymentHandler(CityPaymentCheckHandlerMixin):
             await callback.message.answer(CITY_PAYMENT_NOT_CONFIGURED)
             return
         try:
+            if await self._payments.has_paid_access(callback.from_user.id):
+                await self._notify_city_purchase(callback)
+                await self._send_city_guide(callback, state)
+                return
             payment = await self._payments.get_or_create_payment(callback.from_user.id)
         except PaymentGatewayError as error:
             await callback.message.answer(build_city_payment_error(error.public_reason))

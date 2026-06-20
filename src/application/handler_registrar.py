@@ -50,4 +50,5 @@ class HandlerRegistrar:
             media_repository,
             user_repository,
             viz_access_repository,
+            city_access_repository,
         ).register_in_dispatcher(dispatcher)

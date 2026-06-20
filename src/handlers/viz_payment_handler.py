@@ -31,10 +31,7 @@ class VizPaymentHandler(VizPaymentCheckHandlerMixin):
         await callback.answer()
         if callback.message is None:
             return
-        if self._admin_repository.is_admin(callback.from_user.id):
-            await self._send_first_post(callback)
-            return
-        if self._payments.has_local_access(callback.from_user.id):
+        if self._admin_repository.is_admin(callback.from_user.id) or self._payments.has_local_access(callback.from_user.id):
             await self._send_first_post(callback)
             return
         if not self._payments.is_configured():
@@ -42,6 +39,7 @@ class VizPaymentHandler(VizPaymentCheckHandlerMixin):
             return
         try:
             if await self._payments.has_paid_access(callback.from_user.id):
+                await self._notify_viz_purchase(callback)
                 await self._send_first_post(callback)
                 return
             payment = await self._payments.get_or_create_payment(callback.from_user.id)

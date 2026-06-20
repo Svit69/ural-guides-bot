@@ -4,9 +4,15 @@ from aiogram.types import CallbackQuery
 from src.payments.city_messages import CITY_PAYMENT_NOT_CONFIGURED, CITY_PAYMENT_PENDING
 from src.payments.city_messages import build_city_payment_error
 from src.payments.exceptions import PaymentGatewayError
+from src.services.admin_purchase_notifier import AdminPurchaseNotifier
 
 
 class CityPaymentCheckHandlerMixin:
+    async def _notify_city_purchase(self, callback: CallbackQuery) -> None:
+        await AdminPurchaseNotifier(self._admins).notify_purchase(
+            callback.bot, callback.from_user, "гайд «Прогулка по Екатеринбургу»"
+        )
+
     async def _check_city_payment(self, callback: CallbackQuery, state: FSMContext) -> None:
         if self._admins.is_admin(callback.from_user.id):
             await callback.answer()
@@ -26,4 +32,5 @@ class CityPaymentCheckHandlerMixin:
             return
         await callback.answer("" if has_access else CITY_PAYMENT_PENDING, show_alert=not has_access)
         if has_access:
+            await self._notify_city_purchase(callback)
             await self._send_city_guide(callback, state)

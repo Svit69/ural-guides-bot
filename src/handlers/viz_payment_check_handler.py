@@ -3,9 +3,15 @@ from aiogram.types import CallbackQuery
 from src.payments.exceptions import PaymentGatewayError
 from src.payments.messages import VIZ_PAYMENT_NOT_CONFIGURED, VIZ_PAYMENT_PENDING
 from src.payments.messages import build_viz_payment_error
+from src.services.admin_purchase_notifier import AdminPurchaseNotifier
 
 
 class VizPaymentCheckHandlerMixin:
+    async def _notify_viz_purchase(self, callback: CallbackQuery) -> None:
+        await AdminPurchaseNotifier(self._admin_repository).notify_purchase(
+            callback.bot, callback.from_user, "гайд по ВИЗу"
+        )
+
     async def _check_payment(self, callback: CallbackQuery) -> None:
         if self._admin_repository.is_admin(callback.from_user.id):
             await callback.answer()
@@ -27,4 +33,5 @@ class VizPaymentCheckHandlerMixin:
             return
         await callback.answer("" if has_access else VIZ_PAYMENT_PENDING, show_alert=not has_access)
         if has_access and callback.message is not None:
+            await self._notify_viz_purchase(callback)
             await self._send_first_post(callback)

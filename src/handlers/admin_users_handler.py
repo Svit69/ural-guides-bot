@@ -6,6 +6,7 @@ from src.admin.callbacks import AdminCallbackData
 from src.admin.message_chunks import MessageChunks
 from src.admin.user_list_presenter import UserListPresenter
 from src.repositories.admin_repository import AdminRepository
+from src.repositories.city_access_repository import CityAccessRepository
 from src.repositories.user_repository import UserRepository
 from src.repositories.viz_access_repository import VizAccessRepository
 
@@ -16,10 +17,12 @@ class AdminUsersHandler:
         admin_repository: AdminRepository,
         user_repository: UserRepository,
         viz_access_repository: VizAccessRepository,
+        city_access_repository: CityAccessRepository,
     ) -> None:
         self.__guard = AdminAccessGuard(admin_repository)
         self.__user_repository = user_repository
         self.__viz_access_repository = viz_access_repository
+        self.__city_access_repository = city_access_repository
         self.__presenter = UserListPresenter()
         self.__chunks = MessageChunks()
 
@@ -34,6 +37,7 @@ class AdminUsersHandler:
             return
         users = self.__user_repository.get_all_registered_users()
         buyer_count = self.__viz_access_repository.count_users_with_access()
-        text = self.__presenter.build_user_list_text(users, buyer_count)
+        city_count = self.__city_access_repository.count_users_with_access()
+        text = self.__presenter.build_user_list_text(users, buyer_count, city_count)
         for chunk in self.__chunks.split_text(text):
             await callback.message.answer(chunk)

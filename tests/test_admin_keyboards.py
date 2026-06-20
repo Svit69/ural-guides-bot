@@ -16,6 +16,7 @@ def test_builds_admin_main_keyboard_with_viz_buyers_button() -> None:
 
     assert keyboard.inline_keyboard[1][0].text == "Купили гайд по ВИЗу"
     assert keyboard.inline_keyboard[1][0].callback_data == AdminCallbackData.VIZ_BUYERS
+    assert keyboard.inline_keyboard[2][0].callback_data == AdminCallbackData.CITY_BUYERS
 
 
 def test_builds_big_konny_post_selection_keyboard() -> None:
