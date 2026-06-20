@@ -6,6 +6,8 @@ class AdminCallbackData:
     CANCEL = "admin:cancel"
     EDIT_CONTENT = "admin:edit_content"
     FEEDBACK = "admin:feedback"
+    CLEAR_FEEDBACK = "admin:clear_feedback"
+    CONFIRM_CLEAR_FEEDBACK = "admin:clear_feedback:confirm"
     KEEP_TEXT = "admin:keep_text"
     REPLACE_TEXT = "admin:replace_text"
     ADD_PHOTO = "admin:add_media"

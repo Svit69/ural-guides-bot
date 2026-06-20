@@ -2,14 +2,16 @@ from aiogram import Dispatcher
 from aiogram.filters import CommandStart
 from aiogram.types import Message
 
-from src.guides.keyboards import GuideKeyboardFactory
 from src.messages.start_message import StartMessageProvider
 from src.repositories.post_media_repository import PostMediaRepository
 from src.repositories.post_repository import PostRepository
 from src.repositories.user_repository import UserRepository
 from src.repositories.city_access_repository import CityAccessRepository
 from src.repositories.viz_access_repository import VizAccessRepository
+from src.services.start_guide_keyboard_builder import StartGuideKeyboardBuilder
 from src.services.post_sender import TelegramPostSender
+from src.user_panel.keyboards import UserPanelKeyboardFactory
+from src.user_panel.messages import USER_PANEL_TEXT
 
 
 class StartCommandHandler:
@@ -25,12 +27,11 @@ class StartCommandHandler:
     ) -> None:
         self.__message_provider = StartMessageProvider(post_repository, media_repository)
         self.__post_sender = TelegramPostSender()
-        self.__keyboard_factory = GuideKeyboardFactory()
         self.__user_repository = user_repository
-        self.__viz_access_repository = viz_access_repository
-        self.__city_access_repository = city_access_repository
-        self.__viz_price_rub = viz_price_rub
-        self.__city_price_rub = city_price_rub
+        self.__guide_keyboard_builder = StartGuideKeyboardBuilder(
+            viz_access_repository, city_access_repository, viz_price_rub, city_price_rub
+        )
+        self.__panel_keyboard = UserPanelKeyboardFactory()
 
     def register_in_dispatcher(self, dispatcher: Dispatcher) -> None:
         dispatcher.message.register(self.__send_start_message, CommandStart())
@@ -39,13 +40,11 @@ class StartCommandHandler:
         if message.from_user is not None:
             self.__user_repository.save_registered_user(message.from_user)
         user_id = message.from_user.id if message.from_user else 0
-        has_viz_access = self.__viz_access_repository.has_access(user_id) if user_id else False
-        has_city_access = self.__city_access_repository.has_access(user_id) if user_id else False
         await self.__post_sender.send_post(
             message,
             self.__message_provider.get_start_post(),
-            self.__keyboard_factory.build_guide_selection_keyboard(
-                self.__viz_price_rub, has_viz_access,
-                self.__city_price_rub, has_city_access
-            ),
+            self.__guide_keyboard_builder.build_for_user(user_id),
+        )
+        await message.answer(
+            USER_PANEL_TEXT, reply_markup=self.__panel_keyboard.build_main_keyboard()
         )

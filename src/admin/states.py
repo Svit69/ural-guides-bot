@@ -10,3 +10,8 @@ class EditContentStates(StatesGroup):
     waiting_for_post_number = State()
     waiting_for_replacement_text = State()
     waiting_for_media = State()
+
+
+class ClearFeedbackStates(StatesGroup):
+    waiting_for_ids = State()
+    waiting_for_confirmation = State()

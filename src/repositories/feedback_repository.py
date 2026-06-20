@@ -30,3 +30,13 @@ class FeedbackRepository:
                 "select * from feedback order by created_at desc"
             ).fetchall()
         return [dict(row) for row in rows]
+
+    def delete_feedback_by_ids(self, feedback_ids: list[int]) -> int:
+        if not feedback_ids:
+            return 0
+        placeholders = ",".join("?" for _ in feedback_ids)
+        with self.__connection_factory.open_connection() as connection:
+            cursor = connection.execute(
+                f"delete from feedback where id in ({placeholders})", feedback_ids
+            )
+        return int(cursor.rowcount)

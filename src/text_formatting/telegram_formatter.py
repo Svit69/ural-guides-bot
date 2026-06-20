@@ -4,13 +4,10 @@ from src.text_formatting.inline_match_finder import InlineMatchFinder
 from src.text_formatting.inline_rule_catalog import InlineRuleCatalog
 from src.text_formatting.link_parser import TelegramLinkParser
 
-
 class TelegramTextFormatter(TextFormatter):
     def __init__(self) -> None:
         self.__link_parser = TelegramLinkParser()
-        self.__match_finder = InlineMatchFinder(
-            InlineRuleCatalog().build_inline_rules()
-        )
+        self.__match_finder = InlineMatchFinder(InlineRuleCatalog().build_inline_rules())
 
     def format_text(self, source_text: str) -> str:
         paragraphs = source_text.split("\n\n")

@@ -1,6 +1,5 @@
 from aiogram import Dispatcher, F
 from aiogram.types import CallbackQuery
-
 from src.guides.callbacks import GuideCallbackData
 from src.guides.keyboards import GuideKeyboardFactory
 from src.guides.viz_posts import VIZ_FIRST_POST_NUMBER
@@ -22,16 +21,13 @@ class VizPaymentHandler(VizPaymentCheckHandlerMixin):
         self.__posts = posts
         self.__post_sender = TelegramPostSender()
         self.__payment_keyboards = VizPaymentKeyboardFactory()
-
     def register_in_dispatcher(self, dispatcher: Dispatcher) -> None:
         dispatcher.callback_query.register(self.__request_payment, F.data == GuideCallbackData.SELECT_VIZ)
         dispatcher.callback_query.register(self._check_payment, F.data == GuideCallbackData.CHECK_VIZ_PAYMENT)
-
     async def __request_payment(self, callback: CallbackQuery) -> None:
         await callback.answer()
-        if callback.message is None:
-            return
-        if self._admin_repository.is_admin(callback.from_user.id) or self._payments.has_local_access(callback.from_user.id):
+        if callback.message is None: return
+        if self.__has_existing_access(callback):
             await self._send_first_post(callback)
             return
         if not self._payments.is_configured():
@@ -48,6 +44,7 @@ class VizPaymentHandler(VizPaymentCheckHandlerMixin):
             return
         keyboard = self.__payment_keyboards.build_payment_keyboard(str(payment["confirmation_url"]))
         await callback.message.answer(build_viz_payment_prompt(self._payments.get_price_rub()), reply_markup=keyboard)
-
     async def _send_first_post(self, callback: CallbackQuery) -> None:
         await self.__post_sender.send_post(callback.message, self.__posts.get_post(VIZ_FIRST_POST_NUMBER), GuideKeyboardFactory().build_viz_next_keyboard())
+    def __has_existing_access(self, callback: CallbackQuery) -> bool:
+        return self._admin_repository.is_admin(callback.from_user.id) or self._payments.has_local_access(callback.from_user.id)

@@ -2,20 +2,12 @@ from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
 from src.admin.callbacks import AdminCallbackData
 from src.admin.guide_keyboard_builder import AdminGuideKeyboardBuilder
+from src.admin.main_keyboard_rows import AdminMainKeyboardRows
 from src.admin.post_selection import PostSelectionCatalog
 
 class AdminKeyboardFactory:
     def build_main_keyboard(self) -> InlineKeyboardMarkup:
-        return InlineKeyboardMarkup(
-            inline_keyboard=[
-                [self.__button("Пользователи", AdminCallbackData.USERS)],
-                [self.__button("Купили гайд по ВИЗу", AdminCallbackData.VIZ_BUYERS)],
-                [self.__button("Купили прогулку по Екатеринбургу", AdminCallbackData.CITY_BUYERS)],
-                [self.__button("Показать все отзывы", AdminCallbackData.FEEDBACK)],
-                [self.__button("Редактировать контент", AdminCallbackData.EDIT_CONTENT)],
-                [self.__button("Добавить администратора", AdminCallbackData.ADD_ADMIN)],
-            ]
-        )
+        return InlineKeyboardMarkup(inline_keyboard=AdminMainKeyboardRows().build_rows())
 
     def build_text_decision_keyboard(self) -> InlineKeyboardMarkup:
         return InlineKeyboardMarkup(

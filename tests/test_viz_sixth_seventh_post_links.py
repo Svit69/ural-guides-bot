@@ -1,0 +1,24 @@
+from src.guides.viz_seventh_post import BAKERY_URL, DEFAULT_VIZ_SEVENTH_POST
+from src.guides.viz_sixth_post import DEFAULT_VIZ_SIXTH_POST
+from src.guides.viz_posts import FACTORY_WORKERS_HOUSE_URL
+from src.guides.viz_posts import VIZ_SEVENTH_POST_NUMBER, VIZ_SIXTH_POST_NUMBER
+from src.messages.default_post_catalog import DefaultPostCatalog
+from src.text_formatting.telegram_formatter import TelegramTextFormatter
+
+
+def test_viz_sixth_post_is_available_and_formats_address_link() -> None:
+    source_text = DefaultPostCatalog().get_default_text(VIZ_SIXTH_POST_NUMBER)
+    formatted_text = TelegramTextFormatter().format_text(source_text)
+
+    assert source_text == DEFAULT_VIZ_SIXTH_POST
+    assert FACTORY_WORKERS_HOUSE_URL.replace("&", "&amp;") in formatted_text
+    assert ">Верх-Исетский бульвар, 20</a>" in formatted_text
+
+
+def test_viz_seventh_post_is_available_and_formats_address_link() -> None:
+    source_text = DefaultPostCatalog().get_default_text(VIZ_SEVENTH_POST_NUMBER)
+    formatted_text = TelegramTextFormatter().format_text(source_text)
+
+    assert source_text == DEFAULT_VIZ_SEVENTH_POST
+    assert BAKERY_URL.replace("&", "&amp;") in formatted_text
+    assert ">Верх-Исетский бульвар, 25</a>" in formatted_text

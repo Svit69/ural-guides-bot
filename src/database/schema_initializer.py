@@ -13,10 +13,8 @@ class DatabaseSchemaInitializer:
                     telegram_id integer primary key
                 );
                 create table if not exists users (
-                    telegram_id integer primary key,
-                    username text,
-                    full_name text,
-                    registered_at text not null
+                    telegram_id integer primary key, username text,
+                    full_name text, registered_at text not null
                 );
                 create table if not exists posts (
                     post_number integer primary key,
@@ -24,10 +22,8 @@ class DatabaseSchemaInitializer:
                     photo_file_id text
                 );
                 create table if not exists post_media (
-                    post_number integer not null,
-                    position integer not null,
-                    media_type text not null,
-                    file_id text not null,
+                    post_number integer not null, position integer not null,
+                    media_type text not null, file_id text not null,
                     primary key (post_number, position)
                 );
                 create table if not exists feedback (

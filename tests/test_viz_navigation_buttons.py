@@ -1,8 +1,6 @@
 import pytest
-
 from src.guides.callbacks import GuideCallbackData
 from src.guides.keyboards import GuideKeyboardFactory
-
 
 @pytest.mark.parametrize(
     ("callback_data", "expected_data"),
@@ -33,7 +31,6 @@ from src.guides.keyboards import GuideKeyboardFactory
 )
 def test_builds_viz_next_keyboard(callback_data: str, expected_data: str) -> None:
     keyboard = GuideKeyboardFactory().build_viz_next_keyboard(callback_data)
-
     assert keyboard.inline_keyboard[0][0].callback_data == expected_data
 
 

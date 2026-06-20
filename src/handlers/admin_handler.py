@@ -4,6 +4,7 @@ from src.handlers.admin_access_handler import AdminAccessManagementHandler
 from src.handlers.admin_cancel_handler import AdminCancelHandler
 from src.handlers.admin_content_handler import AdminContentEditHandler
 from src.handlers.admin_city_buyers_handler import AdminCityBuyersHandler
+from src.handlers.admin_feedback_cleanup_handler import AdminFeedbackCleanupHandler
 from src.handlers.admin_feedback_handler import AdminFeedbackHandler
 from src.handlers.admin_panel_handler import AdminPanelCommandHandler
 from src.handlers.admin_users_handler import AdminUsersHandler
@@ -35,6 +36,7 @@ class AdminPanelHandler:
             AdminVizBuyersHandler(admin_repository, viz_access_repository),
             AdminCityBuyersHandler(admin_repository, city_access_repository),
             AdminFeedbackHandler(admin_repository, feedback_repository),
+            AdminFeedbackCleanupHandler(admin_repository, feedback_repository),
             AdminAccessManagementHandler(admin_repository),
             AdminContentEditHandler(admin_repository, post_repository, media_repository),
         ]

@@ -1,6 +1,5 @@
 import asyncio
 from pathlib import Path
-
 from src.database.connection_factory import SqliteConnectionFactory
 from src.database.viz_payment_schema_initializer import VizPaymentSchemaInitializer
 from src.payments.payment_gateway import PaymentGateway
@@ -9,13 +8,11 @@ from src.payments.yookassa_settings import YooKassaSettings
 from src.repositories.viz_access_repository import VizAccessRepository
 from src.repositories.viz_payment_repository import VizPaymentRepository
 
-
 class FakePaymentGateway(PaymentGateway):
     request_count = 0
 
     async def create_viz_payment(self, user_id: int) -> dict[str, str]:
         return {"payment_id": "payment-1", "status": "pending", "confirmation_url": "https://pay"}
-
     async def create_city_payment(self, user_id: int) -> dict[str, str]:
         return {"payment_id": "payment-city", "status": "pending", "confirmation_url": "https://pay"}
 

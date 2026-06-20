@@ -4,7 +4,6 @@ from src.payments.yookassa_settings import YooKassaSettings
 from src.repositories.viz_access_repository import VizAccessRepository
 from src.repositories.viz_payment_repository import VizPaymentRepository
 
-
 class VizPaymentService:
     def __init__(
         self,

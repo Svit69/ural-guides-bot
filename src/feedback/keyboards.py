@@ -15,9 +15,21 @@ class FeedbackKeyboardFactory:
                 ],
                 [
                     InlineKeyboardButton(
-                        text="редактировать отзыв",
-                        callback_data=FeedbackCallbackData.EDIT_FEEDBACK,
+                        text="оставить отзыв позже",
+                        callback_data=FeedbackCallbackData.LEAVE_LATER,
                     )
                 ],
+            ]
+        )
+
+    def build_leave_later_keyboard(self) -> InlineKeyboardMarkup:
+        return InlineKeyboardMarkup(
+            inline_keyboard=[
+                [
+                    InlineKeyboardButton(
+                        text="оставить отзыв позже",
+                        callback_data=FeedbackCallbackData.LEAVE_LATER,
+                    )
+                ]
             ]
         )

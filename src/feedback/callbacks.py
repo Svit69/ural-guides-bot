@@ -1,3 +1,3 @@
 class FeedbackCallbackData:
-    EDIT_FEEDBACK = "feedback:edit"
+    LEAVE_LATER = "feedback:leave_later"
     SEND_FEEDBACK = "feedback:send"

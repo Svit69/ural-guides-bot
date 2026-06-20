@@ -4,7 +4,6 @@ from src.payments.yookassa_settings import YooKassaSettings
 from src.repositories.city_access_repository import CityAccessRepository
 from src.repositories.city_payment_repository import CityPaymentRepository
 
-
 class CityPaymentService:
     def __init__(
         self,
