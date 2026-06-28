@@ -34,6 +34,7 @@ def test_admin_can_select_chekists_posts_for_editing() -> None:
     assert keyboard.inline_keyboard[30][0].text == "331. Библиотека"
     assert keyboard.inline_keyboard[31][0].text == "332. Пасхалка"
     assert keyboard.inline_keyboard[32][0].text == "333. Краеведческий музей"
+    assert keyboard.inline_keyboard[33][0].text == "334. Арты в подъезде"
 
 
 def test_admin_visibility_keyboard_marks_hidden_chekists_guide() -> None:

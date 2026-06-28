@@ -33,6 +33,7 @@ class GuideSelectionHandler(ChekistsSelectionHandlerMixin, VizRouteHandlerMixin,
         dispatcher.callback_query.register(self._answer_chekists_next, F.data == GuideCallbackData.CHEKISTS_NEXT)
         self.__route_registrar.register_route_callbacks(dispatcher, self)
         dispatcher.callback_query.register(self._start_viz_feedback, F.data == GuideCallbackData.FINISH_VIZ)
+        dispatcher.callback_query.register(self._start_viz_feedback, F.data == GuideCallbackData.FINISH_CHEKISTS)
     async def __select_big_konny(self, callback: CallbackQuery) -> None:
         await callback.answer()
         if callback.message is not None:

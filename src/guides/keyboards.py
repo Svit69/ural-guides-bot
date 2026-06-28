@@ -26,7 +26,6 @@ class GuideKeyboardFactory:
 
     def build_viz_next_keyboard(self, callback_data: str = GuideCallbackData.VIZ_NEXT) -> InlineKeyboardMarkup:
         return self.__single_button_keyboard("идем дальше", callback_data)
-
     def build_viz_baby_head_keyboard(self) -> InlineKeyboardMarkup:
         text = "почему на пляже голова младенца?"
         return InlineKeyboardMarkup(
@@ -37,14 +36,15 @@ class GuideKeyboardFactory:
 
     def build_viz_finish_keyboard(self) -> InlineKeyboardMarkup:
         return self.__single_button_keyboard("завершить прогулку", GuideCallbackData.FINISH_VIZ)
-
     def build_chekists_next_keyboard(
         self, callback_data: str = GuideCallbackData.CHEKISTS_NEXT
     ) -> InlineKeyboardMarkup:
         return self.__single_button_keyboard("идем дальше", callback_data)
 
+    def build_chekists_finish_keyboard(self) -> InlineKeyboardMarkup:
+        return self.__single_button_keyboard("завершить прогулку", GuideCallbackData.FINISH_CHEKISTS)
+
     def __single_button_keyboard(self, text: str, callback_data: str) -> InlineKeyboardMarkup:
         return InlineKeyboardMarkup(inline_keyboard=[[self.__button(text, callback_data)]])
-
     def __button(self, text: str, callback_data: str) -> InlineKeyboardButton:
         return InlineKeyboardButton(text=text, callback_data=callback_data)
