@@ -34,14 +34,12 @@ class ChekistsSelectionHandlerMixin(ChekistsLateSelectionHandlerMixin):
         await self._send_chekists_next(callback, post.CHEKISTS_EIGHTH_POST_NUMBER, GuideCallbackData.CHEKISTS_NEXT_AFTER_EIGHTH)
     async def _send_chekists_ninth_post(self, callback: CallbackQuery) -> None:
         await self._send_chekists_next(callback, post.CHEKISTS_NINTH_POST_NUMBER, GuideCallbackData.CHEKISTS_NEXT_AFTER_NINTH)
-    def _build_find_all_idols_keyboard(self):
-        return self.__chekists_special_keyboards.build_find_all_idols_keyboard()
-    def _build_second_idol_next_keyboard(self):
-        return self.__chekists_special_keyboards.build_second_idol_next_keyboard()
-    def _build_third_idol_next_keyboard(self):
-        return self.__chekists_special_keyboards.build_third_idol_next_keyboard()
-    def _build_fourth_idol_next_keyboard(self):
-        return self.__chekists_special_keyboards.build_fourth_idol_next_keyboard()
+    def _build_find_all_idols_keyboard(self): return self.__chekists_special_keyboards.build_find_all_idols_keyboard()
+    def _build_second_idol_next_keyboard(self): return self._build_idol_next_keyboard(2, GuideCallbackData.CHEKISTS_NEXT_AFTER_FIFTEENTH)
+    def _build_third_idol_next_keyboard(self): return self._build_idol_next_keyboard(3, GuideCallbackData.CHEKISTS_NEXT_AFTER_SEVENTEENTH)
+    def _build_fourth_idol_next_keyboard(self): return self._build_idol_next_keyboard(4, GuideCallbackData.CHEKISTS_NEXT_AFTER_EIGHTEENTH)
+    def _build_idol_next_keyboard(self, number, callback_data):
+        return self.__chekists_special_keyboards.build_idol_next_keyboard(number, callback_data)
     async def _send_chekists_next(self, callback, post_number, next_callback=None, keyboard=None):
         await callback.answer()
         if callback.message is None:

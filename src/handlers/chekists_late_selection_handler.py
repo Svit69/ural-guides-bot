@@ -42,5 +42,8 @@ class ChekistsLateSelectionHandlerMixin:
         await self._send_chekists_next(callback, post.CHEKISTS_EIGHTEENTH_POST_NUMBER, keyboard=keyboard)
 
     async def _send_chekists_nineteenth_post(self, callback: CallbackQuery) -> None:
-        next_callback = GuideCallbackData.CHEKISTS_NEXT_AFTER_NINETEENTH
-        await self._send_chekists_next(callback, post.CHEKISTS_NINETEENTH_POST_NUMBER, next_callback)
+        keyboard = self._build_idol_next_keyboard(5, GuideCallbackData.CHEKISTS_NEXT_AFTER_NINETEENTH)
+        await self._send_chekists_next(callback, post.CHEKISTS_NINETEENTH_POST_NUMBER, keyboard=keyboard)
+
+    async def _send_chekists_twentieth_post(self, callback: CallbackQuery) -> None:
+        await self._send_chekists_next(callback, post.CHEKISTS_TWENTIETH_POST_NUMBER)

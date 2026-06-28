@@ -14,21 +14,13 @@ def test_admin_guide_selection_contains_chekists_guide() -> None:
     assert keyboard.inline_keyboard[3][0].callback_data == "admin:guide:chekists"
 
 
-def test_admin_can_select_chekists_start_post_for_editing() -> None:
+def test_admin_can_select_chekists_posts_for_editing() -> None:
     keyboard = AdminKeyboardFactory().build_post_selection_keyboard(
         AdminCallbackData.GUIDE_CHEKISTS
     )
     assert keyboard.inline_keyboard[0][0].callback_data == "admin:post:301"
-    assert keyboard.inline_keyboard[9][0].text == "310. 5 арт-объектов"
-    assert keyboard.inline_keyboard[10][0].text == "311. Шигирский идол"
-    assert keyboard.inline_keyboard[11][0].text == "312. Птицы на гараже"
-    assert keyboard.inline_keyboard[12][0].text == "313. Музей советского детства"
-    assert keyboard.inline_keyboard[13][0].text == "314. Птичка напела"
-    assert keyboard.inline_keyboard[14][0].text == "315. Второй идол"
-    assert keyboard.inline_keyboard[15][0].text == "316. Арт «Живи»"
-    assert keyboard.inline_keyboard[16][0].text == "317. Третий идол"
-    assert keyboard.inline_keyboard[17][0].text == "318. Четвертый идол"
     assert keyboard.inline_keyboard[18][0].text == "319. Пятый идол"
+    assert keyboard.inline_keyboard[19][0].text == "320. Жилой дом"
 
 
 def test_admin_visibility_keyboard_marks_hidden_chekists_guide() -> None:

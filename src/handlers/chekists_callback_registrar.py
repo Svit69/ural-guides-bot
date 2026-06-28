@@ -23,7 +23,7 @@ class ChekistsCallbackRegistrar:
             (handler._send_chekists_seventeenth_post, GuideCallbackData.CHEKISTS_NEXT_AFTER_SIXTEENTH),
             (handler._send_chekists_eighteenth_post, GuideCallbackData.CHEKISTS_NEXT_AFTER_SEVENTEENTH),
             (handler._send_chekists_nineteenth_post, GuideCallbackData.CHEKISTS_NEXT_AFTER_EIGHTEENTH),
-            (handler._answer_chekists_next, GuideCallbackData.CHEKISTS_NEXT_AFTER_NINETEENTH),
+            (handler._send_chekists_twentieth_post, GuideCallbackData.CHEKISTS_NEXT_AFTER_NINETEENTH),
         )
         for callback_handler, callback_data in pairs:
             dispatcher.callback_query.register(callback_handler, F.data == callback_data)

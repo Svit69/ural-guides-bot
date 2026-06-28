@@ -31,3 +31,11 @@ def test_builds_fourth_idol_next_keyboard() -> None:
 
     assert button.text == "4/7 идем дальше"
     assert button.callback_data == "guide:chekists:next:18"
+
+
+def test_builds_fifth_idol_next_keyboard() -> None:
+    keyboard = ChekistsKeyboardFactory().build_idol_next_keyboard(5, "guide:chekists:next:19")
+    button = keyboard.inline_keyboard[0][0]
+
+    assert button.text == "5/7 идем дальше"
+    assert button.callback_data == "guide:chekists:next:19"

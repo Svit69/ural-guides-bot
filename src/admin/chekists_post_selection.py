@@ -1,44 +1,27 @@
-from src.guides.chekists_posts import CHEKISTS_FIFTH_POST_NUMBER
-from src.guides.chekists_posts import CHEKISTS_EIGHTH_POST_NUMBER
-from src.guides.chekists_posts import CHEKISTS_EIGHTEENTH_POST_NUMBER
-from src.guides.chekists_posts import CHEKISTS_ELEVENTH_POST_NUMBER
-from src.guides.chekists_posts import CHEKISTS_FOURTEENTH_POST_NUMBER
-from src.guides.chekists_posts import CHEKISTS_FIFTEENTH_POST_NUMBER
-from src.guides.chekists_posts import CHEKISTS_FIRST_POST_NUMBER
-from src.guides.chekists_posts import CHEKISTS_FOURTH_POST_NUMBER
-from src.guides.chekists_posts import CHEKISTS_NINTH_POST_NUMBER
-from src.guides.chekists_posts import CHEKISTS_NINETEENTH_POST_NUMBER
-from src.guides.chekists_posts import CHEKISTS_SECOND_POST_NUMBER
-from src.guides.chekists_posts import CHEKISTS_SEVENTH_POST_NUMBER
-from src.guides.chekists_posts import CHEKISTS_SIXTH_POST_NUMBER
-from src.guides.chekists_posts import CHEKISTS_SIXTEENTH_POST_NUMBER
-from src.guides.chekists_posts import CHEKISTS_SEVENTEENTH_POST_NUMBER
-from src.guides.chekists_posts import CHEKISTS_TENTH_POST_NUMBER
-from src.guides.chekists_posts import CHEKISTS_THIRTEENTH_POST_NUMBER
-from src.guides.chekists_posts import CHEKISTS_THIRD_POST_NUMBER
-from src.guides.chekists_posts import CHEKISTS_TWELFTH_POST_NUMBER
+from src.guides import chekists_posts as post
 
 
 class ChekistsPostSelectionCatalog:
     def get_items(self) -> list[tuple[int, str]]:
         return [
-            (CHEKISTS_FIRST_POST_NUMBER, "Старт"),
-            (CHEKISTS_SECOND_POST_NUMBER, "Немного вводных"),
-            (CHEKISTS_THIRD_POST_NUMBER, "Гостиница «Исеть»"),
-            (CHEKISTS_FOURTH_POST_NUMBER, "Жилые корпуса"),
-            (CHEKISTS_FIFTH_POST_NUMBER, "Граффити «Слово пацана»"),
-            (CHEKISTS_SIXTH_POST_NUMBER, "Пончиковая №1"),
-            (CHEKISTS_SEVENTH_POST_NUMBER, "Арт-объекты"),
-            (CHEKISTS_EIGHTH_POST_NUMBER, "Хозкорпус"),
-            (CHEKISTS_NINTH_POST_NUMBER, "Кофе с полынью"),
-            (CHEKISTS_TENTH_POST_NUMBER, "5 арт-объектов"),
-            (CHEKISTS_ELEVENTH_POST_NUMBER, "Шигирский идол"),
-            (CHEKISTS_TWELFTH_POST_NUMBER, "Птицы на гараже"),
-            (CHEKISTS_THIRTEENTH_POST_NUMBER, "Музей советского детства"),
-            (CHEKISTS_FOURTEENTH_POST_NUMBER, "Птичка напела"),
-            (CHEKISTS_FIFTEENTH_POST_NUMBER, "Второй идол"),
-            (CHEKISTS_SIXTEENTH_POST_NUMBER, "Арт «Живи»"),
-            (CHEKISTS_SEVENTEENTH_POST_NUMBER, "Третий идол"),
-            (CHEKISTS_EIGHTEENTH_POST_NUMBER, "Четвертый идол"),
-            (CHEKISTS_NINETEENTH_POST_NUMBER, "Пятый идол"),
+            (post.CHEKISTS_FIRST_POST_NUMBER, "Старт"),
+            (post.CHEKISTS_SECOND_POST_NUMBER, "Немного вводных"),
+            (post.CHEKISTS_THIRD_POST_NUMBER, "Гостиница «Исеть»"),
+            (post.CHEKISTS_FOURTH_POST_NUMBER, "Жилые корпуса"),
+            (post.CHEKISTS_FIFTH_POST_NUMBER, "Граффити «Слово пацана»"),
+            (post.CHEKISTS_SIXTH_POST_NUMBER, "Пончиковая №1"),
+            (post.CHEKISTS_SEVENTH_POST_NUMBER, "Арт-объекты"),
+            (post.CHEKISTS_EIGHTH_POST_NUMBER, "Хозкорпус"),
+            (post.CHEKISTS_NINTH_POST_NUMBER, "Кофе с полынью"),
+            (post.CHEKISTS_TENTH_POST_NUMBER, "5 арт-объектов"),
+            (post.CHEKISTS_ELEVENTH_POST_NUMBER, "Шигирский идол"),
+            (post.CHEKISTS_TWELFTH_POST_NUMBER, "Птицы на гараже"),
+            (post.CHEKISTS_THIRTEENTH_POST_NUMBER, "Музей советского детства"),
+            (post.CHEKISTS_FOURTEENTH_POST_NUMBER, "Птичка напела"),
+            (post.CHEKISTS_FIFTEENTH_POST_NUMBER, "Второй идол"),
+            (post.CHEKISTS_SIXTEENTH_POST_NUMBER, "Арт «Живи»"),
+            (post.CHEKISTS_SEVENTEENTH_POST_NUMBER, "Третий идол"),
+            (post.CHEKISTS_EIGHTEENTH_POST_NUMBER, "Четвертый идол"),
+            (post.CHEKISTS_NINETEENTH_POST_NUMBER, "Пятый идол"),
+            (post.CHEKISTS_TWENTIETH_POST_NUMBER, "Жилой дом"),
         ]
