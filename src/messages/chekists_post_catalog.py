@@ -1,8 +1,7 @@
 from src.guides import chekists_posts as post
 from src.guides import chekists_art_posts as art
+from src.guides import chekists_childcare_posts as child
 from src.guides.chekists_building_posts import DEFAULT_CHEKISTS_EIGHTH_POST, DEFAULT_CHEKISTS_NINTH_POST
-from src.guides.chekists_childcare_posts import DEFAULT_CHEKISTS_TWENTY_FIFTH_POST
-from src.guides.chekists_childcare_posts import DEFAULT_CHEKISTS_TWENTY_FOURTH_POST
 from src.guides.chekists_extra_art_posts import DEFAULT_CHEKISTS_FIFTEENTH_POST
 from src.guides.chekists_extra_art_posts import DEFAULT_CHEKISTS_EIGHTEENTH_POST
 from src.guides.chekists_extra_art_posts import DEFAULT_CHEKISTS_FOURTEENTH_POST
@@ -44,6 +43,7 @@ class ChekistsPostCatalog:
             post.CHEKISTS_TWENTY_FIRST_POST_NUMBER: DEFAULT_CHEKISTS_TWENTY_FIRST_POST,
             post.CHEKISTS_TWENTY_SECOND_POST_NUMBER: DEFAULT_CHEKISTS_TWENTY_SECOND_POST,
             post.CHEKISTS_TWENTY_THIRD_POST_NUMBER: DEFAULT_CHEKISTS_TWENTY_THIRD_POST,
-            post.CHEKISTS_TWENTY_FOURTH_POST_NUMBER: DEFAULT_CHEKISTS_TWENTY_FOURTH_POST,
-            post.CHEKISTS_TWENTY_FIFTH_POST_NUMBER: DEFAULT_CHEKISTS_TWENTY_FIFTH_POST,
+            post.CHEKISTS_TWENTY_FOURTH_POST_NUMBER: child.DEFAULT_CHEKISTS_TWENTY_FOURTH_POST,
+            post.CHEKISTS_TWENTY_FIFTH_POST_NUMBER: child.DEFAULT_CHEKISTS_TWENTY_FIFTH_POST,
+            post.CHEKISTS_TWENTY_SIXTH_POST_NUMBER: child.DEFAULT_CHEKISTS_TWENTY_SIXTH_POST,
         }

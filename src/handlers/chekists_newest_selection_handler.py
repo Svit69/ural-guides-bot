@@ -21,4 +21,8 @@ class ChekistsNewestSelectionHandlerMixin:
         await self._send_chekists_next(callback, post.CHEKISTS_TWENTY_FOURTH_POST_NUMBER, next_callback)
 
     async def _send_chekists_twenty_fifth_post(self, callback: CallbackQuery) -> None:
-        await self._send_chekists_next(callback, post.CHEKISTS_TWENTY_FIFTH_POST_NUMBER)
+        next_callback = GuideCallbackData.CHEKISTS_NEXT_AFTER_TWENTY_FIFTH
+        await self._send_chekists_next(callback, post.CHEKISTS_TWENTY_FIFTH_POST_NUMBER, next_callback)
+
+    async def _send_chekists_twenty_sixth_post(self, callback: CallbackQuery) -> None:
+        await self._send_chekists_next(callback, post.CHEKISTS_TWENTY_SIXTH_POST_NUMBER)
