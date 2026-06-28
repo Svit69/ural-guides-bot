@@ -25,6 +25,7 @@ def test_admin_can_select_chekists_start_post_for_editing() -> None:
     assert keyboard.inline_keyboard[12][0].text == "313. Музей советского детства"
     assert keyboard.inline_keyboard[13][0].text == "314. Птичка напела"
     assert keyboard.inline_keyboard[14][0].text == "315. Второй идол"
+    assert keyboard.inline_keyboard[15][0].text == "316. Арт «Живи»"
 
 
 def test_admin_visibility_keyboard_marks_hidden_chekists_guide() -> None:
