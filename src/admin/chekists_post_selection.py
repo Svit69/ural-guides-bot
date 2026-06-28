@@ -28,4 +28,5 @@ class ChekistsPostSelectionCatalog:
             (post.CHEKISTS_TWENTY_SECOND_POST_NUMBER, "Жилые дома"),
             (post.CHEKISTS_TWENTY_THIRD_POST_NUMBER, "Строчки из песни"),
             (post.CHEKISTS_TWENTY_FOURTH_POST_NUMBER, "Детский сад и ясли"),
+            (post.CHEKISTS_TWENTY_FIFTH_POST_NUMBER, "Спортивная площадка"),
         ]

@@ -1,4 +1,5 @@
 CHILDCARE_BUILDING_URL = "https://yandex.ru/maps/-/CTU2MLKL"
+SPORTS_GROUND_URL = "https://yandex.ru/maps/-/CTU2QKPe"
 
 DEFAULT_CHEKISTS_TWENTY_FOURTH_POST = (
     "*Здание детского сада и яслей |* "
@@ -7,4 +8,12 @@ DEFAULT_CHEKISTS_TWENTY_FOURTH_POST = (
     "В здании находились ясли (первые в городе), детский сад и ведомственная "
     "гостиница МВД.\n\n"
     "Сегодня внутри Главное управление ФСИН по Свердловской области."
+)
+
+DEFAULT_CHEKISTS_TWENTY_FIFTH_POST = (
+    "*Спортивная площадка |* "
+    f"*[Точка на карте({SPORTS_GROUND_URL})]*\n\n"
+    "Зимой спортивную площадку превращали в каток и устанавливали ёлку.\n\n"
+    "Летом тут можно было брать спортивный инвентарь, играть на специальных "
+    "столах в шашки или шахматы, в теннис."
 )

@@ -35,3 +35,9 @@ def test_builds_chekists_next_keyboard_after_twenty_third_post() -> None:
     keyboard = GuideKeyboardFactory().build_chekists_next_keyboard("guide:chekists:next:23")
 
     assert keyboard.inline_keyboard[0][0].callback_data == "guide:chekists:next:23"
+
+
+def test_builds_chekists_next_keyboard_after_twenty_fourth_post() -> None:
+    keyboard = GuideKeyboardFactory().build_chekists_next_keyboard("guide:chekists:next:24")
+
+    assert keyboard.inline_keyboard[0][0].callback_data == "guide:chekists:next:24"
