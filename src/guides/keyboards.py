@@ -1,5 +1,4 @@
 from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
-
 from src.guides.callbacks import GuideCallbackData
 from src.guides.guide_button_texts import GuideButtonTextFactory
 from src.guides.guide_ids import DEFAULT_VISIBLE_GUIDES
@@ -39,8 +38,10 @@ class GuideKeyboardFactory:
     def build_viz_finish_keyboard(self) -> InlineKeyboardMarkup:
         return self.__single_button_keyboard("завершить прогулку", GuideCallbackData.FINISH_VIZ)
 
-    def build_chekists_next_keyboard(self) -> InlineKeyboardMarkup:
-        return self.__single_button_keyboard("идем дальше", GuideCallbackData.CHEKISTS_NEXT)
+    def build_chekists_next_keyboard(
+        self, callback_data: str = GuideCallbackData.CHEKISTS_NEXT
+    ) -> InlineKeyboardMarkup:
+        return self.__single_button_keyboard("идем дальше", callback_data)
 
     def __single_button_keyboard(self, text: str, callback_data: str) -> InlineKeyboardMarkup:
         return InlineKeyboardMarkup(inline_keyboard=[[self.__button(text, callback_data)]])

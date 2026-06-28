@@ -2,6 +2,7 @@ from aiogram.types import CallbackQuery
 
 from src.guides.chekists_posts import CHEKISTS_FIRST_POST_NUMBER
 from src.guides.guide_ids import GUIDE_CHEKISTS
+from src.guides.callbacks import GuideCallbackData
 from src.guides.keyboards import GuideKeyboardFactory
 from src.messages.default_posts import SECOND_POST_NUMBER, THIRD_POST_NUMBER
 from src.messages.post_provider import PostProvider
@@ -23,7 +24,9 @@ class FreeGuideSender:
             await self.__post_sender.send_post(
                 callback.message,
                 self.__posts.get_post(CHEKISTS_FIRST_POST_NUMBER),
-                self.__guide_keyboards.build_chekists_next_keyboard(),
+                self.__guide_keyboards.build_chekists_next_keyboard(
+                    GuideCallbackData.CHEKISTS_NEXT_AFTER_FIRST
+                ),
             )
             return
         await self.__post_sender.send_post(

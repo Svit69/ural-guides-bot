@@ -1,7 +1,10 @@
-from src.guides.chekists_posts import CHEKISTS_FIRST_POST_NUMBER
-from src.guides.chekists_posts import DEFAULT_CHEKISTS_FIRST_POST
+from src.guides.chekists_posts import CHEKISTS_FIRST_POST_NUMBER, CHEKISTS_SECOND_POST_NUMBER
+from src.guides.chekists_posts import DEFAULT_CHEKISTS_FIRST_POST, DEFAULT_CHEKISTS_SECOND_POST
 
 
 class ChekistsPostCatalog:
     def get_posts(self) -> dict[int, str]:
-        return {CHEKISTS_FIRST_POST_NUMBER: DEFAULT_CHEKISTS_FIRST_POST}
+        return {
+            CHEKISTS_FIRST_POST_NUMBER: DEFAULT_CHEKISTS_FIRST_POST,
+            CHEKISTS_SECOND_POST_NUMBER: DEFAULT_CHEKISTS_SECOND_POST,
+        }

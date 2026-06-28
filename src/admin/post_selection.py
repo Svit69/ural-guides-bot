@@ -1,5 +1,5 @@
 from src.admin.callbacks import AdminCallbackData
-from src.guides.chekists_posts import CHEKISTS_FIRST_POST_NUMBER
+from src.guides.chekists_posts import CHEKISTS_FIRST_POST_NUMBER, CHEKISTS_SECOND_POST_NUMBER
 from src.guides.city_walk_post import CITY_WALK_POST_NUMBER
 from src.admin.viz_post_selection import VizPostSelectionCatalog
 from src.messages.default_posts import ELEVENTH_POST_NUMBER, EIGHTH_POST_NUMBER
@@ -17,7 +17,10 @@ class PostSelectionCatalog:
         if guide_id == AdminCallbackData.GUIDE_CITY_WALK:
             return [(CITY_WALK_POST_NUMBER, "Прогулка по Екатеринбургу")]
         if guide_id == AdminCallbackData.GUIDE_CHEKISTS:
-            return [(CHEKISTS_FIRST_POST_NUMBER, "Старт")]
+            return [
+                (CHEKISTS_FIRST_POST_NUMBER, "Старт"),
+                (CHEKISTS_SECOND_POST_NUMBER, "Немного вводных"),
+            ]
         return self.__get_big_konny_items()
 
     def contains_post(self, guide_id: str, post_number: int) -> bool:

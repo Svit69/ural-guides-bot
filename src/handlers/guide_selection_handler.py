@@ -19,6 +19,7 @@ from src.subscription.prompt_sender import SubscriptionPromptSender
 class GuideSelectionHandler(ChekistsSelectionHandlerMixin, VizRouteHandlerMixin, VizLaterRouteHandlerMixin, VizFinalRouteHandlerMixin, VizNewestRouteHandlerMixin, VizLatestRouteHandlerMixin, VizFeedbackFinishHandlerMixin):
     def __init__(self, posts: PostProvider) -> None:
         self._posts = posts
+        self._init_chekists_sender()
         self._post_sender = TelegramPostSender()
         self.__keyboards = GuideKeyboardFactory()
         self.__route_registrar = VizCallbackRegistrar()
@@ -28,6 +29,7 @@ class GuideSelectionHandler(ChekistsSelectionHandlerMixin, VizRouteHandlerMixin,
         dispatcher.callback_query.register(self.__select_big_konny, F.data == GuideCallbackData.SELECT_BIG_KONNY)
         dispatcher.callback_query.register(self._select_chekists, F.data == GuideCallbackData.SELECT_CHEKISTS)
         dispatcher.callback_query.register(self.__send_viz_second_post, F.data == GuideCallbackData.VIZ_NEXT)
+        dispatcher.callback_query.register(self._send_chekists_second_post, F.data == GuideCallbackData.CHEKISTS_NEXT_AFTER_FIRST)
         dispatcher.callback_query.register(self._answer_chekists_next, F.data == GuideCallbackData.CHEKISTS_NEXT)
         self.__route_registrar.register_route_callbacks(dispatcher, self)
         dispatcher.callback_query.register(self._start_viz_feedback, F.data == GuideCallbackData.FINISH_VIZ)
