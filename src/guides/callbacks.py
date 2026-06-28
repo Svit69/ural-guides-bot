@@ -9,6 +9,7 @@ class GuideCallbackData:
     CHEKISTS_NEXT_AFTER_THIRD = "guide:chekists:next:3"
     CHEKISTS_NEXT_AFTER_FOURTH = "guide:chekists:next:4"
     CHEKISTS_NEXT_AFTER_FIFTH = "guide:chekists:next:5"
+    CHEKISTS_NEXT_AFTER_SIXTH = "guide:chekists:next:6"
     CHECK_VIZ_PAYMENT = "guide:viz:payment:check"
     CHECK_CITY_PAYMENT = "guide:city:payment:check"
     VIZ_NEXT = "guide:viz:next"

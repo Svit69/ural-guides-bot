@@ -3,6 +3,7 @@ from src.guides.callbacks import GuideCallbackData
 from src.guides.guide_ids import GUIDE_CHEKISTS
 from src.guides.keyboards import GuideKeyboardFactory
 from src.guides.chekists_posts import CHEKISTS_FIFTH_POST_NUMBER, CHEKISTS_FOURTH_POST_NUMBER
+from src.guides.chekists_posts import CHEKISTS_SEVENTH_POST_NUMBER
 from src.guides.chekists_posts import CHEKISTS_SECOND_POST_NUMBER, CHEKISTS_SIXTH_POST_NUMBER
 from src.guides.chekists_posts import CHEKISTS_THIRD_POST_NUMBER
 from src.services.post_sender import TelegramPostSender
@@ -30,7 +31,10 @@ class ChekistsSelectionHandlerMixin:
         next_callback = GuideCallbackData.CHEKISTS_NEXT_AFTER_FIFTH
         await self.__send_chekists_post(callback, CHEKISTS_FIFTH_POST_NUMBER, next_callback)
     async def _send_chekists_sixth_post(self, callback: CallbackQuery) -> None:
-        await self.__send_chekists_post(callback, CHEKISTS_SIXTH_POST_NUMBER)
+        next_callback = GuideCallbackData.CHEKISTS_NEXT_AFTER_SIXTH
+        await self.__send_chekists_post(callback, CHEKISTS_SIXTH_POST_NUMBER, next_callback)
+    async def _send_chekists_seventh_post(self, callback: CallbackQuery) -> None:
+        await self.__send_chekists_post(callback, CHEKISTS_SEVENTH_POST_NUMBER)
     async def __send_chekists_post(
         self, callback: CallbackQuery, post_number: int, next_callback: str | None = None
     ) -> None:

@@ -28,6 +28,7 @@ def test_admin_can_select_chekists_start_post_for_editing() -> None:
     assert keyboard.inline_keyboard[3][0].text == "304. Жилые корпуса"
     assert keyboard.inline_keyboard[4][0].text == "305. Граффити «Слово пацана»"
     assert keyboard.inline_keyboard[5][0].text == "306. Пончиковая №1"
+    assert keyboard.inline_keyboard[6][0].text == "307. Арт-объекты"
 
 
 def test_admin_visibility_keyboard_marks_hidden_chekists_guide() -> None:

@@ -3,6 +3,7 @@ from aiogram.types import CallbackQuery
 from src.guides.callbacks import GuideCallbackData
 from src.guides.keyboards import GuideKeyboardFactory
 from src.guides.guide_ids import GUIDE_BIG_KONNY
+from src.handlers.chekists_callback_registrar import ChekistsCallbackRegistrar
 from src.handlers.chekists_selection_handler import ChekistsSelectionHandlerMixin
 from src.guides.viz_posts import VIZ_SECOND_POST_NUMBER
 from src.handlers.viz_callback_registrar import VizCallbackRegistrar
@@ -21,17 +22,14 @@ class GuideSelectionHandler(ChekistsSelectionHandlerMixin, VizRouteHandlerMixin,
         self._init_chekists_sender()
         self._post_sender = TelegramPostSender()
         self.__keyboards = GuideKeyboardFactory()
+        self.__chekists_registrar = ChekistsCallbackRegistrar()
         self.__route_registrar = VizCallbackRegistrar()
         self.__subscription_prompt = SubscriptionPromptSender()
     def register_in_dispatcher(self, dispatcher: Dispatcher) -> None:
         dispatcher.callback_query.register(self.__select_big_konny, F.data == GuideCallbackData.SELECT_BIG_KONNY)
         dispatcher.callback_query.register(self._select_chekists, F.data == GuideCallbackData.SELECT_CHEKISTS)
         dispatcher.callback_query.register(self.__send_viz_second_post, F.data == GuideCallbackData.VIZ_NEXT)
-        dispatcher.callback_query.register(self._send_chekists_second_post, F.data == GuideCallbackData.CHEKISTS_NEXT_AFTER_FIRST)
-        dispatcher.callback_query.register(self._send_chekists_third_post, F.data == GuideCallbackData.CHEKISTS_NEXT_AFTER_SECOND)
-        dispatcher.callback_query.register(self._send_chekists_fourth_post, F.data == GuideCallbackData.CHEKISTS_NEXT_AFTER_THIRD)
-        dispatcher.callback_query.register(self._send_chekists_fifth_post, F.data == GuideCallbackData.CHEKISTS_NEXT_AFTER_FOURTH)
-        dispatcher.callback_query.register(self._send_chekists_sixth_post, F.data == GuideCallbackData.CHEKISTS_NEXT_AFTER_FIFTH)
+        self.__chekists_registrar.register_callbacks(dispatcher, self)
         dispatcher.callback_query.register(self._answer_chekists_next, F.data == GuideCallbackData.CHEKISTS_NEXT)
         self.__route_registrar.register_route_callbacks(dispatcher, self)
         dispatcher.callback_query.register(self._start_viz_feedback, F.data == GuideCallbackData.FINISH_VIZ)
