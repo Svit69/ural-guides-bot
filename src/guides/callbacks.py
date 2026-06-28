@@ -18,6 +18,7 @@ class GuideCallbackData:
     CHEKISTS_NEXT_AFTER_THIRTEENTH = "guide:chekists:next:13"
     CHEKISTS_NEXT_AFTER_FOURTEENTH = "guide:chekists:next:14"
     CHEKISTS_NEXT_AFTER_FIFTEENTH = "guide:chekists:next:15"
+    CHEKISTS_NEXT_AFTER_SIXTEENTH = "guide:chekists:next:16"
     CHEKISTS_FIND_ALL_IDOLS = "guide:chekists:idols:find_all"
     CHECK_VIZ_PAYMENT = "guide:viz:payment:check"
     CHECK_CITY_PAYMENT = "guide:city:payment:check"

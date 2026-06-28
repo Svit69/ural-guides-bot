@@ -38,6 +38,8 @@ class ChekistsSelectionHandlerMixin(ChekistsLateSelectionHandlerMixin):
         return self.__chekists_special_keyboards.build_find_all_idols_keyboard()
     def _build_second_idol_next_keyboard(self):
         return self.__chekists_special_keyboards.build_second_idol_next_keyboard()
+    def _build_third_idol_next_keyboard(self):
+        return self.__chekists_special_keyboards.build_third_idol_next_keyboard()
     async def _send_chekists_next(self, callback, post_number, next_callback=None, keyboard=None):
         await callback.answer()
         if callback.message is None:
