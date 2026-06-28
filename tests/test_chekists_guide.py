@@ -4,7 +4,7 @@ from src.guides.chekists_posts import CHEKISTS_FOURTH_POST_NUMBER
 from src.guides.chekists_posts import CHEKISTS_SECOND_POST_NUMBER
 from src.guides.chekists_posts import CHEKISTS_THIRD_POST_NUMBER
 from src.guides.chekists_posts import DEFAULT_CHEKISTS_FIRST_POST
-from src.guides.chekists_posts import DEFAULT_CHEKISTS_SECOND_POST
+from src.guides.chekists_intro_posts import DEFAULT_CHEKISTS_SECOND_POST
 from src.guides.chekists_later_posts import DEFAULT_CHEKISTS_FIFTH_POST
 from src.guides.chekists_later_posts import DEFAULT_CHEKISTS_FOURTH_POST
 from src.guides.chekists_later_posts import DEFAULT_CHEKISTS_THIRD_POST
