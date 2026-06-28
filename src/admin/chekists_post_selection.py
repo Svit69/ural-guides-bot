@@ -26,4 +26,5 @@ class ChekistsPostSelectionCatalog:
             (post.CHEKISTS_TWENTIETH_POST_NUMBER, "Жилой дом"),
             (post.CHEKISTS_TWENTY_FIRST_POST_NUMBER, "Полянка"),
             (post.CHEKISTS_TWENTY_SECOND_POST_NUMBER, "Жилые дома"),
+            (post.CHEKISTS_TWENTY_THIRD_POST_NUMBER, "Строчки из песни"),
         ]

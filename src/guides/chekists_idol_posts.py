@@ -2,6 +2,7 @@ FIFTH_IDOL_URL = "https://yandex.ru/maps/-/CTUXnN1u"
 HOUSE_13_URL = "https://yandex.ru/maps/-/CTUXf6yK"
 POLYANKA_URL = "https://yandex.ru/maps/-/CTUXv0kw"
 HOUSES_6_8_URL = "https://yandex.ru/maps/-/CTUX7HjD"
+SONG_LINES_URL = "https://yandex.ru/maps/-/CTU2ETl3"
 
 DEFAULT_CHEKISTS_NINETEENTH_POST = (
     "*Пятый идол |* "
@@ -41,4 +42,9 @@ DEFAULT_CHEKISTS_TWENTY_SECOND_POST = (
     "Двери есть и со двора, и с улицы.\n\n"
     "На одном из подъездов местные жители повесили уютные гирлянды. "
     "Ночью в городке нет освещения 🥲"
+)
+
+DEFAULT_CHEKISTS_TWENTY_THIRD_POST = (
+    "*На шестом корпусе строчки из песни |* "
+    f"*[Точка на карте({SONG_LINES_URL})]*"
 )

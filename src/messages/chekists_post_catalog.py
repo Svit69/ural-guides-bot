@@ -15,6 +15,7 @@ from src.guides.chekists_food_posts import DEFAULT_CHEKISTS_SIXTH_POST
 from src.guides.chekists_idol_posts import DEFAULT_CHEKISTS_NINETEENTH_POST
 from src.guides.chekists_idol_posts import DEFAULT_CHEKISTS_TWENTY_FIRST_POST
 from src.guides.chekists_idol_posts import DEFAULT_CHEKISTS_TWENTY_SECOND_POST
+from src.guides.chekists_idol_posts import DEFAULT_CHEKISTS_TWENTY_THIRD_POST
 from src.guides.chekists_idol_posts import DEFAULT_CHEKISTS_TWENTIETH_POST
 from src.guides.chekists_later_posts import DEFAULT_CHEKISTS_FIFTH_POST, DEFAULT_CHEKISTS_FOURTH_POST
 from src.guides.chekists_later_posts import DEFAULT_CHEKISTS_THIRD_POST
@@ -45,4 +46,5 @@ class ChekistsPostCatalog:
             post.CHEKISTS_TWENTIETH_POST_NUMBER: DEFAULT_CHEKISTS_TWENTIETH_POST,
             post.CHEKISTS_TWENTY_FIRST_POST_NUMBER: DEFAULT_CHEKISTS_TWENTY_FIRST_POST,
             post.CHEKISTS_TWENTY_SECOND_POST_NUMBER: DEFAULT_CHEKISTS_TWENTY_SECOND_POST,
+            post.CHEKISTS_TWENTY_THIRD_POST_NUMBER: DEFAULT_CHEKISTS_TWENTY_THIRD_POST,
         }
