@@ -1,9 +1,9 @@
 from aiogram.types import CallbackQuery
 from src.guides import chekists_posts as post
 from src.guides.callbacks import GuideCallbackData
+from src.handlers.chekists_newest_selection_handler import ChekistsNewestSelectionHandlerMixin
 
-
-class ChekistsLateSelectionHandlerMixin:
+class ChekistsLateSelectionHandlerMixin(ChekistsNewestSelectionHandlerMixin):
     async def _send_chekists_tenth_post(self, callback: CallbackQuery) -> None:
         await self._send_chekists_next(
             callback, post.CHEKISTS_TENTH_POST_NUMBER, GuideCallbackData.CHEKISTS_NEXT_AFTER_TENTH
@@ -46,4 +46,5 @@ class ChekistsLateSelectionHandlerMixin:
         await self._send_chekists_next(callback, post.CHEKISTS_NINETEENTH_POST_NUMBER, keyboard=keyboard)
 
     async def _send_chekists_twentieth_post(self, callback: CallbackQuery) -> None:
-        await self._send_chekists_next(callback, post.CHEKISTS_TWENTIETH_POST_NUMBER)
+        next_callback = GuideCallbackData.CHEKISTS_NEXT_AFTER_TWENTIETH
+        await self._send_chekists_next(callback, post.CHEKISTS_TWENTIETH_POST_NUMBER, next_callback)

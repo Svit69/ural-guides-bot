@@ -44,5 +44,6 @@ class ChekistsSelectionHandlerMixin(ChekistsLateSelectionHandlerMixin):
         await callback.answer()
         if callback.message is None:
             return
+        next_callback = next_callback or GuideCallbackData.CHEKISTS_NEXT
         keyboard = keyboard or self.__chekists_keyboards.build_chekists_next_keyboard(next_callback)
         await self.__chekists_post_sender.send_post(callback.message, self._posts.get_post(post_number), keyboard)

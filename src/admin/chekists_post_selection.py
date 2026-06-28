@@ -24,4 +24,5 @@ class ChekistsPostSelectionCatalog:
             (post.CHEKISTS_EIGHTEENTH_POST_NUMBER, "Четвертый идол"),
             (post.CHEKISTS_NINETEENTH_POST_NUMBER, "Пятый идол"),
             (post.CHEKISTS_TWENTIETH_POST_NUMBER, "Жилой дом"),
+            (post.CHEKISTS_TWENTY_FIRST_POST_NUMBER, "Полянка"),
         ]

@@ -21,6 +21,7 @@ def test_admin_can_select_chekists_posts_for_editing() -> None:
     assert keyboard.inline_keyboard[0][0].callback_data == "admin:post:301"
     assert keyboard.inline_keyboard[18][0].text == "319. Пятый идол"
     assert keyboard.inline_keyboard[19][0].text == "320. Жилой дом"
+    assert keyboard.inline_keyboard[20][0].text == "321. Полянка"
 
 
 def test_admin_visibility_keyboard_marks_hidden_chekists_guide() -> None:
