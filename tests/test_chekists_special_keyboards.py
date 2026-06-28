@@ -7,3 +7,11 @@ def test_builds_find_all_idols_keyboard() -> None:
 
     assert button.text == "хочу найти всех"
     assert button.callback_data == "guide:chekists:idols:find_all"
+
+
+def test_builds_second_idol_next_keyboard() -> None:
+    keyboard = ChekistsKeyboardFactory().build_second_idol_next_keyboard()
+    button = keyboard.inline_keyboard[0][0]
+
+    assert button.text == "2/7 идем дальше"
+    assert button.callback_data == "guide:chekists:next:15"
