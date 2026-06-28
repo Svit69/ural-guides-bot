@@ -1,6 +1,7 @@
 from aiogram.types import CallbackQuery
 
-from src.guides.chekists_posts import CHEKISTS_SECOND_POST_NUMBER
+from src.guides.chekists_posts import CHEKISTS_SECOND_POST_NUMBER, CHEKISTS_THIRD_POST_NUMBER
+from src.guides.callbacks import GuideCallbackData
 from src.guides.keyboards import GuideKeyboardFactory
 from src.guides.guide_ids import GUIDE_CHEKISTS
 from src.services.post_sender import TelegramPostSender
@@ -31,5 +32,17 @@ class ChekistsSelectionHandlerMixin:
         await self.__chekists_post_sender.send_post(
             callback.message,
             self._posts.get_post(CHEKISTS_SECOND_POST_NUMBER),
+            self.__chekists_keyboards.build_chekists_next_keyboard(
+                GuideCallbackData.CHEKISTS_NEXT_AFTER_SECOND
+            ),
+        )
+
+    async def _send_chekists_third_post(self, callback: CallbackQuery) -> None:
+        await callback.answer()
+        if callback.message is None:
+            return
+        await self.__chekists_post_sender.send_post(
+            callback.message,
+            self._posts.get_post(CHEKISTS_THIRD_POST_NUMBER),
             self.__chekists_keyboards.build_chekists_next_keyboard(),
         )

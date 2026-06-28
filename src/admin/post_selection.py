@@ -1,5 +1,6 @@
 from src.admin.callbacks import AdminCallbackData
 from src.guides.chekists_posts import CHEKISTS_FIRST_POST_NUMBER, CHEKISTS_SECOND_POST_NUMBER
+from src.guides.chekists_posts import CHEKISTS_THIRD_POST_NUMBER
 from src.guides.city_walk_post import CITY_WALK_POST_NUMBER
 from src.admin.viz_post_selection import VizPostSelectionCatalog
 from src.messages.default_posts import ELEVENTH_POST_NUMBER, EIGHTH_POST_NUMBER
@@ -20,6 +21,7 @@ class PostSelectionCatalog:
             return [
                 (CHEKISTS_FIRST_POST_NUMBER, "Старт"),
                 (CHEKISTS_SECOND_POST_NUMBER, "Немного вводных"),
+                (CHEKISTS_THIRD_POST_NUMBER, "Гостиница «Исеть»"),
             ]
         return self.__get_big_konny_items()
 

@@ -25,6 +25,7 @@ def test_admin_can_select_chekists_start_post_for_editing() -> None:
     assert keyboard.inline_keyboard[0][0].text == "301. Старт"
     assert keyboard.inline_keyboard[0][0].callback_data == "admin:post:301"
     assert keyboard.inline_keyboard[1][0].text == "302. Немного вводных"
+    assert keyboard.inline_keyboard[2][0].text == "303. Гостиница «Исеть»"
 
 
 def test_admin_visibility_keyboard_marks_hidden_chekists_guide() -> None:

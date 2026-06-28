@@ -1,5 +1,8 @@
 from src.guides.chekists_posts import CHEKISTS_FIRST_POST_NUMBER, CHEKISTS_SECOND_POST_NUMBER
-from src.guides.chekists_posts import DEFAULT_CHEKISTS_FIRST_POST, DEFAULT_CHEKISTS_SECOND_POST
+from src.guides.chekists_posts import CHEKISTS_THIRD_POST_NUMBER
+from src.guides.chekists_posts import DEFAULT_CHEKISTS_FIRST_POST
+from src.guides.chekists_posts import DEFAULT_CHEKISTS_SECOND_POST
+from src.guides.chekists_posts import DEFAULT_CHEKISTS_THIRD_POST
 
 
 class ChekistsPostCatalog:
@@ -7,4 +10,5 @@ class ChekistsPostCatalog:
         return {
             CHEKISTS_FIRST_POST_NUMBER: DEFAULT_CHEKISTS_FIRST_POST,
             CHEKISTS_SECOND_POST_NUMBER: DEFAULT_CHEKISTS_SECOND_POST,
+            CHEKISTS_THIRD_POST_NUMBER: DEFAULT_CHEKISTS_THIRD_POST,
         }
