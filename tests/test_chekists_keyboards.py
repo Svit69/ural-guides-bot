@@ -21,24 +21,24 @@ def test_builds_chekists_subscription_callback() -> None:
 
 
 def test_builds_chekists_next_keyboard_after_first_post() -> None:
-    keyboard = GuideKeyboardFactory().build_chekists_next_keyboard(
-        "guide:chekists:next:1"
-    )
+    keyboard = GuideKeyboardFactory().build_chekists_next_keyboard("guide:chekists:next:1")
 
     assert keyboard.inline_keyboard[0][0].callback_data == "guide:chekists:next:1"
 
 
 def test_builds_chekists_next_keyboard_after_second_post() -> None:
-    keyboard = GuideKeyboardFactory().build_chekists_next_keyboard(
-        "guide:chekists:next:2"
-    )
+    keyboard = GuideKeyboardFactory().build_chekists_next_keyboard("guide:chekists:next:2")
 
     assert keyboard.inline_keyboard[0][0].callback_data == "guide:chekists:next:2"
 
 
 def test_builds_chekists_next_keyboard_after_third_post() -> None:
-    keyboard = GuideKeyboardFactory().build_chekists_next_keyboard(
-        "guide:chekists:next:3"
-    )
+    keyboard = GuideKeyboardFactory().build_chekists_next_keyboard("guide:chekists:next:3")
 
     assert keyboard.inline_keyboard[0][0].callback_data == "guide:chekists:next:3"
+
+
+def test_builds_chekists_next_keyboard_after_fourth_post() -> None:
+    keyboard = GuideKeyboardFactory().build_chekists_next_keyboard("guide:chekists:next:4")
+
+    assert keyboard.inline_keyboard[0][0].callback_data == "guide:chekists:next:4"

@@ -1,7 +1,9 @@
+from src.guides.chekists_posts import CHEKISTS_FIFTH_POST_NUMBER
 from src.guides.chekists_posts import CHEKISTS_FOURTH_POST_NUMBER, CHEKISTS_THIRD_POST_NUMBER
 
 ISET_HOTEL_URL = "https://yandex.ru/maps/-/CTU1uK5h"
 RESIDENTIAL_BUILDINGS_URL = "https://yandex.ru/maps/-/CTU1y00E"
+WORD_OF_THE_BOY_GRAFFITI_URL = "https://yandex.ru/maps/-/CTU1FBMZ"
 
 DEFAULT_CHEKISTS_THIRD_POST = (
     "*Гостиница «Исеть» |* "
@@ -34,4 +36,9 @@ DEFAULT_CHEKISTS_FOURTH_POST = (
     "Для питания предусмотрели столовую, в которую ходили за едой.\n\n"
     "Внешне и сверху дома напоминают контуры пилы или развевающийся флаг. "
     "В 1937 году фасад покрасили в красный цвет."
+)
+
+DEFAULT_CHEKISTS_FIFTH_POST = (
+    "*Граффити «Слово пацана» |* "
+    f"*[Ленина, 69/3({WORD_OF_THE_BOY_GRAFFITI_URL})]*"
 )
