@@ -2,8 +2,9 @@ from src.guides import chekists_posts as post
 from src.guides import chekists_art_posts as art
 from src.guides import chekists_childcare_posts as child
 from src.guides import chekists_extra_art_posts as extra
-from src.guides.chekists_building_posts import DEFAULT_CHEKISTS_EIGHTH_POST, DEFAULT_CHEKISTS_NINTH_POST
-from src.guides.chekists_food_posts import DEFAULT_CHEKISTS_SEVENTH_POST, DEFAULT_CHEKISTS_SIXTH_POST
+from src.guides import chekists_building_posts as building
+from src.guides import chekists_food_posts as food
+from src.guides.chekists_library_posts import DEFAULT_CHEKISTS_THIRTY_FIRST_POST
 from src.guides.chekists_idol_posts import DEFAULT_CHEKISTS_NINETEENTH_POST
 from src.guides.chekists_idol_posts import DEFAULT_CHEKISTS_TWENTY_FIRST_POST
 from src.guides.chekists_idol_posts import DEFAULT_CHEKISTS_TWENTY_SECOND_POST
@@ -11,7 +12,6 @@ from src.guides.chekists_idol_posts import DEFAULT_CHEKISTS_TWENTY_THIRD_POST
 from src.guides.chekists_idol_posts import DEFAULT_CHEKISTS_TWENTIETH_POST
 from src.guides.chekists_intro_posts import DEFAULT_CHEKISTS_SECOND_POST
 from src.guides.chekists_later_posts import DEFAULT_CHEKISTS_FIFTH_POST, DEFAULT_CHEKISTS_FOURTH_POST, DEFAULT_CHEKISTS_THIRD_POST
-
 
 class ChekistsPostCatalog:
     def get_posts(self) -> dict[int, str]:
@@ -21,10 +21,10 @@ class ChekistsPostCatalog:
             post.CHEKISTS_THIRD_POST_NUMBER: DEFAULT_CHEKISTS_THIRD_POST,
             post.CHEKISTS_FOURTH_POST_NUMBER: DEFAULT_CHEKISTS_FOURTH_POST,
             post.CHEKISTS_FIFTH_POST_NUMBER: DEFAULT_CHEKISTS_FIFTH_POST,
-            post.CHEKISTS_SIXTH_POST_NUMBER: DEFAULT_CHEKISTS_SIXTH_POST,
-            post.CHEKISTS_SEVENTH_POST_NUMBER: DEFAULT_CHEKISTS_SEVENTH_POST,
-            post.CHEKISTS_EIGHTH_POST_NUMBER: DEFAULT_CHEKISTS_EIGHTH_POST,
-            post.CHEKISTS_NINTH_POST_NUMBER: DEFAULT_CHEKISTS_NINTH_POST,
+            post.CHEKISTS_SIXTH_POST_NUMBER: food.DEFAULT_CHEKISTS_SIXTH_POST,
+            post.CHEKISTS_SEVENTH_POST_NUMBER: food.DEFAULT_CHEKISTS_SEVENTH_POST,
+            post.CHEKISTS_EIGHTH_POST_NUMBER: building.DEFAULT_CHEKISTS_EIGHTH_POST,
+            post.CHEKISTS_NINTH_POST_NUMBER: building.DEFAULT_CHEKISTS_NINTH_POST,
             post.CHEKISTS_TENTH_POST_NUMBER: art.DEFAULT_CHEKISTS_TENTH_POST,
             post.CHEKISTS_ELEVENTH_POST_NUMBER: art.DEFAULT_CHEKISTS_ELEVENTH_POST,
             post.CHEKISTS_TWELFTH_POST_NUMBER: art.DEFAULT_CHEKISTS_TWELFTH_POST,
@@ -46,4 +46,5 @@ class ChekistsPostCatalog:
             post.CHEKISTS_TWENTY_EIGHTH_POST_NUMBER: child.DEFAULT_CHEKISTS_TWENTY_EIGHTH_POST,
             post.CHEKISTS_TWENTY_NINTH_POST_NUMBER: child.DEFAULT_CHEKISTS_TWENTY_NINTH_POST,
             post.CHEKISTS_THIRTIETH_POST_NUMBER: child.DEFAULT_CHEKISTS_THIRTIETH_POST,
+            post.CHEKISTS_THIRTY_FIRST_POST_NUMBER: DEFAULT_CHEKISTS_THIRTY_FIRST_POST,
         }

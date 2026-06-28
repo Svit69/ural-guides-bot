@@ -31,6 +31,7 @@ def test_admin_can_select_chekists_posts_for_editing() -> None:
     assert keyboard.inline_keyboard[27][0].text == "328. На будке"
     assert keyboard.inline_keyboard[28][0].text == "329. Седьмой идол"
     assert keyboard.inline_keyboard[29][0].text == "330. Музей советского быта"
+    assert keyboard.inline_keyboard[30][0].text == "331. Библиотека"
 
 
 def test_admin_visibility_keyboard_marks_hidden_chekists_guide() -> None:

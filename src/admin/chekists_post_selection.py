@@ -34,4 +34,5 @@ class ChekistsPostSelectionCatalog:
             (post.CHEKISTS_TWENTY_EIGHTH_POST_NUMBER, "На будке"),
             (post.CHEKISTS_TWENTY_NINTH_POST_NUMBER, "Седьмой идол"),
             (post.CHEKISTS_THIRTIETH_POST_NUMBER, "Музей советского быта"),
+            (post.CHEKISTS_THIRTY_FIRST_POST_NUMBER, "Библиотека"),
         ]
