@@ -32,4 +32,5 @@ class GuideCallbackData(VizCallbackData):
     CHEKISTS_NEXT_AFTER_TWENTY_FOURTH = "guide:chekists:next:24"
     CHEKISTS_NEXT_AFTER_TWENTY_FIFTH = "guide:chekists:next:25"
     CHEKISTS_NEXT_AFTER_TWENTY_SIXTH = "guide:chekists:next:26"
+    CHEKISTS_NEXT_AFTER_TWENTY_SEVENTH = "guide:chekists:next:27"
     CHEKISTS_FIND_ALL_IDOLS = "guide:chekists:idols:find_all"

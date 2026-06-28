@@ -42,8 +42,8 @@ def test_builds_fifth_idol_next_keyboard() -> None:
 
 
 def test_builds_sixth_idol_next_keyboard() -> None:
-    keyboard = ChekistsKeyboardFactory().build_idol_next_keyboard(6, "guide:chekists:next")
+    keyboard = ChekistsKeyboardFactory().build_idol_next_keyboard(6, "guide:chekists:next:27")
     button = keyboard.inline_keyboard[0][0]
 
     assert button.text == "6/7 идем дальше"
-    assert button.callback_data == "guide:chekists:next"
+    assert button.callback_data == "guide:chekists:next:27"
