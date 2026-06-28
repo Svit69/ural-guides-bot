@@ -36,4 +36,5 @@ class ChekistsPostSelectionCatalog:
             (post.CHEKISTS_THIRTIETH_POST_NUMBER, "Музей советского быта"),
             (post.CHEKISTS_THIRTY_FIRST_POST_NUMBER, "Библиотека"),
             (post.CHEKISTS_THIRTY_SECOND_POST_NUMBER, "Пасхалка"),
+            (post.CHEKISTS_THIRTY_THIRD_POST_NUMBER, "Краеведческий музей"),
         ]
