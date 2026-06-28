@@ -31,6 +31,7 @@ def test_admin_can_select_chekists_start_post_for_editing() -> None:
     assert keyboard.inline_keyboard[6][0].text == "307. Арт-объекты"
     assert keyboard.inline_keyboard[7][0].text == "308. Хозкорпус"
     assert keyboard.inline_keyboard[8][0].text == "309. Кофе с полынью"
+    assert keyboard.inline_keyboard[9][0].text == "310. 5 арт-объектов"
 
 
 def test_admin_visibility_keyboard_marks_hidden_chekists_guide() -> None:
