@@ -27,6 +27,7 @@ def test_admin_can_select_chekists_posts_for_editing() -> None:
     assert keyboard.inline_keyboard[23][0].text == "324. Детский сад и ясли"
     assert keyboard.inline_keyboard[24][0].text == "325. Спортивная площадка"
     assert keyboard.inline_keyboard[25][0].text == "326. По пути до идола"
+    assert keyboard.inline_keyboard[26][0].text == "327. Шестой идол"
 
 
 def test_admin_visibility_keyboard_marks_hidden_chekists_guide() -> None:

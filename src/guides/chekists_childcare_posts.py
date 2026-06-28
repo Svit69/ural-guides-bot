@@ -1,5 +1,6 @@
 CHILDCARE_BUILDING_URL = "https://yandex.ru/maps/-/CTU2MLKL"
 SPORTS_GROUND_URL = "https://yandex.ru/maps/-/CTU2QKPe"
+SIXTH_IDOL_URL = "https://yandex.ru/maps/-/CTU24Znk"
 
 DEFAULT_CHEKISTS_TWENTY_FOURTH_POST = (
     "*Здание детского сада и яслей |* "
@@ -21,4 +22,9 @@ DEFAULT_CHEKISTS_TWENTY_FIFTH_POST = (
 DEFAULT_CHEKISTS_TWENTY_SIXTH_POST = (
     "По пути до следующего идола можно увидеть такое. Надпись справа на щитке, "
     "а шар слева на здании после входа в офис ФСИН."
+)
+
+DEFAULT_CHEKISTS_TWENTY_SEVENTH_POST = (
+    "*Шестой идол сбоку слева на трансформаторной будке |* "
+    f"*[Точка на карте({SIXTH_IDOL_URL})]*"
 )

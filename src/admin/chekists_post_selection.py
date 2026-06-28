@@ -30,4 +30,5 @@ class ChekistsPostSelectionCatalog:
             (post.CHEKISTS_TWENTY_FOURTH_POST_NUMBER, "Детский сад и ясли"),
             (post.CHEKISTS_TWENTY_FIFTH_POST_NUMBER, "Спортивная площадка"),
             (post.CHEKISTS_TWENTY_SIXTH_POST_NUMBER, "По пути до идола"),
+            (post.CHEKISTS_TWENTY_SEVENTH_POST_NUMBER, "Шестой идол"),
         ]
