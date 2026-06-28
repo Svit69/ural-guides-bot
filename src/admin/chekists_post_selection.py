@@ -7,6 +7,7 @@ from src.guides.chekists_posts import CHEKISTS_FIFTEENTH_POST_NUMBER
 from src.guides.chekists_posts import CHEKISTS_FIRST_POST_NUMBER
 from src.guides.chekists_posts import CHEKISTS_FOURTH_POST_NUMBER
 from src.guides.chekists_posts import CHEKISTS_NINTH_POST_NUMBER
+from src.guides.chekists_posts import CHEKISTS_NINETEENTH_POST_NUMBER
 from src.guides.chekists_posts import CHEKISTS_SECOND_POST_NUMBER
 from src.guides.chekists_posts import CHEKISTS_SEVENTH_POST_NUMBER
 from src.guides.chekists_posts import CHEKISTS_SIXTH_POST_NUMBER
@@ -39,4 +40,5 @@ class ChekistsPostSelectionCatalog:
             (CHEKISTS_SIXTEENTH_POST_NUMBER, "Арт «Живи»"),
             (CHEKISTS_SEVENTEENTH_POST_NUMBER, "Третий идол"),
             (CHEKISTS_EIGHTEENTH_POST_NUMBER, "Четвертый идол"),
+            (CHEKISTS_NINETEENTH_POST_NUMBER, "Пятый идол"),
         ]

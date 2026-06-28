@@ -28,6 +28,7 @@ def test_admin_can_select_chekists_start_post_for_editing() -> None:
     assert keyboard.inline_keyboard[15][0].text == "316. Арт «Живи»"
     assert keyboard.inline_keyboard[16][0].text == "317. Третий идол"
     assert keyboard.inline_keyboard[17][0].text == "318. Четвертый идол"
+    assert keyboard.inline_keyboard[18][0].text == "319. Пятый идол"
 
 
 def test_admin_visibility_keyboard_marks_hidden_chekists_guide() -> None:
