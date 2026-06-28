@@ -16,6 +16,8 @@ class ChekistsKeyboardFactory:
         return self.build_idol_next_keyboard(4, GuideCallbackData.CHEKISTS_NEXT_AFTER_EIGHTEENTH)
 
     def build_idol_next_keyboard(self, number: int, callback_data: str) -> InlineKeyboardMarkup:
+        if number == 7:
+            return self.__single_button("нашли всех, идем дальше!", callback_data)
         return self.__single_button(f"{number}/7 идем дальше", callback_data)
 
     def __single_button(self, text: str, callback_data: str) -> InlineKeyboardMarkup:

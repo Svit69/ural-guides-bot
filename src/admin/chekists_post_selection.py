@@ -32,4 +32,5 @@ class ChekistsPostSelectionCatalog:
             (post.CHEKISTS_TWENTY_SIXTH_POST_NUMBER, "По пути до идола"),
             (post.CHEKISTS_TWENTY_SEVENTH_POST_NUMBER, "Шестой идол"),
             (post.CHEKISTS_TWENTY_EIGHTH_POST_NUMBER, "На будке"),
+            (post.CHEKISTS_TWENTY_NINTH_POST_NUMBER, "Седьмой идол"),
         ]
