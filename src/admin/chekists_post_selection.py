@@ -8,6 +8,7 @@ from src.guides.chekists_posts import CHEKISTS_SECOND_POST_NUMBER
 from src.guides.chekists_posts import CHEKISTS_SEVENTH_POST_NUMBER
 from src.guides.chekists_posts import CHEKISTS_SIXTH_POST_NUMBER
 from src.guides.chekists_posts import CHEKISTS_TENTH_POST_NUMBER
+from src.guides.chekists_posts import CHEKISTS_THIRTEENTH_POST_NUMBER
 from src.guides.chekists_posts import CHEKISTS_THIRD_POST_NUMBER
 from src.guides.chekists_posts import CHEKISTS_TWELFTH_POST_NUMBER
 
@@ -27,4 +28,5 @@ class ChekistsPostSelectionCatalog:
             (CHEKISTS_TENTH_POST_NUMBER, "5 арт-объектов"),
             (CHEKISTS_ELEVENTH_POST_NUMBER, "Шигирский идол"),
             (CHEKISTS_TWELFTH_POST_NUMBER, "Птицы на гараже"),
+            (CHEKISTS_THIRTEENTH_POST_NUMBER, "Музей советского детства"),
         ]

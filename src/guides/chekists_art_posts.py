@@ -3,6 +3,7 @@ GRAFFITI_CLUSTER_URL = (
     "mode=poi&poi%5Bpoint%5D=60.622079%2C56.842691&"
     "poi%5Buri%5D=ymapsbm1%3A%2F%2Forg%3Foid%3D174415770087&z=20.05"
 )
+SOVIET_CHILDHOOD_MUSEUM_URL = "https://yandex.ru/maps/-/CTUXaYjE"
 
 DEFAULT_CHEKISTS_TENTH_POST = (
     "На одной точке сразу 5 арт-объектов, об одном расскажу отдельно! "
@@ -30,4 +31,14 @@ DEFAULT_CHEKISTS_ELEVENTH_POST = (
 DEFAULT_CHEKISTS_TWELFTH_POST = (
     "*Стрит-арт с птицами на гараже*\n\n"
     "Пройдите немного направо, там красивый арт на гараже."
+)
+
+DEFAULT_CHEKISTS_THIRTEENTH_POST = (
+    "*Скамейка с медведями*\n\n"
+    "Мимишная скамейка около музея. А ещё рядом забавная клумба из старого "
+    "телевизора.\n\n"
+    "*Музей советского детства*\n\n"
+    "В музее я была, когда он находился в «Сити-центре». Классное место, "
+    "можно поиграть в приставку, потрогать экспонаты, примерить что-либо.\n"
+    f"*[Точка на карте({SOVIET_CHILDHOOD_MUSEUM_URL})]*"
 )

@@ -1,9 +1,12 @@
 from src.guides.chekists_art_posts import DEFAULT_CHEKISTS_ELEVENTH_POST
 from src.guides.chekists_art_posts import DEFAULT_CHEKISTS_TENTH_POST
+from src.guides.chekists_art_posts import DEFAULT_CHEKISTS_THIRTEENTH_POST
 from src.guides.chekists_art_posts import DEFAULT_CHEKISTS_TWELFTH_POST
 from src.guides.chekists_art_posts import GRAFFITI_CLUSTER_URL
+from src.guides.chekists_art_posts import SOVIET_CHILDHOOD_MUSEUM_URL
 from src.guides.chekists_posts import CHEKISTS_ELEVENTH_POST_NUMBER
 from src.guides.chekists_posts import CHEKISTS_TENTH_POST_NUMBER
+from src.guides.chekists_posts import CHEKISTS_THIRTEENTH_POST_NUMBER
 from src.guides.chekists_posts import CHEKISTS_TWELFTH_POST_NUMBER
 from src.messages.default_post_catalog import DefaultPostCatalog
 
@@ -30,3 +33,10 @@ def test_chekists_twelfth_post_is_available_from_default_catalog() -> None:
 
     assert text == DEFAULT_CHEKISTS_TWELFTH_POST
     assert "Стрит-арт с птицами на гараже" in text
+
+
+def test_chekists_thirteenth_post_preserves_map_link() -> None:
+    text = DefaultPostCatalog().get_default_text(CHEKISTS_THIRTEENTH_POST_NUMBER)
+
+    assert text == DEFAULT_CHEKISTS_THIRTEENTH_POST
+    assert f"*[Точка на карте({SOVIET_CHILDHOOD_MUSEUM_URL})]*" in text

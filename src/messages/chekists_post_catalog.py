@@ -6,10 +6,12 @@ from src.guides.chekists_posts import CHEKISTS_SECOND_POST_NUMBER
 from src.guides.chekists_posts import CHEKISTS_SEVENTH_POST_NUMBER
 from src.guides.chekists_posts import CHEKISTS_SIXTH_POST_NUMBER
 from src.guides.chekists_posts import CHEKISTS_TENTH_POST_NUMBER
+from src.guides.chekists_posts import CHEKISTS_THIRTEENTH_POST_NUMBER
 from src.guides.chekists_posts import CHEKISTS_TWELFTH_POST_NUMBER
 from src.guides.chekists_posts import CHEKISTS_FOURTH_POST_NUMBER, CHEKISTS_THIRD_POST_NUMBER
 from src.guides.chekists_art_posts import DEFAULT_CHEKISTS_ELEVENTH_POST
 from src.guides.chekists_art_posts import DEFAULT_CHEKISTS_TENTH_POST
+from src.guides.chekists_art_posts import DEFAULT_CHEKISTS_THIRTEENTH_POST
 from src.guides.chekists_art_posts import DEFAULT_CHEKISTS_TWELFTH_POST
 from src.guides.chekists_building_posts import DEFAULT_CHEKISTS_EIGHTH_POST
 from src.guides.chekists_building_posts import DEFAULT_CHEKISTS_NINTH_POST
@@ -36,4 +38,5 @@ class ChekistsPostCatalog:
             CHEKISTS_TENTH_POST_NUMBER: DEFAULT_CHEKISTS_TENTH_POST,
             CHEKISTS_ELEVENTH_POST_NUMBER: DEFAULT_CHEKISTS_ELEVENTH_POST,
             CHEKISTS_TWELFTH_POST_NUMBER: DEFAULT_CHEKISTS_TWELFTH_POST,
+            CHEKISTS_THIRTEENTH_POST_NUMBER: DEFAULT_CHEKISTS_THIRTEENTH_POST,
         }
