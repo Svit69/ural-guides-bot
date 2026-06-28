@@ -18,4 +18,8 @@ class ChekistsLateSelectionHandlerMixin:
         await self._send_chekists_next(callback, post.CHEKISTS_TWELFTH_POST_NUMBER, next_callback)
 
     async def _send_chekists_thirteenth_post(self, callback: CallbackQuery) -> None:
-        await self._send_chekists_next(callback, post.CHEKISTS_THIRTEENTH_POST_NUMBER)
+        next_callback = GuideCallbackData.CHEKISTS_NEXT_AFTER_THIRTEENTH
+        await self._send_chekists_next(callback, post.CHEKISTS_THIRTEENTH_POST_NUMBER, next_callback)
+
+    async def _send_chekists_fourteenth_post(self, callback: CallbackQuery) -> None:
+        await self._send_chekists_next(callback, post.CHEKISTS_FOURTEENTH_POST_NUMBER)
