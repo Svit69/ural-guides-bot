@@ -38,4 +38,5 @@ class ChekistsPostSelectionCatalog:
             (post.CHEKISTS_THIRTY_SECOND_POST_NUMBER, "Пасхалка"),
             (post.CHEKISTS_THIRTY_THIRD_POST_NUMBER, "Краеведческий музей"),
             (post.CHEKISTS_THIRTY_FOURTH_POST_NUMBER, "Арты в подъезде"),
+            (post.CHEKISTS_THIRTY_FIFTH_POST_NUMBER, "На этом всё"),
         ]

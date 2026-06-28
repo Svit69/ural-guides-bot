@@ -5,7 +5,7 @@ from src.guides import chekists_extra_art_posts as extra
 from src.guides import chekists_building_posts as building
 from src.guides import chekists_food_posts as food
 from src.guides import chekists_idol_posts as idol
-from src.guides import chekists_library_posts as library
+from src.guides import chekists_final_posts as final, chekists_library_posts as library
 from src.guides.chekists_intro_posts import DEFAULT_CHEKISTS_SECOND_POST
 from src.guides.chekists_later_posts import DEFAULT_CHEKISTS_FIFTH_POST, DEFAULT_CHEKISTS_FOURTH_POST, DEFAULT_CHEKISTS_THIRD_POST
 
@@ -46,4 +46,5 @@ class ChekistsPostCatalog:
             post.CHEKISTS_THIRTY_SECOND_POST_NUMBER: library.DEFAULT_CHEKISTS_THIRTY_SECOND_POST,
             post.CHEKISTS_THIRTY_THIRD_POST_NUMBER: library.DEFAULT_CHEKISTS_THIRTY_THIRD_POST,
             post.CHEKISTS_THIRTY_FOURTH_POST_NUMBER: library.DEFAULT_CHEKISTS_THIRTY_FOURTH_POST,
+            post.CHEKISTS_THIRTY_FIFTH_POST_NUMBER: final.DEFAULT_CHEKISTS_THIRTY_FIFTH_POST,
         }
