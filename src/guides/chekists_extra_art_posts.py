@@ -8,6 +8,7 @@ SECOND_IDOL_URL = (
     "whatshere%5Bzoom%5D=17&z=17.76"
 )
 THIRD_IDOL_URL = "https://yandex.ru/maps/-/CTUXJ85R"
+FOURTH_IDOL_URL = "https://yandex.ru/maps/-/CTUXRBLl"
 HOUSE_14_ENTRANCE_URL = "https://yandex.ru/maps/-/CTUXJAZ1"
 
 DEFAULT_CHEKISTS_FOURTEENTH_POST = (
@@ -31,4 +32,11 @@ DEFAULT_CHEKISTS_SEVENTEENTH_POST = (
     "Раньше был на трансформаторной будке. Его оторвали в течение прошлого года: "
     "прикрепила до и после (2025 и 2026) 🥲\n\n"
     "Тут же несколько артов и зеркало."
+)
+
+DEFAULT_CHEKISTS_EIGHTEENTH_POST = (
+    "*Четвертый идол |* "
+    f"*[Точка на карте({FOURTH_IDOL_URL})]*\n\n"
+    "Еле разглядела на трубе около первого подъезда четвертого корпуса. Слева от двери.\n\n"
+    "Дальше надо идти по тротуару к заднему двору 13-го корпуса. Там есть один идол."
 )

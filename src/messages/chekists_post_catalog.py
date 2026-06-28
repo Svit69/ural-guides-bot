@@ -6,6 +6,7 @@ from src.guides.chekists_art_posts import DEFAULT_CHEKISTS_TWELFTH_POST
 from src.guides.chekists_building_posts import DEFAULT_CHEKISTS_EIGHTH_POST
 from src.guides.chekists_building_posts import DEFAULT_CHEKISTS_NINTH_POST
 from src.guides.chekists_extra_art_posts import DEFAULT_CHEKISTS_FIFTEENTH_POST
+from src.guides.chekists_extra_art_posts import DEFAULT_CHEKISTS_EIGHTEENTH_POST
 from src.guides.chekists_extra_art_posts import DEFAULT_CHEKISTS_FOURTEENTH_POST
 from src.guides.chekists_extra_art_posts import DEFAULT_CHEKISTS_SEVENTEENTH_POST
 from src.guides.chekists_extra_art_posts import DEFAULT_CHEKISTS_SIXTEENTH_POST
@@ -35,4 +36,5 @@ class ChekistsPostCatalog:
             post.CHEKISTS_FIFTEENTH_POST_NUMBER: DEFAULT_CHEKISTS_FIFTEENTH_POST,
             post.CHEKISTS_SIXTEENTH_POST_NUMBER: DEFAULT_CHEKISTS_SIXTEENTH_POST,
             post.CHEKISTS_SEVENTEENTH_POST_NUMBER: DEFAULT_CHEKISTS_SEVENTEENTH_POST,
+            post.CHEKISTS_EIGHTEENTH_POST_NUMBER: DEFAULT_CHEKISTS_EIGHTEENTH_POST,
         }

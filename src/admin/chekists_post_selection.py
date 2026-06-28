@@ -1,5 +1,6 @@
 from src.guides.chekists_posts import CHEKISTS_FIFTH_POST_NUMBER
 from src.guides.chekists_posts import CHEKISTS_EIGHTH_POST_NUMBER
+from src.guides.chekists_posts import CHEKISTS_EIGHTEENTH_POST_NUMBER
 from src.guides.chekists_posts import CHEKISTS_ELEVENTH_POST_NUMBER
 from src.guides.chekists_posts import CHEKISTS_FOURTEENTH_POST_NUMBER
 from src.guides.chekists_posts import CHEKISTS_FIFTEENTH_POST_NUMBER
@@ -37,4 +38,5 @@ class ChekistsPostSelectionCatalog:
             (CHEKISTS_FIFTEENTH_POST_NUMBER, "Второй идол"),
             (CHEKISTS_SIXTEENTH_POST_NUMBER, "Арт «Живи»"),
             (CHEKISTS_SEVENTEENTH_POST_NUMBER, "Третий идол"),
+            (CHEKISTS_EIGHTEENTH_POST_NUMBER, "Четвертый идол"),
         ]

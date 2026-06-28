@@ -10,7 +10,10 @@ class ChekistsKeyboardFactory:
         return self.__single_button("2/7 идем дальше", GuideCallbackData.CHEKISTS_NEXT_AFTER_FIFTEENTH)
 
     def build_third_idol_next_keyboard(self) -> InlineKeyboardMarkup:
-        return self.__single_button("3/7 идем дальше", GuideCallbackData.CHEKISTS_NEXT)
+        return self.__single_button("3/7 идем дальше", GuideCallbackData.CHEKISTS_NEXT_AFTER_SEVENTEENTH)
+
+    def build_fourth_idol_next_keyboard(self) -> InlineKeyboardMarkup:
+        return self.__single_button("4/7 идем дальше", GuideCallbackData.CHEKISTS_NEXT_AFTER_EIGHTEENTH)
 
     def __single_button(self, text: str, callback_data: str) -> InlineKeyboardMarkup:
         button = InlineKeyboardButton(text=text, callback_data=callback_data)
