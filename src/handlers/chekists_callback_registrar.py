@@ -11,6 +11,7 @@ class ChekistsCallbackRegistrar:
             (handler._send_chekists_fifth_post, GuideCallbackData.CHEKISTS_NEXT_AFTER_FOURTH),
             (handler._send_chekists_sixth_post, GuideCallbackData.CHEKISTS_NEXT_AFTER_FIFTH),
             (handler._send_chekists_seventh_post, GuideCallbackData.CHEKISTS_NEXT_AFTER_SIXTH),
+            (handler._send_chekists_eighth_post, GuideCallbackData.CHEKISTS_NEXT_AFTER_SEVENTH),
         )
         for callback_handler, callback_data in pairs:
             dispatcher.callback_query.register(callback_handler, F.data == callback_data)
