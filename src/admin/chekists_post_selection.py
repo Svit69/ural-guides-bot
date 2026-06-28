@@ -9,6 +9,7 @@ from src.guides.chekists_posts import CHEKISTS_SEVENTH_POST_NUMBER
 from src.guides.chekists_posts import CHEKISTS_SIXTH_POST_NUMBER
 from src.guides.chekists_posts import CHEKISTS_TENTH_POST_NUMBER
 from src.guides.chekists_posts import CHEKISTS_THIRD_POST_NUMBER
+from src.guides.chekists_posts import CHEKISTS_TWELFTH_POST_NUMBER
 
 
 class ChekistsPostSelectionCatalog:
@@ -25,4 +26,5 @@ class ChekistsPostSelectionCatalog:
             (CHEKISTS_NINTH_POST_NUMBER, "Кофе с полынью"),
             (CHEKISTS_TENTH_POST_NUMBER, "5 арт-объектов"),
             (CHEKISTS_ELEVENTH_POST_NUMBER, "Шигирский идол"),
+            (CHEKISTS_TWELFTH_POST_NUMBER, "Птицы на гараже"),
         ]
