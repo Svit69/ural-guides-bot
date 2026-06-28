@@ -2,12 +2,10 @@ from aiogram import Bot, Dispatcher, F
 from aiogram.exceptions import TelegramBadRequest, TelegramForbiddenError
 from aiogram.types import CallbackQuery
 
-from src.messages.default_posts import SECOND_POST_NUMBER, THIRD_POST_NUMBER
 from src.messages.post_provider import PostProvider
-from src.route_navigation.keyboards import RouteNavigationKeyboardFactory
-from src.services.post_sender import TelegramPostSender
 from src.subscription.callbacks import SubscriptionCallbackData
 from src.subscription.checker import ChannelSubscriptionChecker
+from src.subscription.free_guide_sender import FreeGuideSender
 from src.subscription.messages import (
     SUBSCRIPTION_CHECK_ERROR_TEXT,
     SUBSCRIPTION_CONFIRMED_TEXT,
@@ -18,14 +16,12 @@ from src.subscription.messages import (
 class SubscriptionCheckHandler:
     def __init__(self, checker: ChannelSubscriptionChecker, posts: PostProvider) -> None:
         self.__checker = checker
-        self.__post_provider = posts
-        self.__post_sender = TelegramPostSender()
-        self.__keyboard_factory = RouteNavigationKeyboardFactory()
+        self.__free_guide_sender = FreeGuideSender(posts)
 
     def register_in_dispatcher(self, dispatcher: Dispatcher) -> None:
         dispatcher.callback_query.register(
             self.__check_subscription,
-            F.data == SubscriptionCallbackData.CHECK_SUBSCRIPTION,
+            F.data.startswith(SubscriptionCallbackData.CHECK_PREFIX),
         )
 
     async def __check_subscription(self, callback: CallbackQuery, bot: Bot) -> None:
@@ -43,8 +39,4 @@ class SubscriptionCheckHandler:
         )
         await callback.answer(answer_text, show_alert=True)
         if is_subscribed and callback.message is not None:
-            await self.__post_sender.send_post(
-                callback.message,
-                self.__post_provider.get_post(SECOND_POST_NUMBER),
-                self.__keyboard_factory.build_next_post_keyboard(THIRD_POST_NUMBER),
-            )
+            await self.__free_guide_sender.send_guide(callback)

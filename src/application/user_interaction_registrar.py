@@ -23,7 +23,8 @@ class UserInteractionRegistrar:
         guide_list_sender = self.__create_guide_list_sender(context)
         StartCommandHandler(
             context["posts"], context["media"], context["users"],
-            context["viz_access"], context["city_access"],
+            context["viz_access"], context["city_access"], context["admins"],
+            context["guide_visibility"],
             self.__settings.viz_guide_price_rub,
             self.__settings.city_guide_price_rub,
         ).register_in_dispatcher(dispatcher)
@@ -36,6 +37,8 @@ class UserInteractionRegistrar:
         return GuideListSender(
             context["viz_access"],
             context["city_access"],
+            context["admins"],
+            context["guide_visibility"],
             self.__settings.viz_guide_price_rub,
             self.__settings.city_guide_price_rub,
         )

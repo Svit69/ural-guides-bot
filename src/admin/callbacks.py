@@ -6,6 +6,8 @@ class AdminCallbackData:
     CANCEL = "admin:cancel"
     EDIT_CONTENT = "admin:edit_content"
     FEEDBACK = "admin:feedback"
+    GUIDE_VISIBILITY = "admin:guide_visibility"
+    TOGGLE_GUIDE_PREFIX = "admin:toggle_guide:"
     CLEAR_FEEDBACK = "admin:clear_feedback"
     CONFIRM_CLEAR_FEEDBACK = "admin:clear_feedback:confirm"
     KEEP_TEXT = "admin:keep_text"
@@ -15,6 +17,7 @@ class AdminCallbackData:
     SELECT_GUIDE_PREFIX = "admin:guide:"
     SELECT_POST_PREFIX = "admin:post:"
     GUIDE_BIG_KONNY = "big_konny"
+    GUIDE_CHEKISTS = "chekists"
     GUIDE_VIZ = "viz"
     GUIDE_CITY_WALK = "city_walk"
 
@@ -27,8 +30,12 @@ class AdminCallbackData:
         if not callback_data.startswith(cls.SELECT_GUIDE_PREFIX):
             return None
         guide_id = callback_data.removeprefix(cls.SELECT_GUIDE_PREFIX)
-        guide_ids = {cls.GUIDE_BIG_KONNY, cls.GUIDE_VIZ, cls.GUIDE_CITY_WALK}
+        guide_ids = {cls.GUIDE_BIG_KONNY, cls.GUIDE_CHEKISTS, cls.GUIDE_VIZ, cls.GUIDE_CITY_WALK}
         return guide_id if guide_id in guide_ids else None
+
+    @classmethod
+    def build_toggle_guide_callback(cls, guide_id: str) -> str:
+        return f"{cls.TOGGLE_GUIDE_PREFIX}{guide_id}"
 
     @classmethod
     def build_post_callback(cls, post_number: int) -> str:

@@ -7,6 +7,7 @@ from src.repositories.post_media_repository import PostMediaRepository
 from src.repositories.post_repository import PostRepository
 from src.repositories.user_repository import UserRepository
 from src.repositories.viz_access_repository import VizAccessRepository
+from src.repositories.guide_visibility_repository import GuideVisibilityRepository
 
 
 class RepositoryBundle:
@@ -18,6 +19,7 @@ class RepositoryBundle:
         self.users = UserRepository(connections)
         self.viz_access = VizAccessRepository(connections)
         self.city_access = CityAccessRepository(connections)
+        self.guide_visibility = GuideVisibilityRepository(connections)
         self.post_provider = PostProvider(self.posts, self.media)
 
     def build_user_context(self) -> dict[str, object]:
@@ -29,4 +31,5 @@ class RepositoryBundle:
             "users": self.users,
             "viz_access": self.viz_access,
             "city_access": self.city_access,
+            "guide_visibility": self.guide_visibility,
         }

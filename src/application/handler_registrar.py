@@ -37,4 +37,5 @@ class HandlerRegistrar:
             repositories.users,
             repositories.viz_access,
             repositories.city_access,
+            repositories.guide_visibility,
         ).register_in_dispatcher(dispatcher)

@@ -4,7 +4,7 @@ from src.subscription.callbacks import SubscriptionCallbackData
 
 
 class SubscriptionKeyboardFactory:
-    def build_subscription_keyboard(self) -> InlineKeyboardMarkup:
+    def build_subscription_keyboard(self, guide_id: str = "big_konny") -> InlineKeyboardMarkup:
         return InlineKeyboardMarkup(
             inline_keyboard=[
                 [
@@ -15,7 +15,7 @@ class SubscriptionKeyboardFactory:
                 [
                     InlineKeyboardButton(
                         text="Проверить подписку",
-                        callback_data=SubscriptionCallbackData.CHECK_SUBSCRIPTION,
+                        callback_data=SubscriptionCallbackData.build_check_callback(guide_id),
                     )
                 ],
             ]

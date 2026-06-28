@@ -7,6 +7,7 @@ from aiogram.enums import ParseMode
 from src.config.environment import EnvironmentSettings
 from src.database.city_payment_schema_initializer import CityPaymentSchemaInitializer
 from src.database.connection_factory import SqliteConnectionFactory
+from src.database.guide_visibility_schema_initializer import GuideVisibilitySchemaInitializer
 from src.database.schema_initializer import DatabaseSchemaInitializer
 from src.database.viz_payment_schema_initializer import VizPaymentSchemaInitializer
 from src.application.handler_registrar import HandlerRegistrar
@@ -32,6 +33,7 @@ class BotApplication:
 
     def __initialize_database(self) -> None:
         DatabaseSchemaInitializer(self.__connection_factory).initialize_schema()
+        GuideVisibilitySchemaInitializer(self.__connection_factory).initialize_schema()
         VizPaymentSchemaInitializer(self.__connection_factory).initialize_schema()
         CityPaymentSchemaInitializer(self.__connection_factory).initialize_schema()
         AdminBootstrapper(AdminRepository(self.__connection_factory)).seed_initial_admins(

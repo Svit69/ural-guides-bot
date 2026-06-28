@@ -6,6 +6,7 @@ from src.handlers.admin_content_handler import AdminContentEditHandler
 from src.handlers.admin_city_buyers_handler import AdminCityBuyersHandler
 from src.handlers.admin_feedback_cleanup_handler import AdminFeedbackCleanupHandler
 from src.handlers.admin_feedback_handler import AdminFeedbackHandler
+from src.handlers.admin_guide_visibility_handler import AdminGuideVisibilityHandler
 from src.handlers.admin_panel_handler import AdminPanelCommandHandler
 from src.handlers.admin_users_handler import AdminUsersHandler
 from src.handlers.admin_viz_buyers_handler import AdminVizBuyersHandler
@@ -16,6 +17,7 @@ from src.repositories.post_media_repository import PostMediaRepository
 from src.repositories.post_repository import PostRepository
 from src.repositories.user_repository import UserRepository
 from src.repositories.viz_access_repository import VizAccessRepository
+from src.repositories.guide_visibility_repository import GuideVisibilityRepository
 
 
 class AdminPanelHandler:
@@ -28,6 +30,7 @@ class AdminPanelHandler:
         user_repository: UserRepository,
         viz_access_repository: VizAccessRepository,
         city_access_repository: CityAccessRepository,
+        guide_visibility_repository: GuideVisibilityRepository,
     ) -> None:
         self.__handlers = [
             AdminCancelHandler(admin_repository),
@@ -37,6 +40,7 @@ class AdminPanelHandler:
             AdminCityBuyersHandler(admin_repository, city_access_repository),
             AdminFeedbackHandler(admin_repository, feedback_repository),
             AdminFeedbackCleanupHandler(admin_repository, feedback_repository),
+            AdminGuideVisibilityHandler(admin_repository, guide_visibility_repository),
             AdminAccessManagementHandler(admin_repository),
             AdminContentEditHandler(admin_repository, post_repository, media_repository),
         ]
