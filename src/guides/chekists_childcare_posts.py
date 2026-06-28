@@ -1,6 +1,7 @@
 CHILDCARE_BUILDING_URL = "https://yandex.ru/maps/-/CTU2MLKL"
 SPORTS_GROUND_URL = "https://yandex.ru/maps/-/CTU2QKPe"
 SIXTH_IDOL_URL = "https://yandex.ru/maps/-/CTU24Znk"
+SOVIET_LIFE_MUSEUM_URL = "https://yandex.ru/maps/-/CTU2qUZA"
 
 DEFAULT_CHEKISTS_TWENTY_FOURTH_POST = (
     "*Здание детского сада и яслей |* "
@@ -38,4 +39,11 @@ DEFAULT_CHEKISTS_TWENTY_EIGHTH_POST = (
 DEFAULT_CHEKISTS_TWENTY_NINTH_POST = (
     "*Последний идол, седьмой:* ищите на воротах.\n\n"
     "Также осмотрите ворота со всех сторон, тут есть кое-что ещё!"
+)
+
+DEFAULT_CHEKISTS_THIRTIETH_POST = (
+    "*Музей советского быта |* "
+    f"*[Ленина, 69/6({SOVIET_LIFE_MUSEUM_URL})]*\n\n"
+    "Классный музей, который погрузит в советское время. "
+    "Я в него ходила, когда он был по другому адресу."
 )
