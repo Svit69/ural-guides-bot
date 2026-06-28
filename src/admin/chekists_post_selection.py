@@ -2,6 +2,7 @@ from src.guides.chekists_posts import CHEKISTS_FIFTH_POST_NUMBER
 from src.guides.chekists_posts import CHEKISTS_EIGHTH_POST_NUMBER
 from src.guides.chekists_posts import CHEKISTS_FIRST_POST_NUMBER
 from src.guides.chekists_posts import CHEKISTS_FOURTH_POST_NUMBER
+from src.guides.chekists_posts import CHEKISTS_NINTH_POST_NUMBER
 from src.guides.chekists_posts import CHEKISTS_SECOND_POST_NUMBER
 from src.guides.chekists_posts import CHEKISTS_SEVENTH_POST_NUMBER
 from src.guides.chekists_posts import CHEKISTS_SIXTH_POST_NUMBER
@@ -19,4 +20,5 @@ class ChekistsPostSelectionCatalog:
             (CHEKISTS_SIXTH_POST_NUMBER, "Пончиковая №1"),
             (CHEKISTS_SEVENTH_POST_NUMBER, "Арт-объекты"),
             (CHEKISTS_EIGHTH_POST_NUMBER, "Хозкорпус"),
+            (CHEKISTS_NINTH_POST_NUMBER, "Кофе с полынью"),
         ]
