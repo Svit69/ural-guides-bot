@@ -1,5 +1,8 @@
-from src.guides.chekists_posts import CHEKISTS_FIFTH_POST_NUMBER, CHEKISTS_FIRST_POST_NUMBER
-from src.guides.chekists_posts import CHEKISTS_FOURTH_POST_NUMBER, CHEKISTS_SECOND_POST_NUMBER
+from src.guides.chekists_posts import CHEKISTS_FIFTH_POST_NUMBER
+from src.guides.chekists_posts import CHEKISTS_FIRST_POST_NUMBER
+from src.guides.chekists_posts import CHEKISTS_FOURTH_POST_NUMBER
+from src.guides.chekists_posts import CHEKISTS_SECOND_POST_NUMBER
+from src.guides.chekists_posts import CHEKISTS_SIXTH_POST_NUMBER
 from src.guides.chekists_posts import CHEKISTS_THIRD_POST_NUMBER
 
 
@@ -11,4 +14,5 @@ class ChekistsPostSelectionCatalog:
             (CHEKISTS_THIRD_POST_NUMBER, "Гостиница «Исеть»"),
             (CHEKISTS_FOURTH_POST_NUMBER, "Жилые корпуса"),
             (CHEKISTS_FIFTH_POST_NUMBER, "Граффити «Слово пацана»"),
+            (CHEKISTS_SIXTH_POST_NUMBER, "Пончиковая №1"),
         ]

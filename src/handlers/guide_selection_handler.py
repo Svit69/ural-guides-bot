@@ -1,6 +1,5 @@
 from aiogram import Dispatcher, F
 from aiogram.types import CallbackQuery
-
 from src.guides.callbacks import GuideCallbackData
 from src.guides.keyboards import GuideKeyboardFactory
 from src.guides.guide_ids import GUIDE_BIG_KONNY
@@ -24,7 +23,6 @@ class GuideSelectionHandler(ChekistsSelectionHandlerMixin, VizRouteHandlerMixin,
         self.__keyboards = GuideKeyboardFactory()
         self.__route_registrar = VizCallbackRegistrar()
         self.__subscription_prompt = SubscriptionPromptSender()
-
     def register_in_dispatcher(self, dispatcher: Dispatcher) -> None:
         dispatcher.callback_query.register(self.__select_big_konny, F.data == GuideCallbackData.SELECT_BIG_KONNY)
         dispatcher.callback_query.register(self._select_chekists, F.data == GuideCallbackData.SELECT_CHEKISTS)
@@ -33,6 +31,7 @@ class GuideSelectionHandler(ChekistsSelectionHandlerMixin, VizRouteHandlerMixin,
         dispatcher.callback_query.register(self._send_chekists_third_post, F.data == GuideCallbackData.CHEKISTS_NEXT_AFTER_SECOND)
         dispatcher.callback_query.register(self._send_chekists_fourth_post, F.data == GuideCallbackData.CHEKISTS_NEXT_AFTER_THIRD)
         dispatcher.callback_query.register(self._send_chekists_fifth_post, F.data == GuideCallbackData.CHEKISTS_NEXT_AFTER_FOURTH)
+        dispatcher.callback_query.register(self._send_chekists_sixth_post, F.data == GuideCallbackData.CHEKISTS_NEXT_AFTER_FIFTH)
         dispatcher.callback_query.register(self._answer_chekists_next, F.data == GuideCallbackData.CHEKISTS_NEXT)
         self.__route_registrar.register_route_callbacks(dispatcher, self)
         dispatcher.callback_query.register(self._start_viz_feedback, F.data == GuideCallbackData.FINISH_VIZ)
